@@ -73,6 +73,8 @@ import TranslatedHeader from '@components/Datatables/TranslatedHeader'
 import HeaderSettings from '@components/Datatables/HeaderSettings'
 import GlobalSearch from '@components/Datatables/GlobalSearch'
 import DatatableList from '@components/Datatables/DatatableList'
+import DatatableDept from '@components/Datatables/DatatableDept'
+import BuDeptSingle from '../../components/Datatables/BuDeptSingle.vue'
 
 export default {
   components: {
@@ -102,16 +104,16 @@ export default {
           sortable: true
         },
         {
-          title: 'cruds.user.fields.email_verified_at',
-          field: 'email_verified_at',
-          thComp: TranslatedHeader,
-          sortable: true
-        },
-        {
           title: 'cruds.user.fields.roles',
           field: 'roles.title',
           thComp: TranslatedHeader,
           tdComp: DatatableList
+        },
+        {
+          title: 'cruds.user.fields.dept',
+          field: 'dept',
+          thComp: TranslatedHeader,
+          tdComp: DatatableDept
         },
         {
           title: 'global.actions',

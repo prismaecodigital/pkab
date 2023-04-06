@@ -109,6 +109,38 @@ function initialState() {
           })
       })
     },
+    rejectData({ commit, state, dispatch }) {
+      commit('setLoading', true)
+      dispatch('Alert/resetState', null, { root: true })
+  
+      return new Promise((resolve, reject) => {
+        let params = objectToFormData(state.entry, {
+          indices: true,
+          booleansAsIntegers: true
+        })
+        params.set('_method', 'PUT')
+        axios
+          .post(`${route}/rejectData/${state.entry.id}`, params)
+          .then(response => {
+            resolve(response)
+          })
+          .catch(error => {
+            let message = error.response.data.message || error.message
+            let errors = error.response.data.errors
+  
+            dispatch(
+              'Alert/setAlert',
+              { message: message, errors: errors, color: 'danger' },
+              { root: true }
+            )
+  
+            reject(error)
+          })
+          .finally(() => {
+            commit('setLoading', false)
+          })
+      })
+    },
     approveData({ commit, dispatch }, id) {
       return axios.post(`${route}/${id}/approve`, { id })
         .then(response => {

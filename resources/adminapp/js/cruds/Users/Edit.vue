@@ -23,7 +23,7 @@
                   <div
                     class="form-group bmd-form-group"
                     :class="{
-                      'has-items': entry.name,
+                      'is-filled': entry.name,
                       'is-focused': activeField == 'name'
                     }"
                   >
@@ -43,7 +43,7 @@
                   <div
                     class="form-group bmd-form-group"
                     :class="{
-                      'has-items': entry.email,
+                      'is-filled': entry.email,
                       'is-focused': activeField == 'email'
                     }"
                   >
@@ -63,7 +63,7 @@
                   <div
                     class="form-group bmd-form-group"
                     :class="{
-                      'has-items': entry.password,
+                      'is-filled': entry.password,
                       'is-focused': activeField == 'password'
                     }"
                   >
@@ -82,7 +82,7 @@
                   <div
                     class="form-group bmd-form-group"
                     :class="{
-                      'has-items': entry.roles.length !== 0,
+                      'is-filled': entry.roles.length !== 0,
                       'is-focused': activeField == 'roles'
                     }"
                   >
@@ -99,6 +99,52 @@
                       multiple
                       @input="updateRoles"
                       @search.focus="focusField('roles')"
+                      @search.blur="clearFocus"
+                    />
+                  </div>
+                                    <div
+                    class="form-group bmd-form-group"
+                    :class="{
+                      'is-filled': entry.dept.length !== 0,
+                      'is-focused': activeField == 'bu'
+                    }"
+                  >
+                    <label class="">{{
+                      $t('cruds.user.fields.bu')
+                    }}</label>
+                    <v-select
+                      name="bu"
+                      label="name"
+                      :key="'bu-field'"
+                      :value="entry.bu"
+                      :options="lists.bu"
+                      :closeOnSelect="false"
+                      multiple
+                      @input="updateBu"
+                      @search.focus="focusField('dept')"
+                      @search.blur="clearFocus"
+                    />
+                  </div>
+                  <div
+                    class="form-group bmd-form-group"
+                    :class="{
+                      'is-filled': entry.dept.length !== 0,
+                      'is-focused': activeField == 'dept'
+                    }"
+                  >
+                    <label class="">{{
+                      $t('cruds.user.fields.dept')
+                    }}</label>
+                    <v-select
+                      name="dept"
+                      label="name"
+                      :key="'dept-field'"
+                      :value="entry.dept"
+                      :options="lists.dept"
+                      :closeOnSelect="false"
+                      multiple
+                      @input="updateDept"
+                      @search.focus="focusField('dept')"
                       @search.blur="clearFocus"
                     />
                   </div>
@@ -155,7 +201,7 @@ export default {
       'setName',
       'setEmail',
       'setPassword',
-      'setRoles'
+      'setRoles', 'setBu', 'setDept'
     ]),
     updateName(e) {
       this.setName(e.target.value)
@@ -187,7 +233,34 @@ export default {
     },
     clearFocus() {
       this.activeField = ''
-    }
+    },
+    updateBu(value) {
+      this.setDept([])
+      const bu_ids = value.map(function (data) {
+        return data.id;
+    });
+      this.setBu(value)
+      if(value[0] != null) {
+        axios.get('/budept', {
+          params: {
+              bu: bu_ids
+          }
+        })
+        .then(response => {
+            this.depts = response.data;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+      }
+      else {
+        this.depts = []
+      }
+      
+    },
+    updateDept(value) {
+      this.setDept(value)
+    },
   }
 }
 </script>

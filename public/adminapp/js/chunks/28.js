@@ -36,7 +36,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  methods: Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('UsersSingle', ['fetchEditData', 'updateData', 'resetState', 'setName', 'setEmail', 'setPassword', 'setRoles'])), {}, {
+  methods: Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('UsersSingle', ['fetchEditData', 'updateData', 'resetState', 'setName', 'setEmail', 'setPassword', 'setRoles', 'setBu', 'setDept'])), {}, {
     updateName: function updateName(e) {
       this.setName(e.target.value);
     },
@@ -68,6 +68,30 @@ __webpack_require__.r(__webpack_exports__);
     },
     clearFocus: function clearFocus() {
       this.activeField = '';
+    },
+    updateBu: function updateBu(value) {
+      var _this2 = this;
+      this.setDept([]);
+      var bu_ids = value.map(function (data) {
+        return data.id;
+      });
+      this.setBu(value);
+      if (value[0] != null) {
+        axios.get('/budept', {
+          params: {
+            bu: bu_ids
+          }
+        }).then(function (response) {
+          _this2.depts = response.data;
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      } else {
+        this.depts = [];
+      }
+    },
+    updateDept: function updateDept(value) {
+      this.setDept(value);
     }
   })
 });
@@ -118,7 +142,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group bmd-form-group",
     "class": {
-      "has-items": _vm.entry.name,
+      "is-filled": _vm.entry.name,
       "is-focused": _vm.activeField == "name"
     }
   }, [_c("label", {
@@ -142,7 +166,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group bmd-form-group",
     "class": {
-      "has-items": _vm.entry.email,
+      "is-filled": _vm.entry.email,
       "is-focused": _vm.activeField == "email"
     }
   }, [_c("label", {
@@ -166,7 +190,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group bmd-form-group",
     "class": {
-      "has-items": _vm.entry.password,
+      "is-filled": _vm.entry.password,
       "is-focused": _vm.activeField == "password"
     }
   }, [_c("label", {
@@ -189,7 +213,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group bmd-form-group",
     "class": {
-      "has-items": _vm.entry.roles.length !== 0,
+      "is-filled": _vm.entry.roles.length !== 0,
       "is-focused": _vm.activeField == "roles"
     }
   }, [_c("label", {
@@ -209,6 +233,58 @@ var render = function render() {
       search: [function ($event) {
         if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "focus", undefined, $event.key, undefined)) return null;
         return _vm.focusField("roles");
+      }, function ($event) {
+        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "blur", undefined, $event.key, undefined)) return null;
+        return _vm.clearFocus.apply(null, arguments);
+      }]
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "form-group bmd-form-group",
+    "class": {
+      "is-filled": _vm.entry.dept.length !== 0,
+      "is-focused": _vm.activeField == "bu"
+    }
+  }, [_c("label", {}, [_vm._v(_vm._s(_vm.$t("cruds.user.fields.bu")))]), _vm._v(" "), _c("v-select", {
+    key: "bu-field",
+    attrs: {
+      name: "bu",
+      label: "name",
+      value: _vm.entry.bu,
+      options: _vm.lists.bu,
+      closeOnSelect: false,
+      multiple: ""
+    },
+    on: {
+      input: _vm.updateBu,
+      search: [function ($event) {
+        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "focus", undefined, $event.key, undefined)) return null;
+        return _vm.focusField("dept");
+      }, function ($event) {
+        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "blur", undefined, $event.key, undefined)) return null;
+        return _vm.clearFocus.apply(null, arguments);
+      }]
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "form-group bmd-form-group",
+    "class": {
+      "is-filled": _vm.entry.dept.length !== 0,
+      "is-focused": _vm.activeField == "dept"
+    }
+  }, [_c("label", {}, [_vm._v(_vm._s(_vm.$t("cruds.user.fields.dept")))]), _vm._v(" "), _c("v-select", {
+    key: "dept-field",
+    attrs: {
+      name: "dept",
+      label: "name",
+      value: _vm.entry.dept,
+      options: _vm.lists.dept,
+      closeOnSelect: false,
+      multiple: ""
+    },
+    on: {
+      input: _vm.updateDept,
+      search: [function ($event) {
+        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "focus", undefined, $event.key, undefined)) return null;
+        return _vm.focusField("dept");
       }, function ($event) {
         if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "blur", undefined, $event.key, undefined)) return null;
         return _vm.clearFocus.apply(null, arguments);

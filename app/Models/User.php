@@ -27,11 +27,9 @@ class User extends Authenticatable
         'id',
         'name',
         'email',
-        'email_verified_at',
     ];
 
     protected $dates = [
-        'email_verified_at',
         'created_at',
         'updated_at',
     ];
@@ -41,7 +39,6 @@ class User extends Authenticatable
         'name',
         'username',
         'email',
-        'email_verified_at',
         'roles.title',
     ];
 
@@ -49,7 +46,6 @@ class User extends Authenticatable
         'name',
         'username',
         'email',
-        'email_verified_at',
         'password',
         'remember_token',
         'created_at',
@@ -66,16 +62,6 @@ class User extends Authenticatable
         return $this->roles()->where('title', 'Admin')->exists();
     }
 
-    public function getEmailVerifiedAtAttribute($value)
-    {
-        return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('project.datetime_format')) : null;
-    }
-
-    public function setEmailVerifiedAtAttribute($value)
-    {
-        $this->attributes['email_verified_at'] = $value ? Carbon::createFromFormat(config('project.datetime_format'), $value)->format('Y-m-d H:i:s') : null;
-    }
-
     public function setPasswordAttribute($input)
     {
         if ($input) {
@@ -88,13 +74,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    public function bu()
-    {
-        return $this->belongsToMany(Bu::class);
-    }
-
     public function dept()
     {
         return $this->belongsToMany(Dept::class);
     }
+
 }

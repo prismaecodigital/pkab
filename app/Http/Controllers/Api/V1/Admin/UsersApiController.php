@@ -20,7 +20,7 @@ class UsersApiController extends Controller
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new UserResource(User::with(['roles'])->advancedFilter());
+        return new UserResource(User::with(['roles','dept.bu'])->advancedFilter());
     }
 
     public function store(StoreUserRequest $request)
@@ -50,7 +50,7 @@ class UsersApiController extends Controller
     {
         abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new UserResource($user->load(['roles']));
+        return new UserResource($user->load(['roles','dept.bu']));
     }
 
     public function update(UpdateUserRequest $request, User $user)
@@ -70,8 +70,9 @@ class UsersApiController extends Controller
         abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return response([
-            'data' => new UserResource($user->load(['roles'])),
+            'data' => new UserResource($user->load(['roles', 'dept'])),
             'meta' => [
+                'bu'    => Bu::get(),
                 'roles' => Role::get(['id', 'title']),
                 'dept'    => Dept::get(['id', 'name']),
             ],

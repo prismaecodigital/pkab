@@ -139,8 +139,6 @@ var render = function render() {
     staticClass: "text-primary"
   }, [_vm._v("\n                        " + _vm._s(_vm.$t("cruds.user.fields.email")) + "\n                      ")]), _vm._v(" "), _c("td", [_vm._v("\n                        " + _vm._s(_vm.entry.email) + "\n                      ")])]), _vm._v(" "), _c("tr", [_c("td", {
     staticClass: "text-primary"
-  }, [_vm._v("\n                        " + _vm._s(_vm.$t("cruds.user.fields.email_verified_at")) + "\n                      ")]), _vm._v(" "), _c("td", [_vm._v("\n                        " + _vm._s(_vm.entry.email_verified_at) + "\n                      ")])]), _vm._v(" "), _c("tr", [_c("td", {
-    staticClass: "text-primary"
   }, [_vm._v("\n                        " + _vm._s(_vm.$t("cruds.user.fields.roles")) + "\n                      ")]), _vm._v(" "), _c("td", [_c("datatable-list", {
     attrs: {
       row: _vm.entry,

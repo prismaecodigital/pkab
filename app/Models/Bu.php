@@ -44,4 +44,9 @@ class Bu extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function depts()
+    {
+        return $this->hasMany(Dept::class);
+    }
 }

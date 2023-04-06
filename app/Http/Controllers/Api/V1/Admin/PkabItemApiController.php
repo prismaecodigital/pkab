@@ -87,9 +87,11 @@ class PkabItemApiController extends Controller
     {
         abort_if(Gate::denies('pkab_item_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $depts = auth()->user()->dept()->pluck('bu_id');
+
         return response([
             'meta' => [
-                'bu'   => Bu::get(['id', 'name']),
+                'bu'   => Bu::whereIn('id', $depts)->get(['id', 'name']),
                 'status' => PkabItem::STATUS_SELECT,
             ],
         ]);
@@ -124,6 +126,15 @@ class PkabItemApiController extends Controller
             $pkabItem->update(['status' => 'purchasing_acc_1']);
         }
 
+        $statusHistory = StatusHistory::create(['pkab_id' => $pkabItem->id,'status' => $pkabItem->status, 'user_id' => auth()->user()->id]);
+        
+        return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter());
+    }
+
+    public function rejectData($id, PkabItem $pkabItem)
+    {
+        $pkabItem = PkabItem::where('id', $id)->first();
+        $pkabItem->update(['status' => 'cancel']);
         $statusHistory = StatusHistory::create(['pkab_id' => $pkabItem->id,'status' => $pkabItem->status, 'user_id' => auth()->user()->id]);
         
         return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter());

@@ -29,6 +29,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Pkab Item
     Route::post('pkab-items/approve', 'PkabItemApiController@approve')->name('pkab-items.approve');
     Route::post('pkab-items/reject', 'PkabItemApiController@reject')->name('pkab-items.reject');
+    Route::put('pkab-items/rejectData/{id}', 'PkabItemApiController@rejectData')->name('pkab-items.rejectData');
     Route::resource('pkab-items', 'PkabItemApiController');
     Route::get('pkab-items/export', 'PkabItemApiController@export')->name('pkab-items.export');
 

@@ -80,8 +80,8 @@
                           {{ $t('cruds.pkabItem.fields.dept') }}
                         </td>
                         <td>
-                          <datatable-single :row="entry" field="dept.name">
-                          </datatable-single>
+                          <bu-dept-single :row="entry" field="dept.name">
+                          </bu-dept-single>
                         </td>
                       </tr>
                     </tbody>
@@ -102,20 +102,16 @@
               <tbody>
                 <tr v-for="(item, k) in entry.items" :key="k">
                   <td>
-                      <input v-if="$can(entry.status)" class="form-control wrapText" type="text" :value="item.name" @input="updateItemName(k, $event)"/>
-                      <input disabled v-else class="form-control wrapText" type="text" :value="item.name"/>
+                      <input disabled class="form-control wrapText" type="text" :value="item.name"/>
                   </td>
                   <td>
-                      <input v-if="$can(entry.status)" class="form-control wrapText" type="text" :value="item.merk" @input="updateItemMerk(k, $event)"/>
-                      <input disabled v-else class="form-control wrapText" type="text" :value="item.merk"/>
+                      <input disabled class="form-control wrapText" type="text" :value="item.merk"/>
                   </td>
                   <td :style="{ height: item.spesifikasiHeight }">
-                      <textarea v-if="$can(entry.status)" class="form-control wrapText" :value="item.spesifikasi" @input="updateItemSpec(k, $event, $event.target, item)"/>
-                      <textarea disabled v-else class="form-control wrapText" :value="item.spesifikasi"/>
+                      <textarea disabled class="form-control wrapText" :value="item.spesifikasi"/>
                   </td>
                   <td>
-                      <input v-if="$can(entry.status)" class="form-control wrapText" type="number" :value="item.qty" @input="updateItemQty(k, $event)"/>
-                      <input disabled v-else class="form-control wrapText" type="number" :value="item.qty"/>
+                      <input disabled class="form-control wrapText" type="number" :value="item.qty"/>
                   </td>
                 </tr>
               </tbody>
@@ -127,7 +123,7 @@
                 <timeline-item v-if="item.proses == 'selesai'" bg-color="green">
                   {{ item.status }}
                   <p v-if="item.tanggal">Tanggal : {{ item.tanggal }}</p>
-                  <p v-if="item.user">Disetujui Oleh : {{ item.user }}</p>
+                  <p v-if="item.user">Diproses Oleh : {{ item.user }}</p>
                 </timeline-item>
                 <timeline-item v-if="item.proses == 'proses'" bg-color="yellow">
                   {{ item.status }}
@@ -137,20 +133,6 @@
                   {{ item.status }}
                 </timeline-item>
               </timeline>
-          </div>
-          <div v-if="$can(entry.status)" class="card-body">
-            <div class="row">
-              <div class="col-lg-3">
-                <button type='button' class="btn btn-info" @click.prevent="approveData(entry)">
-                  Approve
-                </button>
-              </div>
-              <div class="col-lg-3">
-                <button type='button' class="btn btn-danger" @click.prevent="rejectData(entry)">
-                  Reject
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -168,12 +150,14 @@ cursor: auto;
 import { mapGetters, mapActions } from 'vuex'
 import DatatableSingle from '@components/Datatables/DatatableSingle'
 import DatatableEnum from '@components/Datatables/DatatableEnum'
+import BuDeptSingle from '@components/Datatables/BuDeptSingle'
 import "vue-cute-timeline/dist/index.css";
 
 export default {
   components: {
     DatatableSingle,
-    DatatableEnum
+    DatatableEnum,
+    BuDeptSingle
   },
   data() {
     return {

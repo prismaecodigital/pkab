@@ -135,6 +135,11 @@ class PkabItem extends Model
 
     public function statusHistory()
     {
-        return $this->hasMany(statusHistory::class, 'pkab_id');
+        return $this->hasMany(StatusHistory::class, 'pkab_id');
     }
+
+    // public function bu()
+    // {
+    //     return $this->hasOneThrough(Bu::class, Dept::class);
+    // }
 }

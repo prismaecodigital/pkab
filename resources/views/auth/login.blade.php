@@ -27,10 +27,10 @@
                                                 <i class="material-icons">email</i>
                                             </span>
                                         </div>
-                                        <input name="email" type="email" class="form-control" placeholder="{{ __('global.login_email') }}..." value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        <input name="username" type="username" class="form-control" placeholder="{{ __('global.login_username') }}..." value="{{ old('username') }}" required autocomplete="username" autofocus>
                                     </div>
-                                    @error('email')
-                                        <div class="error" for="email">
+                                    @error('username')
+                                        <div class="error" for="username">
                                             {{ $message }}
                                         </div>
                                     @enderror
@@ -45,7 +45,7 @@
                                         <input name="password" type="password" class="form-control" placeholder="{{ __('global.login_password') }}..." autocomplete="current-password" required>
                                     </div>
                                     @error('password')
-                                        <div class="error" for="email">
+                                        <div class="error" for="username">
                                             {{ $message }}
                                         </div>
                                     @enderror

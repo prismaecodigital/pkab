@@ -140,7 +140,7 @@ return [
             'deleted_at_helper' => ' ',
             'bu'                => 'BU',
             'bu_helper'         => ' ',
-            'dept'              => 'Dept / Site',
+            'dept'              => 'Dept/Site',
             'dept_helper'       => ' ',
         ],
     ],

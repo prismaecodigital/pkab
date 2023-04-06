@@ -22,6 +22,7 @@ return [
     'list'                           => 'Daftar',
     'login'                          => 'Masuk',
     'login_email'                    => 'Email',
+    'login_username'                    => 'Username',
     'login_password'                 => 'Kata Sandi',
     'login_password_confirmation'    => 'Konfirmasi Kata Sandi',
     'logout'                         => 'Keluar',

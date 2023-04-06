@@ -255,3 +255,20 @@ $body-bg: #f8fafc;
 .table > tbody > tr > td {
       padding: 8px !important;
 }
+
+@media (max-width: 768px) {
+    table > thead > tr > th, table > tbody > tr > td, table > tbody > tr > td > div > span,
+    table > tbody > tr > td > div > a {
+        font-size: 12px !important;
+    }
+    .card-body {
+        overflow-x: scroll !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .off-canvas-sidebar nav .navbar-collapse, .sidebar {
+        left: auto !important;
+        right: auto !important;
+    }
+}

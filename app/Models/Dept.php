@@ -18,14 +18,12 @@ class Dept extends Model
         'id',
         'name',
         'code',
-        'bu.name',
     ];
 
     protected $filterable = [
         'id',
         'name',
         'code',
-        'bu.name',
     ];
 
     protected $dates = [
@@ -51,5 +49,10 @@ class Dept extends Model
     public function bu()
     {
         return $this->belongsTo(Bu::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

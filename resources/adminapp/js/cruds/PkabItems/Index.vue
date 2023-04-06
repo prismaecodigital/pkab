@@ -78,6 +78,7 @@ import HeaderSettings from '@components/Datatables/HeaderSettings'
 import GlobalSearch from '@components/Datatables/GlobalSearch'
 import DatatableSingle from '@components/Datatables/DatatableSingle'
 import DatatableEnum from '@components/Datatables/DatatableEnum'
+import BuDeptSingle from '@components/Datatables/BuDeptSingle'
 
 export default {
   components: {
@@ -115,9 +116,9 @@ export default {
         },
         {
           title: 'cruds.pkabItem.fields.dept',
-          field: 'dept.name',
+          field: 'dept.bu.name',
           thComp: TranslatedHeader,
-          tdComp: DatatableSingle,
+          tdComp: BuDeptSingle,
           sortable: true
         },
         // {

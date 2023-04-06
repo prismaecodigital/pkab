@@ -11,7 +11,7 @@ class UpdatePkabItemRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('pkab_item_edit');
+        return true;
     }
 
     public function rules()

@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"575fdcccc01f35c03ffa","1":"97a7924a91ffd2475808","2":"5239545705050456d52d","3":"5d5856c287a214bfb667","4":"86b6d73eec48c2bfda13","5":"2d35a3711405a331d96e","6":"cc2c2cdfb54b6844ac44","7":"03ec1ae8564c85f481d9","8":"1b2d318b02a450c9d4b1","9":"f657c54373690bf58305","10":"dfb34946b64cc5031279","11":"51b8ff536bbe71e1cd93","12":"78730377480216e2c1d0","13":"22bd864d27519427a01e","14":"719ade44427d4e5aaf53","15":"97c6f93b570a1a506afc","16":"7e818ecdfc4c687d475e","17":"797f369dd225649beb83","18":"3209b163e8acabee4bfe","19":"54c97be6de9456f101ea","20":"d97cebad563951dc7be9","21":"43bb0aa401977b069594","22":"8eacef17454f016068aa","23":"99d4ec51286a4f56dec2","24":"072a73ddc10b19d25760","25":"8ece57fb5bfa475580d5","26":"7fa4097dd43473afadaf","27":"b81450b909045cef6e2c","28":"3cff6f6bb40ea4ebd237","29":"411f0ee8c9b013f783f4"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"c4c7fb81ce4c4173ce18","1":"1591ff96340f6e80448d","2":"c714d9ce25297b59a87e","3":"7c9361868ed5770bd842","5":"e653f5c359d931a51fc4","6":"e226aa86f87846850e79","7":"417ac2690486070cd549","8":"1b2d318b02a450c9d4b1","9":"f657c54373690bf58305","10":"9b90049ac43c46303f73","11":"51b8ff536bbe71e1cd93","12":"78730377480216e2c1d0","13":"22bd864d27519427a01e","14":"719ade44427d4e5aaf53","15":"97c6f93b570a1a506afc","16":"7e818ecdfc4c687d475e","17":"797f369dd225649beb83","18":"3209b163e8acabee4bfe","19":"54c97be6de9456f101ea","20":"d97cebad563951dc7be9","21":"43bb0aa401977b069594","22":"8eacef17454f016068aa","23":"99d4ec51286a4f56dec2","24":"072a73ddc10b19d25760","25":"8ece57fb5bfa475580d5","26":"7fa4097dd43473afadaf","27":"b81450b909045cef6e2c","28":"b60626fc6e672ec23a9c","29":"411f0ee8c9b013f783f4","30":"dacfb8abe76bb05e2853","31":"5435d1ed579153f90c85"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -59795,7 +59795,7 @@ var View = {
 var routes = [{
   path: '/',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! @pages/Layout/DashboardLayout.vue */ "./resources/adminapp/js/pages/Layout/DashboardLayout.vue"));
+    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! @pages/Layout/DashboardLayout.vue */ "./resources/adminapp/js/pages/Layout/DashboardLayout.vue"));
   },
   redirect: 'dashboard',
   children: [{
@@ -59818,7 +59818,7 @@ var routes = [{
       path: 'pkab-items',
       name: 'pkab_items.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! @cruds/PkabItems/Index.vue */ "./resources/adminapp/js/cruds/PkabItems/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(30), __webpack_require__.e(2), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! @cruds/PkabItems/Index.vue */ "./resources/adminapp/js/cruds/PkabItems/Index.vue"));
       },
       meta: {
         title: 'cruds.pkabItem.title'
@@ -59836,7 +59836,7 @@ var routes = [{
       path: 'pkab-items/:id',
       name: 'pkab_items.show',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! @cruds/PkabItems/Show.vue */ "./resources/adminapp/js/cruds/PkabItems/Show.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, /*! @cruds/PkabItems/Show.vue */ "./resources/adminapp/js/cruds/PkabItems/Show.vue"));
       },
       meta: {
         title: 'cruds.pkabItem.title'
@@ -59854,7 +59854,7 @@ var routes = [{
       path: 'pkab-dones',
       name: 'pkab_dones.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! @cruds/PkabDones/Index.vue */ "./resources/adminapp/js/cruds/PkabDones/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(30), __webpack_require__.e(2), __webpack_require__.e(31)]).then(__webpack_require__.bind(null, /*! @cruds/PkabDones/Index.vue */ "./resources/adminapp/js/cruds/PkabDones/Index.vue"));
       },
       meta: {
         title: 'cruds.pkabItem.title'
@@ -59863,7 +59863,7 @@ var routes = [{
       path: 'pkab-dones/:id',
       name: 'pkab-dones.show',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! @cruds/PkabDones/Show.vue */ "./resources/adminapp/js/cruds/PkabDones/Show.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! @cruds/PkabDones/Show.vue */ "./resources/adminapp/js/cruds/PkabDones/Show.vue"));
       },
       meta: {
         title: 'cruds.pkabItem.title'
@@ -59880,7 +59880,7 @@ var routes = [{
       path: 'permissions',
       name: 'permissions.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! @cruds/Permissions/Index.vue */ "./resources/adminapp/js/cruds/Permissions/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(30), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! @cruds/Permissions/Index.vue */ "./resources/adminapp/js/cruds/Permissions/Index.vue"));
       },
       meta: {
         title: 'cruds.permission.title'
@@ -59916,7 +59916,7 @@ var routes = [{
       path: 'roles',
       name: 'roles.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! @cruds/Roles/Index.vue */ "./resources/adminapp/js/cruds/Roles/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(30), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! @cruds/Roles/Index.vue */ "./resources/adminapp/js/cruds/Roles/Index.vue"));
       },
       meta: {
         title: 'cruds.role.title'
@@ -59952,7 +59952,7 @@ var routes = [{
       path: 'users',
       name: 'users.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! @cruds/Users/Index.vue */ "./resources/adminapp/js/cruds/Users/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(30), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! @cruds/Users/Index.vue */ "./resources/adminapp/js/cruds/Users/Index.vue"));
       },
       meta: {
         title: 'cruds.user.title'
@@ -59996,7 +59996,7 @@ var routes = [{
       path: 'bus',
       name: 'bus.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! @cruds/Bus/Index.vue */ "./resources/adminapp/js/cruds/Bus/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(30), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! @cruds/Bus/Index.vue */ "./resources/adminapp/js/cruds/Bus/Index.vue"));
       },
       meta: {
         title: 'cruds.bu.title'
@@ -60032,7 +60032,7 @@ var routes = [{
       path: 'depts',
       name: 'depts.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! @cruds/Depts/Index.vue */ "./resources/adminapp/js/cruds/Depts/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(30), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! @cruds/Depts/Index.vue */ "./resources/adminapp/js/cruds/Depts/Index.vue"));
       },
       meta: {
         title: 'cruds.dept.title'
@@ -60069,7 +60069,7 @@ var routes = [{
     path: 'status-histories',
     name: 'status_histories.index',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! @cruds/StatusHistories/Index.vue */ "./resources/adminapp/js/cruds/StatusHistories/Index.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(30), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! @cruds/StatusHistories/Index.vue */ "./resources/adminapp/js/cruds/StatusHistories/Index.vue"));
     },
     meta: {
       title: 'cruds.statusHistory.title'
@@ -61996,9 +61996,41 @@ var actions = {
       });
     });
   },
-  approveData: function approveData(_ref3, id) {
+  rejectData: function rejectData(_ref3) {
     var commit = _ref3.commit,
+      state = _ref3.state,
       dispatch = _ref3.dispatch;
+    commit('setLoading', true);
+    dispatch('Alert/resetState', null, {
+      root: true
+    });
+    return new Promise(function (resolve, reject) {
+      var params = objectToFormData(state.entry, {
+        indices: true,
+        booleansAsIntegers: true
+      });
+      params.set('_method', 'PUT');
+      axios.post("".concat(route, "/rejectData/").concat(state.entry.id), params).then(function (response) {
+        resolve(response);
+      })["catch"](function (error) {
+        var message = error.response.data.message || error.message;
+        var errors = error.response.data.errors;
+        dispatch('Alert/setAlert', {
+          message: message,
+          errors: errors,
+          color: 'danger'
+        }, {
+          root: true
+        });
+        reject(error);
+      })["finally"](function () {
+        commit('setLoading', false);
+      });
+    });
+  },
+  approveData: function approveData(_ref4, id) {
+    var commit = _ref4.commit,
+      dispatch = _ref4.dispatch;
     return axios.post("".concat(route, "/").concat(id, "/approve"), {
       id: id
     }).then(function (response) {
@@ -62008,113 +62040,113 @@ var actions = {
       });
     });
   },
-  setReqDate: function setReqDate(_ref4, value) {
-    var commit = _ref4.commit;
+  setReqDate: function setReqDate(_ref5, value) {
+    var commit = _ref5.commit;
     commit('setReqDate', value);
   },
-  setUser: function setUser(_ref5, value) {
-    var commit = _ref5.commit;
+  setUser: function setUser(_ref6, value) {
+    var commit = _ref6.commit;
     commit('setUser', value);
   },
-  setStatus: function setStatus(_ref6, value) {
-    var commit = _ref6.commit;
+  setStatus: function setStatus(_ref7, value) {
+    var commit = _ref7.commit;
     commit('setStatus', value);
   },
-  setBu: function setBu(_ref7, value) {
-    var commit = _ref7.commit;
+  setBu: function setBu(_ref8, value) {
+    var commit = _ref8.commit;
     commit('setBu', value);
   },
-  setDept: function setDept(_ref8, value) {
-    var commit = _ref8.commit;
+  setDept: function setDept(_ref9, value) {
+    var commit = _ref9.commit;
     commit('setDept', value);
   },
-  setCreatedAt: function setCreatedAt(_ref9, value) {
-    var commit = _ref9.commit;
+  setCreatedAt: function setCreatedAt(_ref10, value) {
+    var commit = _ref10.commit;
     commit('setCreatedAt', value);
   },
-  setUpdatedAt: function setUpdatedAt(_ref10, value) {
-    var commit = _ref10.commit;
+  setUpdatedAt: function setUpdatedAt(_ref11, value) {
+    var commit = _ref11.commit;
     commit('setUpdatedAt', value);
   },
-  setDeletedAt: function setDeletedAt(_ref11, value) {
-    var commit = _ref11.commit;
+  setDeletedAt: function setDeletedAt(_ref12, value) {
+    var commit = _ref12.commit;
     commit('setDeletedAt', value);
   },
-  setItems: function setItems(_ref12, value) {
-    var commit = _ref12.commit;
+  setItems: function setItems(_ref13, value) {
+    var commit = _ref13.commit;
     commit('setItems', value);
   },
-  setItemName: function setItemName(_ref13, _ref14) {
-    var commit = _ref13.commit;
-    var index = _ref14.index,
-      val = _ref14.val;
+  setItemName: function setItemName(_ref14, _ref15) {
+    var commit = _ref14.commit;
+    var index = _ref15.index,
+      val = _ref15.val;
     commit('setItemName', {
       index: index,
       val: val
     });
   },
-  setItemMerk: function setItemMerk(_ref15, _ref16) {
-    var commit = _ref15.commit;
-    var index = _ref16.index,
-      val = _ref16.val;
+  setItemMerk: function setItemMerk(_ref16, _ref17) {
+    var commit = _ref16.commit;
+    var index = _ref17.index,
+      val = _ref17.val;
     commit('setItemMerk', {
       index: index,
       val: val
     });
   },
-  setItemSpesifikasi: function setItemSpesifikasi(_ref17, _ref18) {
-    var commit = _ref17.commit;
-    var index = _ref18.index,
-      val = _ref18.val;
+  setItemSpesifikasi: function setItemSpesifikasi(_ref18, _ref19) {
+    var commit = _ref18.commit;
+    var index = _ref19.index,
+      val = _ref19.val;
     commit('setItemSpesifikasi', {
       index: index,
       val: val
     });
   },
-  setItemQty: function setItemQty(_ref19, _ref20) {
-    var commit = _ref19.commit;
-    var index = _ref20.index,
-      val = _ref20.val;
+  setItemQty: function setItemQty(_ref20, _ref21) {
+    var commit = _ref20.commit;
+    var index = _ref21.index,
+      val = _ref21.val;
     commit('setItemQty', {
       index: index,
       val: val
     });
   },
-  addItem: function addItem(_ref21) {
-    var commit = _ref21.commit;
+  addItem: function addItem(_ref22) {
+    var commit = _ref22.commit;
     commit('addItem');
   },
-  exportData: function exportData(_ref22) {
-    var commit = _ref22.commit;
+  exportData: function exportData(_ref23) {
+    var commit = _ref23.commit;
     commit('exportData');
   },
-  deleteItem: function deleteItem(_ref23) {
-    var commit = _ref23.commit;
+  deleteItem: function deleteItem(_ref24) {
+    var commit = _ref24.commit;
     commit('deleteItem');
   },
-  fetchCreateData: function fetchCreateData(_ref24) {
-    var commit = _ref24.commit;
+  fetchCreateData: function fetchCreateData(_ref25) {
+    var commit = _ref25.commit;
     axios.get("".concat(route, "/create")).then(function (response) {
       commit('setLists', response.data.meta);
     });
   },
-  fetchEditData: function fetchEditData(_ref25, id) {
-    var commit = _ref25.commit,
-      dispatch = _ref25.dispatch;
+  fetchEditData: function fetchEditData(_ref26, id) {
+    var commit = _ref26.commit,
+      dispatch = _ref26.dispatch;
     axios.get("".concat(route, "/").concat(id, "/edit")).then(function (response) {
       commit('setEntry', response.data.data);
       commit('setLists', response.data.meta);
     });
   },
-  fetchShowData: function fetchShowData(_ref26, id) {
-    var commit = _ref26.commit,
-      dispatch = _ref26.dispatch;
+  fetchShowData: function fetchShowData(_ref27, id) {
+    var commit = _ref27.commit,
+      dispatch = _ref27.dispatch;
     axios.get("".concat(route, "/").concat(id)).then(function (response) {
       commit('setEntry', response.data.data);
     });
   },
-  resetState: function resetState(_ref27) {
-    var commit = _ref27.commit;
+  resetState: function resetState(_ref28) {
+    var commit = _ref28.commit;
     commit('resetState');
   }
 };
@@ -62222,24 +62254,24 @@ var mutations = {
   setItems: function setItems(state, value) {
     state.entry.items = value;
   },
-  setItemName: function setItemName(state, _ref28) {
-    var index = _ref28.index,
-      val = _ref28.val;
-    state.entry.items[index].name = val;
-  },
-  setItemMerk: function setItemMerk(state, _ref29) {
+  setItemName: function setItemName(state, _ref29) {
     var index = _ref29.index,
       val = _ref29.val;
-    state.entry.items[index].merk = val;
+    state.entry.items[index].name = val;
   },
-  setItemSpesifikasi: function setItemSpesifikasi(state, _ref30) {
+  setItemMerk: function setItemMerk(state, _ref30) {
     var index = _ref30.index,
       val = _ref30.val;
-    state.entry.items[index].spesifikasi = val;
+    state.entry.items[index].merk = val;
   },
-  setItemQty: function setItemQty(state, _ref31) {
+  setItemSpesifikasi: function setItemSpesifikasi(state, _ref31) {
     var index = _ref31.index,
       val = _ref31.val;
+    state.entry.items[index].spesifikasi = val;
+  },
+  setItemQty: function setItemQty(state, _ref32) {
+    var index = _ref32.index,
+      val = _ref32.val;
     state.entry.items[index].qty = val;
   },
   addItem: function addItem(state) {

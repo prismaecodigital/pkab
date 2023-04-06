@@ -5,36 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BuDept extends Model
+class DeptUser extends Model
 {
     use HasFactory;
 
-    public $table = 'BuDept';
+    public $table = 'dept_user';
 
     protected $orderable = [
-        'id',
-        'bu_id',
+        'user_id',
         'dept_id',
     ];
 
     protected $filterable = [
-        'id',
-        'bu_id',
+        'user_id',
         'dept_id',
     ];
 
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
 
     protected $fillable = [
-        'bu_id',
+        'user_id',
         'dept_id',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
     protected function serializeDate(DateTimeInterface $date)
@@ -42,9 +32,9 @@ class BuDept extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function bu()
+    public function user()
     {
-        return $this->belongsTo(Bu::class);
+        return $this->belongsTo(User::class);
     }
 
     public function dept()
