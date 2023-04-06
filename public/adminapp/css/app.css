@@ -1494,11 +1494,3 @@ html[dir="rtl"] .card .card-body, html[dir="rtl"] .card .card-footer {
   }
 }
 
-@media (max-width: 991px) {
-  .off-canvas-sidebar nav .navbar-collapse,
-  .sidebar {
-    left: auto !important;
-    right: auto !important;
-  }
-}
-
