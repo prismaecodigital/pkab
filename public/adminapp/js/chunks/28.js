@@ -55,7 +55,7 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.setBu(value);
       if (value[0] != null) {
-        axios.get('/budept', {
+        axios.get('/budept-all', {
           params: {
             bu: bu_ids
           }

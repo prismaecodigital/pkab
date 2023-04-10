@@ -20,7 +20,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       status: '',
-      activeField: ''
+      activeField: '',
+      depts: []
     };
   },
   computed: Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('UsersSingle', ['entry', 'loading', 'lists'])),
@@ -77,7 +78,7 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.setBu(value);
       if (value[0] != null) {
-        axios.get('/budept', {
+        axios.get('/budept-all', {
           params: {
             bu: bu_ids
           }
@@ -89,6 +90,7 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.depts = [];
       }
+      console.log('ok');
     },
     updateDept: function updateDept(value) {
       this.setDept(value);
@@ -249,7 +251,7 @@ var render = function render() {
     attrs: {
       name: "bu",
       label: "name",
-      value: _vm.entry.bu,
+      value: _vm.entry.dept[0].bu,
       options: _vm.lists.bu,
       closeOnSelect: false,
       multiple: ""
@@ -276,7 +278,7 @@ var render = function render() {
       name: "dept",
       label: "name",
       value: _vm.entry.dept,
-      options: _vm.lists.dept,
+      options: _vm.depts,
       closeOnSelect: false,
       multiple: ""
     },

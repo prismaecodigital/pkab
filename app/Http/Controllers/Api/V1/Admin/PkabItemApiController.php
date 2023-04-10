@@ -23,7 +23,7 @@ class PkabItemApiController extends Controller
     {
         abort_if(Gate::denies('pkab_item_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter());
+        return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter());
     }
 
     public function store(StorePkabItemRequest $request)
@@ -145,7 +145,7 @@ class PkabItemApiController extends Controller
         abort_if(Gate::denies('pkab_item_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return response([
-            'data' => new PkabItemResource($pkabItem->load(['dept'])),
+            'data' => new PkabItemResource($pkabItem->load(['dept.bu'])),
             'meta' => [
                 'dept'   => Dept::get(['id', 'name']),
                 'status' => PkabItem::STATUS_SELECT,

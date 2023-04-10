@@ -43,6 +43,7 @@
                     <vuejs-datepicker
                       input-class="form-control"
                       format="dd-MM-yyyy"
+                      :disabled-dates="date.disabledDates"
                       :value="entry.req_date_front_end"
                       @input="updateReqDate"
                       
@@ -171,6 +172,11 @@ export default {
       status: '',
       activeField: '',
       depts: [],
+      date: {
+        disabledDates: {
+          to: new Date(new Date() - (24 * 60 * 60 * 1000))
+        }
+      }
     }
   },
   computed: {

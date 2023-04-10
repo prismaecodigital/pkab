@@ -22,6 +22,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Dept where Bu
     Route::get('budept','DeptApiController@budept');
+    Route::get('budept-all','DeptApiController@budeptAll');
 
     // Dept
     Route::resource('depts', 'DeptApiController');

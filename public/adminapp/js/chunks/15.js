@@ -26,7 +26,12 @@ __webpack_require__.r(__webpack_exports__);
     return {
       status: '',
       activeField: '',
-      depts: []
+      depts: [],
+      date: {
+        disabledDates: {
+          to: new Date(new Date() - 24 * 60 * 60 * 1000)
+        }
+      }
     };
   },
   computed: Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('PkabItemsSingle', ['entry', 'loading', 'lists'])),
@@ -189,6 +194,7 @@ var render = function render() {
     attrs: {
       "input-class": "form-control",
       format: "dd-MM-yyyy",
+      "disabled-dates": _vm.date.disabledDates,
       value: _vm.entry.req_date_front_end
     },
     on: {

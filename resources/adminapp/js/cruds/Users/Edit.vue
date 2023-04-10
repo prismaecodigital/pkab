@@ -116,7 +116,7 @@
                       name="bu"
                       label="name"
                       :key="'bu-field'"
-                      :value="entry.bu"
+                      :value="entry.dept[0].bu"
                       :options="lists.bu"
                       :closeOnSelect="false"
                       multiple
@@ -140,7 +140,7 @@
                       label="name"
                       :key="'dept-field'"
                       :value="entry.dept"
-                      :options="lists.dept"
+                      :options="depts"
                       :closeOnSelect="false"
                       multiple
                       @input="updateDept"
@@ -175,7 +175,8 @@ export default {
   data() {
     return {
       status: '',
-      activeField: ''
+      activeField: '',
+      depts: []
     }
   },
   computed: {
@@ -241,7 +242,7 @@ export default {
     });
       this.setBu(value)
       if(value[0] != null) {
-        axios.get('/budept', {
+        axios.get('/budept-all', {
           params: {
               bu: bu_ids
           }
@@ -256,7 +257,7 @@ export default {
       else {
         this.depts = []
       }
-      
+      console.log('ok')
     },
     updateDept(value) {
       this.setDept(value)

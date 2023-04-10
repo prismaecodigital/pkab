@@ -61,7 +61,7 @@ class UsersApiController extends Controller
 
 
         return (new UserResource($user))
-            ->response()
+            ->response()    
             ->setStatusCode(Response::HTTP_ACCEPTED);
     }
 
@@ -70,7 +70,7 @@ class UsersApiController extends Controller
         abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return response([
-            'data' => new UserResource($user->load(['roles', 'dept'])),
+            'data' => new UserResource($user->load(['roles', 'dept.bu'])),
             'meta' => [
                 'bu'    => Bu::get(),
                 'roles' => Role::get(['id', 'title']),
