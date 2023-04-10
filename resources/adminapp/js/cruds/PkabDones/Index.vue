@@ -106,7 +106,7 @@ export default {
         },
         {
           title: 'cruds.pkabItem.fields.dept',
-          field: 'dept.name',
+          field: 'dept.bu.name',
           thComp: TranslatedHeader,
           tdComp: BuDeptSingle,
           sortable: true

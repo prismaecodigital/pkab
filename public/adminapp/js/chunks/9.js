@@ -126,7 +126,7 @@ __webpack_require__.r(__webpack_exports__);
         tdComp: _components_Datatables_DatatableEnum__WEBPACK_IMPORTED_MODULE_7__["default"]
       }, {
         title: 'cruds.pkabItem.fields.dept',
-        field: 'dept.name',
+        field: 'dept.bu.name',
         thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_3__["default"],
         tdComp: _components_Datatables_BuDeptSingle__WEBPACK_IMPORTED_MODULE_8__["default"],
         sortable: true

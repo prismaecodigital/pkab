@@ -198,7 +198,7 @@ var render = function render() {
   }, [_vm._v("\n                        " + _vm._s(_vm.$t("cruds.pkabItem.fields.dept")) + "\n                      ")]), _vm._v(" "), _c("td", [_c("bu-dept-single", {
     attrs: {
       row: _vm.entry,
-      field: "dept.name"
+      field: "dept.bu"
     }
   })], 1)])])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "card-body"

@@ -80,7 +80,7 @@
                           {{ $t('cruds.pkabItem.fields.dept') }}
                         </td>
                         <td>
-                          <bu-dept-single :row="entry" field="dept.name">
+                          <bu-dept-single :row="entry" field="dept.bu">
                           </bu-dept-single>
                         </td>
                       </tr>
