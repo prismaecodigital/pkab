@@ -182,14 +182,14 @@ var render = function render() {
     staticClass: "col-lg-3"
   }, [_c("back-button")], 1), _vm._v(" "), _c("div", {
     staticClass: "col-lg-3"
-  }, [_c("export-excel", {
+  }, [_vm.$can("export") ? _c("export-excel", {
     attrs: {
       fields: _vm.mergedFields,
       data: _vm.mergedData
     }
   }, [_c("button", {
     staticClass: "btn btn-success"
-  }, [_vm._v("Export Item")])])], 1)])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Export Item")])]) : _vm._e()], 1)])]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
   }, [_c("div", {
     staticClass: "row"

@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"575fdcccc01f35c03ffa","1":"1e62df9082e385f123f1","2":"ca9f6e4dbfa72537fb01","3":"e05cbe3c73d7d974f9ad","4":"9b8f7973971ff7308edd","5":"a65ce6cef240f9375d1e","6":"fec9ba1975e515c67aa7","7":"3988e3d74c3691f4b9c2","8":"4a764220e3f1fa8212f6","9":"d73565aa829cf7bbe3f4","10":"15ba1f8842d1144d2fe5","11":"0851c4a3cea1ef23d00f","12":"1c89fdbba6a50238d643","13":"8ee20f5b77ff425447ed","14":"663a7101aaa05c2eca11","15":"dfe3260234f7738200f9","16":"ba4a3a9136a15c0050dc","17":"2090243df20832aa7fa6","18":"4fba13908c7eacab14d5","19":"9915d8b9f39ce5731471","20":"a9caa49ae3b2bf9dfa7c","21":"aeda330a5f998074fe92","22":"6c369cac6bb6b9ad17e7","23":"3377ffd1539a75c2a309","24":"b91230429fdb424ab092","25":"5106b29355d8caad3ad6","26":"f538f9a9b958e0f684b9","27":"06029eae84c92fe8f39e","28":"7c22cf465706442478b5","29":"4bc8fb2eb4e56d31d44b","30":"253214dc198d12c6be19"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"575fdcccc01f35c03ffa","1":"1e62df9082e385f123f1","2":"ca9f6e4dbfa72537fb01","3":"e05cbe3c73d7d974f9ad","4":"9b8f7973971ff7308edd","5":"a65ce6cef240f9375d1e","6":"fec9ba1975e515c67aa7","7":"3988e3d74c3691f4b9c2","8":"211a481625191415c8c9","9":"619d1d1e8f1325c4aab1","10":"15ba1f8842d1144d2fe5","11":"0851c4a3cea1ef23d00f","12":"1c89fdbba6a50238d643","13":"b8f2a8adf718acf4b0d0","14":"ad0c00e167867f65cc2b","15":"dfe3260234f7738200f9","16":"ba4a3a9136a15c0050dc","17":"2090243df20832aa7fa6","18":"4fba13908c7eacab14d5","19":"9915d8b9f39ce5731471","20":"a9caa49ae3b2bf9dfa7c","21":"aeda330a5f998074fe92","22":"6c369cac6bb6b9ad17e7","23":"3377ffd1539a75c2a309","24":"b91230429fdb424ab092","25":"5106b29355d8caad3ad6","26":"f538f9a9b958e0f684b9","27":"06029eae84c92fe8f39e","28":"7c22cf465706442478b5","29":"4bc8fb2eb4e56d31d44b","30":"253214dc198d12c6be19"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -61831,12 +61831,15 @@ var actions = {
       message = error.response.data.message || error.message;
     });
   },
-  rejectData: function rejectData(_ref4, id) {
+  rejectData: function rejectData(_ref4, _ref5) {
     var commit = _ref4.commit,
       dispatch = _ref4.dispatch;
+    var id = _ref5.id,
+      ket = _ref5.ket;
     commit('setLoading', true);
     axios.post("/pkab-items/reject", {
-      'id': id
+      'id': id,
+      'ket': ket
     }).then(function (response) {
       // handle success
       dispatch('fetchIndexData');
@@ -61845,12 +61848,12 @@ var actions = {
       message = error.response.data.message || error.message;
     });
   },
-  setQuery: function setQuery(_ref5, value) {
-    var commit = _ref5.commit;
+  setQuery: function setQuery(_ref6, value) {
+    var commit = _ref6.commit;
     commit('setQuery', _.cloneDeep(value));
   },
-  resetState: function resetState(_ref6) {
-    var commit = _ref6.commit;
+  resetState: function resetState(_ref7) {
+    var commit = _ref7.commit;
     commit('resetState');
   }
 };

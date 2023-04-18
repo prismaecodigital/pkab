@@ -86,11 +86,34 @@ export default {
               this.$eventHub.$emit('approve-success')
             })
         } else if(result.isDismissed && result.dismiss === 'cancel') {
-            this.$store
-            .dispatch(this.xprops.module + '/rejectData', id)
-            .then(result => {
-              this.$eventHub.$emit('reject-success')
-            })
+                this.$swal({
+                title: 'Reject?',
+                text: 'Masukkan Alasan',
+                input: 'text',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+              }).then(result => {
+                if(result.value) {
+                  console.log(id.id)
+                  console.log(result.value)
+                  this.$store
+                    .dispatch(this.xprops.module + '/rejectData', {'id': id, 'ket': result.value})
+                    .then(result => {
+
+                      //redirect logic
+                      this.$eventHub.$emit('reject-success')
+                    })
+                }
+              })
+          // console.log(result)
+          //   this.$store
+          //   .dispatch(this.xprops.module + '/rejectData', {'id': id, 'ket': result.value})
+          //   .then(result => {
+          //     this.$eventHub.$emit('reject-success')
+          //   })
         }
       })
     }

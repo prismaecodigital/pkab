@@ -34,7 +34,7 @@
               </i>
               {{ $t('global.refresh') }}
             </button>
-            <export-excel
+            <export-excel v-if="$can('export')"
                 :fields   = "dataFields"
                 :data   = "jsonData">
                 <button class="btn btn-success">Export</button>

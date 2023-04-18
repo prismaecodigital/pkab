@@ -57,9 +57,34 @@ __webpack_require__.r(__webpack_exports__);
             _this2.$eventHub.$emit('approve-success');
           });
         } else if (result.isDismissed && result.dismiss === 'cancel') {
-          _this2.$store.dispatch(_this2.xprops.module + '/rejectData', id).then(function (result) {
-            _this2.$eventHub.$emit('reject-success');
+          _this2.$swal({
+            title: 'Reject?',
+            text: 'Masukkan Alasan',
+            input: 'text',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+          }).then(function (result) {
+            if (result.value) {
+              console.log(id.id);
+              console.log(result.value);
+              _this2.$store.dispatch(_this2.xprops.module + '/rejectData', {
+                'id': id,
+                'ket': result.value
+              }).then(function (result) {
+                //redirect logic
+                _this2.$eventHub.$emit('reject-success');
+              });
+            }
           });
+          // console.log(result)
+          //   this.$store
+          //   .dispatch(this.xprops.module + '/rejectData', {'id': id, 'ket': result.value})
+          //   .then(result => {
+          //     this.$eventHub.$emit('reject-success')
+          //   })
         }
       });
     }
@@ -302,14 +327,14 @@ var render = function render() {
     "class": {
       "fa-spin": _vm.loading
     }
-  }, [_vm._v("\n              refresh\n            ")]), _vm._v("\n            " + _vm._s(_vm.$t("global.refresh")) + "\n          ")]), _vm._v(" "), _c("export-excel", {
+  }, [_vm._v("\n              refresh\n            ")]), _vm._v("\n            " + _vm._s(_vm.$t("global.refresh")) + "\n          ")]), _vm._v(" "), _vm.$can("export") ? _c("export-excel", {
     attrs: {
       fields: _vm.dataFields,
       data: _vm.jsonData
     }
   }, [_c("button", {
     staticClass: "btn btn-success"
-  }, [_vm._v("Export")])])], 1), _vm._v(" "), _c("div", {
+  }, [_vm._v("Export")])]) : _vm._e()], 1), _vm._v(" "), _c("div", {
     staticClass: "card-body"
   }, [_c("div", {
     staticClass: "row"

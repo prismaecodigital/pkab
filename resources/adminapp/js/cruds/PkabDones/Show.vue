@@ -18,7 +18,7 @@
                 <back-button></back-button>
               </div>
               <div class="col-lg-3">
-                <export-excel
+                <export-excel v-if="$can('export')"
                   :fields   = "mergedFields"
                   :data   = "mergedData">
                   <button class="btn btn-success">Export Item</button>

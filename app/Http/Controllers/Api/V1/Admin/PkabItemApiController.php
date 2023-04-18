@@ -195,7 +195,7 @@ class PkabItemApiController extends Controller
         $pkab = new PkabItemResource(PkabItem::findOrFail($request->id));
         abort_if(Gate::denies($pkab->status), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $pkab->update(['status' => 'cancel', 'ket' > $request->ket]);
+        $pkab->update(['status' => 'cancel', 'ket' => $request->ket]);
 
         $statusHistory = StatusHistory::create(['pkab_id' => $pkab->id,'status' => $pkab->status, 'user_id' => auth()->user()->id]);
 

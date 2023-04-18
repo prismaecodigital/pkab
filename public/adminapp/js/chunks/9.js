@@ -270,14 +270,14 @@ var render = function render() {
     "class": {
       "fa-spin": _vm.loading
     }
-  }, [_vm._v("\n              refresh\n            ")]), _vm._v("\n            " + _vm._s(_vm.$t("global.refresh")) + "\n          ")]), _vm._v(" "), _c("export-excel", {
+  }, [_vm._v("\n              refresh\n            ")]), _vm._v("\n            " + _vm._s(_vm.$t("global.refresh")) + "\n          ")]), _vm._v(" "), _vm.$can("export") ? _c("export-excel", {
     attrs: {
       fields: _vm.dataFields,
       data: _vm.jsonData
     }
   }, [_c("button", {
     staticClass: "btn btn-success"
-  }, [_vm._v("Export")])])], 1), _vm._v(" "), _c("div", {
+  }, [_vm._v("Export")])]) : _vm._e()], 1), _vm._v(" "), _c("div", {
     staticClass: "card-body"
   }, [_c("div", {
     staticClass: "row"

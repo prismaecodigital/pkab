@@ -62,9 +62,9 @@ const set = key => (state, val) => {
         message = error.response.data.message || error.message
       })
     },
-    rejectData({ commit, dispatch }, id) {
+    rejectData({ commit, dispatch }, {id, ket}) {
       commit('setLoading', true)
-      axios.post(`/pkab-items/reject`, {'id': id})
+      axios.post(`/pkab-items/reject`, {'id': id, 'ket' : ket})
       .then(response => {
         // handle success
         dispatch('fetchIndexData')
