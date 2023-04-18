@@ -193,7 +193,9 @@ var render = function render() {
       row: _vm.entry,
       field: "status"
     }
-  })], 1)]), _vm._v(" "), _c("tr", [_c("td", {
+  })], 1)]), _vm._v(" "), _vm.entry.status == "cancel" ? _c("tr", [_c("td", {
+    staticClass: "text-primary"
+  }, [_vm._v("\n                        Alasan\n                      ")]), _vm._v(" "), _c("td", [_vm._v("\n                        " + _vm._s(_vm.entry.ket) + "\n                      ")])]) : _vm._e(), _vm._v(" "), _c("tr", [_c("td", {
     staticClass: "text-primary"
   }, [_vm._v("\n                        " + _vm._s(_vm.$t("cruds.pkabItem.fields.dept")) + "\n                      ")]), _vm._v(" "), _c("td", [_c("bu-dept-single", {
     attrs: {
@@ -259,7 +261,11 @@ var render = function render() {
       attrs: {
         "bg-color": "green"
       }
-    }, [_vm._v("\n                " + _vm._s(item.status) + "\n                "), item.tanggal ? _c("p", [_vm._v("Tanggal : " + _vm._s(item.tanggal))]) : _vm._e(), _vm._v(" "), item.user ? _c("p", [_vm._v("Diproses Oleh : " + _vm._s(item.user))]) : _vm._e()]) : _vm._e(), _vm._v(" "), item.proses == "proses" ? _c("timeline-item", {
+    }, [_vm._v("\n                " + _vm._s(item.status) + "\n                "), item.tanggal ? _c("p", [_vm._v("Tanggal : " + _vm._s(item.tanggal))]) : _vm._e(), _vm._v(" "), item.user ? _c("p", [_vm._v("Diproses Oleh : " + _vm._s(item.user))]) : _vm._e()]) : _vm._e(), _vm._v(" "), item.proses == "cancel" ? _c("timeline-item", {
+      attrs: {
+        "bg-color": "black"
+      }
+    }, [_vm._v("\n                " + _vm._s(item.status) + "\n                "), item.tanggal ? _c("p", [_vm._v("Tanggal : " + _vm._s(item.tanggal))]) : _vm._e(), _vm._v(" "), item.user ? _c("p", [_vm._v("Dibatalkan Oleh : " + _vm._s(item.user))]) : _vm._e(), _vm._v(" "), _c("p", [_vm._v("Alasan : " + _vm._s(_vm.entry.ket))])]) : _vm._e(), _vm._v(" "), item.proses == "proses" ? _c("timeline-item", {
       attrs: {
         "bg-color": "yellow"
       }

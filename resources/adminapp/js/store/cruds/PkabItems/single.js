@@ -109,7 +109,7 @@ function initialState() {
           })
       })
     },
-    rejectData({ commit, state, dispatch }) {
+    rejectData({ commit, state, dispatch }, {id, ket}) {
       commit('setLoading', true)
       dispatch('Alert/resetState', null, { root: true })
   
@@ -118,9 +118,11 @@ function initialState() {
           indices: true,
           booleansAsIntegers: true
         })
-        params.set('_method', 'PUT')
+        // params.set('_method', 'PUT')
+        params.set('id', id)
+        params.set('ket', ket)
         axios
-          .post(`${route}/rejectData/${state.entry.id}`, params)
+          .post(`${route}/rejectData`, params)
           .then(response => {
             resolve(response)
           })
@@ -162,6 +164,9 @@ function initialState() {
     },
     setDept({ commit }, value) {
       commit('setDept', value)
+    },
+    setKet({ commit }, value) {
+      commit('setKet', value)
     },
     setCreatedAt({ commit }, value) {
       commit('setCreatedAt', value)
@@ -294,15 +299,27 @@ function initialState() {
           'tanggal'     : '',
           'user'        : 'user'
         },
-      ],
-      entry.status_history.forEach(function(val, index) {
-        if(val.status == state.timelineData[index+1].status_val) {
-          state.timelineData[index].tanggal = moment(val.created_at).format('DD MMMM YYYY, HH:mm')
-          state.timelineData[index].user = val.user.name
-          state.timelineData[index].proses = 'selesai'
-        }
-        state.timelineData[entry.status_history.length].proses = 'proses'
-      })
+      ]
+      if(entry.status != 'cancel') {
+        entry.status_history.forEach(function(val, index) {
+          if(val.status == state.timelineData[index+1].status_val) {
+            state.timelineData[index].tanggal = moment(val.created_at).format('DD MMMM YYYY, HH:mm')
+            state.timelineData[index].user = val.user.name
+            state.timelineData[index].proses = 'selesai'
+          }
+          state.timelineData[entry.status_history.length].proses = 'proses'
+        })
+      }
+      if(entry.status == 'cancel') {
+        entry.status_history.forEach(function(val, index) {
+          if(val.status == state.timelineData[index+1].status_val) {
+            state.timelineData[index].tanggal = moment(val.created_at).format('DD MMMM YYYY, HH:mm')
+            state.timelineData[index].user = val.user.name
+            state.timelineData[index].proses = 'selesai'
+          }
+          state.timelineData[entry.status_history.length - 1].proses = 'cancel'
+        })
+      }
       
     },
     setReqDate(state, value) {
@@ -320,6 +337,9 @@ function initialState() {
     },
     setDept(state, value) {
       state.entry.dept_id = value
+    },
+    setKet(state, value) {
+      state.entry.ket = value
     },
     setCreatedAt(state, value) {
       state.entry.created_at = value

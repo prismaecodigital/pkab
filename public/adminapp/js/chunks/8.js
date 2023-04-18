@@ -103,6 +103,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       columns: [{
+        title: 'cruds.pkabItem.fields.code',
+        field: 'code',
+        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_3__["default"],
+        sortable: true
+      }, {
         title: 'cruds.pkabItem.fields.created_at',
         field: 'created_at',
         thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -269,7 +274,7 @@ var render = function render() {
     staticClass: "card-header card-header-primary card-header-icon"
   }, [_vm._m(0), _vm._v(" "), _c("h4", {
     staticClass: "card-title"
-  }, [_c("strong", [_vm._v("PKAB " + _vm._s(_vm.$t("cruds.pkabItem.title")))])])]), _vm._v(" "), _c("div", {
+  }, [_c("strong", [_vm._v(_vm._s(_vm.$t("cruds.pkabItem.title")))])])]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
   }, [_vm.$can(_vm.xprops.permission_prefix + "create") ? _c("router-link", {
     staticClass: "btn btn-primary",

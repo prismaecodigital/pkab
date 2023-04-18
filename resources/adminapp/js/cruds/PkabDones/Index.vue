@@ -79,6 +79,12 @@ export default {
     return {
       columns: [
         {
+          title: 'cruds.pkabItem.fields.code',
+          field: 'code',
+          thComp: TranslatedHeader,
+          sortable: true
+        },
+        {
           title: 'cruds.pkabItem.fields.created_at',
           field: 'created_at',
           thComp: TranslatedHeader,

@@ -75,6 +75,14 @@
                           </datatable-enum>
                         </td>
                       </tr>
+                      <tr v-if="entry.status == 'cancel'">
+                        <td class="text-primary">
+                          Alasan
+                        </td>
+                        <td>
+                          {{entry.ket}}
+                        </td>
+                      </tr>
                       <tr>
                         <td class="text-primary">
                           {{ $t('cruds.pkabItem.fields.dept') }}
@@ -124,6 +132,12 @@
                   {{ item.status }}
                   <p v-if="item.tanggal">Tanggal : {{ item.tanggal }}</p>
                   <p v-if="item.user">Diproses Oleh : {{ item.user }}</p>
+                </timeline-item>
+                <timeline-item v-if="item.proses == 'cancel'" bg-color="black">
+                  {{ item.status }}
+                  <p v-if="item.tanggal">Tanggal : {{ item.tanggal }}</p>
+                  <p v-if="item.user">Dibatalkan Oleh : {{ item.user }}</p>
+                  <p>Alasan : {{ entry.ket }}</p>
                 </timeline-item>
                 <timeline-item v-if="item.proses == 'proses'" bg-color="yellow">
                   {{ item.status }}

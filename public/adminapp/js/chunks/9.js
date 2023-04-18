@@ -103,6 +103,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       columns: [{
+        title: 'cruds.pkabItem.fields.code',
+        field: 'code',
+        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_3__["default"],
+        sortable: true
+      }, {
         title: 'cruds.pkabItem.fields.created_at',
         field: 'created_at',
         thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_3__["default"],

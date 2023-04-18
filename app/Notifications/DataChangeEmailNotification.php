@@ -30,7 +30,8 @@ class DataChangeEmailNotification extends Notification implements ShouldQueue
 
     public function getMessage()
     {
-        return (new MailMessage)
+        if ($this->data['ket'] == '') {
+            return (new MailMessage)
             ->subject('PKAB Notification')
             ->greeting('Hello, ')
             ->line('PKAB nomor ' . $this->data['code'] . ' telah ' . $this->data['action'] . ' oleh ' . $this->data['user'] . ' dan saat ini ' . $this->data['status'])
@@ -39,5 +40,17 @@ class DataChangeEmailNotification extends Notification implements ShouldQueue
             ->line('Thank you')
             ->line(config('app.name') . ' Team')
             ->salutation(' ');
+        }
+        if ($this->data['ket'] != '') {
+            return (new MailMessage)
+            ->subject('PKAB Notification')
+            ->greeting('Hello, ')
+            ->line('PKAB nomor ' . $this->data['code'] . ' telah ' . $this->data['action'] . ' oleh ' . $this->data['user'] . ' dengan alasan ' . $this->data['ket'])
+            ->line('Silahkan diproses lebih lanjut.')
+            ->action(config('app.name'), (config('app.url').'/admin/pkab/pkab-items/'.$this->data['id']))
+            ->line('Thank you')
+            ->line(config('app.name') . ' Team')
+            ->salutation(' ');
+        }
     }
 }

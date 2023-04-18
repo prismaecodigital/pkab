@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"575fdcccc01f35c03ffa","1":"1e62df9082e385f123f1","2":"ca9f6e4dbfa72537fb01","3":"e05cbe3c73d7d974f9ad","4":"9b8f7973971ff7308edd","5":"a65ce6cef240f9375d1e","6":"fec9ba1975e515c67aa7","7":"3988e3d74c3691f4b9c2","8":"a71909fb741006ffb377","9":"58a630106c57f9c4ab7a","10":"15ba1f8842d1144d2fe5","11":"0851c4a3cea1ef23d00f","12":"1c89fdbba6a50238d643","13":"0d24a9fb5cd948644530","14":"c180cb0f61cdd06ba44c","15":"dfe3260234f7738200f9","16":"ba4a3a9136a15c0050dc","17":"2090243df20832aa7fa6","18":"4fba13908c7eacab14d5","19":"9915d8b9f39ce5731471","20":"a9caa49ae3b2bf9dfa7c","21":"aeda330a5f998074fe92","22":"6c369cac6bb6b9ad17e7","23":"3377ffd1539a75c2a309","24":"b91230429fdb424ab092","25":"5106b29355d8caad3ad6","26":"f538f9a9b958e0f684b9","27":"06029eae84c92fe8f39e","28":"7c22cf465706442478b5","29":"4bc8fb2eb4e56d31d44b","30":"253214dc198d12c6be19"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"575fdcccc01f35c03ffa","1":"1e62df9082e385f123f1","2":"ca9f6e4dbfa72537fb01","3":"e05cbe3c73d7d974f9ad","4":"9b8f7973971ff7308edd","5":"a65ce6cef240f9375d1e","6":"fec9ba1975e515c67aa7","7":"3988e3d74c3691f4b9c2","8":"4a764220e3f1fa8212f6","9":"d73565aa829cf7bbe3f4","10":"15ba1f8842d1144d2fe5","11":"0851c4a3cea1ef23d00f","12":"1c89fdbba6a50238d643","13":"8ee20f5b77ff425447ed","14":"663a7101aaa05c2eca11","15":"dfe3260234f7738200f9","16":"ba4a3a9136a15c0050dc","17":"2090243df20832aa7fa6","18":"4fba13908c7eacab14d5","19":"9915d8b9f39ce5731471","20":"a9caa49ae3b2bf9dfa7c","21":"aeda330a5f998074fe92","22":"6c369cac6bb6b9ad17e7","23":"3377ffd1539a75c2a309","24":"b91230429fdb424ab092","25":"5106b29355d8caad3ad6","26":"f538f9a9b958e0f684b9","27":"06029eae84c92fe8f39e","28":"7c22cf465706442478b5","29":"4bc8fb2eb4e56d31d44b","30":"253214dc198d12c6be19"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -61648,13 +61648,27 @@ var mutations = {
       'proses': '',
       'tanggal': '',
       'user': 'user'
-    }], entry.status_history.forEach(function (val, index) {
-      if (val.status == state.timelineData[index + 1].status_val) {
-        state.timelineData[index].tanggal = moment(val.created_at).format('DD MMMM YYYY, HH:mm');
-        state.timelineData[index].user = val.user.name;
-        state.timelineData[index].proses = 'selesai';
-      }
-    });
+    }];
+    if (entry.status != 'cancel') {
+      entry.status_history.forEach(function (val, index) {
+        if (val.status == state.timelineData[index + 1].status_val) {
+          state.timelineData[index].tanggal = moment(val.created_at).format('DD MMMM YYYY, HH:mm');
+          state.timelineData[index].user = val.user.name;
+          state.timelineData[index].proses = 'selesai';
+        }
+        state.timelineData[entry.status_history.length].proses = 'proses';
+      });
+    }
+    if (entry.status == 'cancel') {
+      entry.status_history.forEach(function (val, index) {
+        if (val.status == state.timelineData[index + 1].status_val) {
+          state.timelineData[index].tanggal = moment(val.created_at).format('DD MMMM YYYY, HH:mm');
+          state.timelineData[index].user = val.user.name;
+          state.timelineData[index].proses = 'selesai';
+        }
+        state.timelineData[entry.status_history.length - 1].proses = 'cancel';
+      });
+    }
   },
   setReqDate: function setReqDate(state, value) {
     state.entry.req_date = moment(value).format('DD-MM-YYYY');
@@ -61996,10 +62010,12 @@ var actions = {
       });
     });
   },
-  rejectData: function rejectData(_ref3) {
+  rejectData: function rejectData(_ref3, _ref4) {
     var commit = _ref3.commit,
       state = _ref3.state,
       dispatch = _ref3.dispatch;
+    var id = _ref4.id,
+      ket = _ref4.ket;
     commit('setLoading', true);
     dispatch('Alert/resetState', null, {
       root: true
@@ -62009,8 +62025,10 @@ var actions = {
         indices: true,
         booleansAsIntegers: true
       });
-      params.set('_method', 'PUT');
-      axios.post("".concat(route, "/rejectData/").concat(state.entry.id), params).then(function (response) {
+      // params.set('_method', 'PUT')
+      params.set('id', id);
+      params.set('ket', ket);
+      axios.post("".concat(route, "/rejectData"), params).then(function (response) {
         resolve(response);
       })["catch"](function (error) {
         var message = error.response.data.message || error.message;
@@ -62028,9 +62046,9 @@ var actions = {
       });
     });
   },
-  approveData: function approveData(_ref4, id) {
-    var commit = _ref4.commit,
-      dispatch = _ref4.dispatch;
+  approveData: function approveData(_ref5, id) {
+    var commit = _ref5.commit,
+      dispatch = _ref5.dispatch;
     return axios.post("".concat(route, "/").concat(id, "/approve"), {
       id: id
     }).then(function (response) {
@@ -62040,113 +62058,117 @@ var actions = {
       });
     });
   },
-  setReqDate: function setReqDate(_ref5, value) {
-    var commit = _ref5.commit;
+  setReqDate: function setReqDate(_ref6, value) {
+    var commit = _ref6.commit;
     commit('setReqDate', value);
   },
-  setUser: function setUser(_ref6, value) {
-    var commit = _ref6.commit;
+  setUser: function setUser(_ref7, value) {
+    var commit = _ref7.commit;
     commit('setUser', value);
   },
-  setStatus: function setStatus(_ref7, value) {
-    var commit = _ref7.commit;
+  setStatus: function setStatus(_ref8, value) {
+    var commit = _ref8.commit;
     commit('setStatus', value);
   },
-  setBu: function setBu(_ref8, value) {
-    var commit = _ref8.commit;
+  setBu: function setBu(_ref9, value) {
+    var commit = _ref9.commit;
     commit('setBu', value);
   },
-  setDept: function setDept(_ref9, value) {
-    var commit = _ref9.commit;
+  setDept: function setDept(_ref10, value) {
+    var commit = _ref10.commit;
     commit('setDept', value);
   },
-  setCreatedAt: function setCreatedAt(_ref10, value) {
-    var commit = _ref10.commit;
+  setKet: function setKet(_ref11, value) {
+    var commit = _ref11.commit;
+    commit('setKet', value);
+  },
+  setCreatedAt: function setCreatedAt(_ref12, value) {
+    var commit = _ref12.commit;
     commit('setCreatedAt', value);
   },
-  setUpdatedAt: function setUpdatedAt(_ref11, value) {
-    var commit = _ref11.commit;
+  setUpdatedAt: function setUpdatedAt(_ref13, value) {
+    var commit = _ref13.commit;
     commit('setUpdatedAt', value);
   },
-  setDeletedAt: function setDeletedAt(_ref12, value) {
-    var commit = _ref12.commit;
+  setDeletedAt: function setDeletedAt(_ref14, value) {
+    var commit = _ref14.commit;
     commit('setDeletedAt', value);
   },
-  setItems: function setItems(_ref13, value) {
-    var commit = _ref13.commit;
+  setItems: function setItems(_ref15, value) {
+    var commit = _ref15.commit;
     commit('setItems', value);
   },
-  setItemName: function setItemName(_ref14, _ref15) {
-    var commit = _ref14.commit;
-    var index = _ref15.index,
-      val = _ref15.val;
+  setItemName: function setItemName(_ref16, _ref17) {
+    var commit = _ref16.commit;
+    var index = _ref17.index,
+      val = _ref17.val;
     commit('setItemName', {
       index: index,
       val: val
     });
   },
-  setItemMerk: function setItemMerk(_ref16, _ref17) {
-    var commit = _ref16.commit;
-    var index = _ref17.index,
-      val = _ref17.val;
+  setItemMerk: function setItemMerk(_ref18, _ref19) {
+    var commit = _ref18.commit;
+    var index = _ref19.index,
+      val = _ref19.val;
     commit('setItemMerk', {
       index: index,
       val: val
     });
   },
-  setItemSpesifikasi: function setItemSpesifikasi(_ref18, _ref19) {
-    var commit = _ref18.commit;
-    var index = _ref19.index,
-      val = _ref19.val;
+  setItemSpesifikasi: function setItemSpesifikasi(_ref20, _ref21) {
+    var commit = _ref20.commit;
+    var index = _ref21.index,
+      val = _ref21.val;
     commit('setItemSpesifikasi', {
       index: index,
       val: val
     });
   },
-  setItemQty: function setItemQty(_ref20, _ref21) {
-    var commit = _ref20.commit;
-    var index = _ref21.index,
-      val = _ref21.val;
+  setItemQty: function setItemQty(_ref22, _ref23) {
+    var commit = _ref22.commit;
+    var index = _ref23.index,
+      val = _ref23.val;
     commit('setItemQty', {
       index: index,
       val: val
     });
   },
-  addItem: function addItem(_ref22) {
-    var commit = _ref22.commit;
+  addItem: function addItem(_ref24) {
+    var commit = _ref24.commit;
     commit('addItem');
   },
-  exportData: function exportData(_ref23) {
-    var commit = _ref23.commit;
+  exportData: function exportData(_ref25) {
+    var commit = _ref25.commit;
     commit('exportData');
   },
-  deleteItem: function deleteItem(_ref24) {
-    var commit = _ref24.commit;
+  deleteItem: function deleteItem(_ref26) {
+    var commit = _ref26.commit;
     commit('deleteItem');
   },
-  fetchCreateData: function fetchCreateData(_ref25) {
-    var commit = _ref25.commit;
+  fetchCreateData: function fetchCreateData(_ref27) {
+    var commit = _ref27.commit;
     axios.get("".concat(route, "/create")).then(function (response) {
       commit('setLists', response.data.meta);
     });
   },
-  fetchEditData: function fetchEditData(_ref26, id) {
-    var commit = _ref26.commit,
-      dispatch = _ref26.dispatch;
+  fetchEditData: function fetchEditData(_ref28, id) {
+    var commit = _ref28.commit,
+      dispatch = _ref28.dispatch;
     axios.get("".concat(route, "/").concat(id, "/edit")).then(function (response) {
       commit('setEntry', response.data.data);
       commit('setLists', response.data.meta);
     });
   },
-  fetchShowData: function fetchShowData(_ref27, id) {
-    var commit = _ref27.commit,
-      dispatch = _ref27.dispatch;
+  fetchShowData: function fetchShowData(_ref29, id) {
+    var commit = _ref29.commit,
+      dispatch = _ref29.dispatch;
     axios.get("".concat(route, "/").concat(id)).then(function (response) {
       commit('setEntry', response.data.data);
     });
   },
-  resetState: function resetState(_ref28) {
-    var commit = _ref28.commit;
+  resetState: function resetState(_ref30) {
+    var commit = _ref30.commit;
     commit('resetState');
   }
 };
@@ -62217,14 +62239,27 @@ var mutations = {
       'proses': '',
       'tanggal': '',
       'user': 'user'
-    }], entry.status_history.forEach(function (val, index) {
-      if (val.status == state.timelineData[index + 1].status_val) {
-        state.timelineData[index].tanggal = moment(val.created_at).format('DD MMMM YYYY, HH:mm');
-        state.timelineData[index].user = val.user.name;
-        state.timelineData[index].proses = 'selesai';
-      }
-      state.timelineData[entry.status_history.length].proses = 'proses';
-    });
+    }];
+    if (entry.status != 'cancel') {
+      entry.status_history.forEach(function (val, index) {
+        if (val.status == state.timelineData[index + 1].status_val) {
+          state.timelineData[index].tanggal = moment(val.created_at).format('DD MMMM YYYY, HH:mm');
+          state.timelineData[index].user = val.user.name;
+          state.timelineData[index].proses = 'selesai';
+        }
+        state.timelineData[entry.status_history.length].proses = 'proses';
+      });
+    }
+    if (entry.status == 'cancel') {
+      entry.status_history.forEach(function (val, index) {
+        if (val.status == state.timelineData[index + 1].status_val) {
+          state.timelineData[index].tanggal = moment(val.created_at).format('DD MMMM YYYY, HH:mm');
+          state.timelineData[index].user = val.user.name;
+          state.timelineData[index].proses = 'selesai';
+        }
+        state.timelineData[entry.status_history.length - 1].proses = 'cancel';
+      });
+    }
   },
   setReqDate: function setReqDate(state, value) {
     state.entry.req_date = moment(value).format('DD-MM-YYYY');
@@ -62242,6 +62277,9 @@ var mutations = {
   setDept: function setDept(state, value) {
     state.entry.dept_id = value;
   },
+  setKet: function setKet(state, value) {
+    state.entry.ket = value;
+  },
   setCreatedAt: function setCreatedAt(state, value) {
     state.entry.created_at = value;
   },
@@ -62254,24 +62292,24 @@ var mutations = {
   setItems: function setItems(state, value) {
     state.entry.items = value;
   },
-  setItemName: function setItemName(state, _ref29) {
-    var index = _ref29.index,
-      val = _ref29.val;
-    state.entry.items[index].name = val;
-  },
-  setItemMerk: function setItemMerk(state, _ref30) {
-    var index = _ref30.index,
-      val = _ref30.val;
-    state.entry.items[index].merk = val;
-  },
-  setItemSpesifikasi: function setItemSpesifikasi(state, _ref31) {
+  setItemName: function setItemName(state, _ref31) {
     var index = _ref31.index,
       val = _ref31.val;
-    state.entry.items[index].spesifikasi = val;
+    state.entry.items[index].name = val;
   },
-  setItemQty: function setItemQty(state, _ref32) {
+  setItemMerk: function setItemMerk(state, _ref32) {
     var index = _ref32.index,
       val = _ref32.val;
+    state.entry.items[index].merk = val;
+  },
+  setItemSpesifikasi: function setItemSpesifikasi(state, _ref33) {
+    var index = _ref33.index,
+      val = _ref33.val;
+    state.entry.items[index].spesifikasi = val;
+  },
+  setItemQty: function setItemQty(state, _ref34) {
+    var index = _ref34.index,
+      val = _ref34.val;
     state.entry.items[index].qty = val;
   },
   addItem: function addItem(state) {

@@ -8,7 +8,7 @@
               <i class="material-icons">assignment</i>
             </div>
             <h4 class="card-title">
-              <strong>PKAB {{ $t('cruds.pkabItem.title') }}</strong>
+              <strong>{{ $t('cruds.pkabItem.title') }}</strong>
             </h4>
           </div>
           <div class="card-body">
@@ -88,6 +88,12 @@ export default {
   data() {
     return {
       columns: [
+        {
+          title: 'cruds.pkabItem.fields.code',
+          field: 'code',
+          thComp: TranslatedHeader,
+          sortable: true
+        },
         {
           title: 'cruds.pkabItem.fields.created_at',
           field: 'created_at',

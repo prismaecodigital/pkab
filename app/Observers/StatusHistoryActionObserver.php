@@ -15,12 +15,24 @@ class StatusHistoryActionObserver
         $pkab = $statusHistory->pkab;
         $statusVal = array_search($pkab->status, array_column(PkabItem::STATUS_SELECT, 'value'));
         $status = PkabItem::STATUS_SELECT[$statusVal]['label'];
-        $users = User::whereHas('roles', function ($q) use($pkab) {
-            return $q->where('title', 'Admin')->orWhere('title', 'Dept Head');
-        })->whereHas('dept', function ($q) use($pkab) {
-            return $q->where('id', $pkab->dept_id);
-        })->get();
-        $data  = ['action' => 'diproses', 'id' => $pkab->id, 'code' => $pkab->code, 'status' => $status, 'user' => $statusHistory->user->name, 'users' => $users];
+
+        if($status != 'Dibatalkan') {
+            $users = User::whereHas('roles', function ($q) use($statusHistory) {
+                return $q->whereHas('permissions', function ($q) use($statusHistory) {
+                    return $q->where('title', $statusHistory->status);
+                });
+            })->whereHas('dept', function ($q) use($pkab) {
+                return $q->where('id', $pkab->dept_id);
+            })->get();
+            $ket = '';
+            $action = 'diproses';
+        }
+        if($status === 'Dibatalkan') {
+            $users = User::where('id', $pkab->user_id)->get();
+            $ket = $pkab->ket;
+            $action = 'dibatalkan';
+        }
+        $data  = ['action' => $action, 'id' => $pkab->id, 'code' => $pkab->code, 'status' => $status, 'user' => $statusHistory->user->name, 'users' => $users, 'ket' => $ket];
         Notification::send($users, new DataChangeEmailNotification($data));
     }
 }

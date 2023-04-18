@@ -269,14 +269,28 @@ const mutations = {
         'tanggal'     : '',
         'user'        : 'user'
       },
-    ],
-    entry.status_history.forEach(function(val, index) {
-      if(val.status == state.timelineData[index+1].status_val) {
-        state.timelineData[index].tanggal = moment(val.created_at).format('DD MMMM YYYY, HH:mm')
-        state.timelineData[index].user = val.user.name
-        state.timelineData[index].proses = 'selesai'
-      }
-    })    
+    ]
+    if(entry.status != 'cancel') {
+      entry.status_history.forEach(function(val, index) {
+        if(val.status == state.timelineData[index+1].status_val) {
+          state.timelineData[index].tanggal = moment(val.created_at).format('DD MMMM YYYY, HH:mm')
+          state.timelineData[index].user = val.user.name
+          state.timelineData[index].proses = 'selesai'
+        }
+        state.timelineData[entry.status_history.length].proses = 'proses'
+      })
+    }
+    if(entry.status == 'cancel') {
+      entry.status_history.forEach(function(val, index) {
+        if(val.status == state.timelineData[index+1].status_val) {
+          state.timelineData[index].tanggal = moment(val.created_at).format('DD MMMM YYYY, HH:mm')
+          state.timelineData[index].user = val.user.name
+          state.timelineData[index].proses = 'selesai'
+        }
+        state.timelineData[entry.status_history.length - 1].proses = 'cancel'
+      })
+    }
+    
   },
   setReqDate(state, value) {
     state.entry.req_date = moment(value).format('DD-MM-YYYY')

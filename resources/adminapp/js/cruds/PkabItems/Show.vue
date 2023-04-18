@@ -217,7 +217,8 @@ export default {
       'rejectData',
       'setItemMerk',
       'setItemSpesifikasi',
-      'setItemQty',]),
+      'setItemQty',
+      'setKet']),
     updateItemName(index, event, val) {
       val = event.target.value
       this.setItemName({index, val});
@@ -249,6 +250,8 @@ export default {
         confirmButtonText: 'Yes'
       }).then(result => {
         if(result.value) {
+          let value = result.value
+          this.setKet(value)
           this.$store
             .dispatch(this.xprops.module + '/updateData', id)
             .then(result => {
@@ -262,7 +265,8 @@ export default {
     rejectData(id) {
       this.$swal({
         title: 'Reject?',
-        text: 'Are you sure you want to reject this item?',
+        text: 'Masukkan Alasan',
+        input: 'text',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -270,8 +274,10 @@ export default {
         confirmButtonText: 'Yes'
       }).then(result => {
         if(result.value) {
+          console.log(id.id)
+          console.log(result.value)
           this.$store
-            .dispatch(this.xprops.module + '/rejectData', id)
+            .dispatch(this.xprops.module + '/rejectData', {'id': id.id, 'ket': result.value})
             .then(result => {
 
               //redirect logic

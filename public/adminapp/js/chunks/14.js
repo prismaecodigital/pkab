@@ -64,7 +64,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  methods: Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('PkabItemsSingle', ['fetchShowData', 'loading', 'resetState', 'approveData', 'updateData', 'setItemName', 'updateMergedData', 'rejectData', 'setItemMerk', 'setItemSpesifikasi', 'setItemQty'])), {}, {
+  methods: Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('PkabItemsSingle', ['fetchShowData', 'loading', 'resetState', 'approveData', 'updateData', 'setItemName', 'updateMergedData', 'rejectData', 'setItemMerk', 'setItemSpesifikasi', 'setItemQty', 'setKet'])), {}, {
     updateItemName: function updateItemName(index, event, val) {
       val = event.target.value;
       this.setItemName({
@@ -109,6 +109,8 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes'
       }).then(function (result) {
         if (result.value) {
+          var value = result.value;
+          _this.setKet(value);
           _this.$store.dispatch(_this.xprops.module + '/updateData', id).then(function (result) {
             //redirect logic
             _this.$router.push('/pkab/pkab-items');
@@ -120,7 +122,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
       this.$swal({
         title: 'Reject?',
-        text: 'Are you sure you want to reject this item?',
+        text: 'Masukkan Alasan',
+        input: 'text',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -128,7 +131,12 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes'
       }).then(function (result) {
         if (result.value) {
-          _this2.$store.dispatch(_this2.xprops.module + '/rejectData', id).then(function (result) {
+          console.log(id.id);
+          console.log(result.value);
+          _this2.$store.dispatch(_this2.xprops.module + '/rejectData', {
+            'id': id.id,
+            'ket': result.value
+          }).then(function (result) {
             //redirect logic
             _this2.$router.push('/pkab/pkab-items');
           });
