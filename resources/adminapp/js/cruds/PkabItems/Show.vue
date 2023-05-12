@@ -279,9 +279,16 @@ export default {
           this.$store
             .dispatch(this.xprops.module + '/rejectData', {'id': id.id, 'ket': result.value})
             .then(result => {
-
+              
               //redirect logic
               this.$router.push('/pkab/pkab-items');
+            })
+        }
+        else {
+            this.$swal({
+            icon: 'error',
+            title: 'Failed',
+            text: 'Masukkan Alasan'
             })
         }
       })

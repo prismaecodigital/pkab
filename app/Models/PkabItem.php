@@ -35,6 +35,7 @@ class PkabItem extends Model
 
     protected $filterable = [
         'id',
+        'code',
         'req_date',
         'user.name',
         'status',

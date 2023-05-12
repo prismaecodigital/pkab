@@ -140,6 +140,12 @@ __webpack_require__.r(__webpack_exports__);
             //redirect logic
             _this2.$router.push('/pkab/pkab-items');
           });
+        } else {
+          _this2.$swal({
+            icon: 'error',
+            title: 'Failed',
+            text: 'Masukkan Alasan'
+          });
         }
       });
     }

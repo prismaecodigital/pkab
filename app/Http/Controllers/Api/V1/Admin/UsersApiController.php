@@ -20,7 +20,7 @@ class UsersApiController extends Controller
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new UserResource(User::with(['roles','dept.bu'])->advancedFilter());
+        return new UserResource(User::with(['roles','dept.bu'])->advancedFilter()->paginate(request('limit', 10)));
     }
 
     public function store(StoreUserRequest $request)

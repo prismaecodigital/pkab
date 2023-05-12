@@ -15,7 +15,7 @@ class StatusHistoryApiController extends Controller
     {
         abort_if(Gate::denies('status_history_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new StatusHistoryResource(StatusHistory::advancedFilter());
+        return new StatusHistoryResource(StatusHistory::advancedFilter()->paginate(request('limit', 10)));
     }
 
     public function destroy(StatusHistory $statusHistory)

@@ -14,7 +14,7 @@ trait HasAdvancedFilter
             'limit'           => request('limit', 10),
             's'               => request('s', null),
         ])
-            ->paginate(request('limit', 10));
+            ;
     }
 
     public function processQuery($query, $data)

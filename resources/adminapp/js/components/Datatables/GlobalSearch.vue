@@ -2,7 +2,7 @@
   <div
     class="form-group bmd-form-group"
     :class="{
-      'has-items': query.s,
+      'is-filled': query.s,
       'is-focused': focus
     }"
   >

@@ -51,7 +51,7 @@ class DeptApiController extends Controller
     {
         abort_if(Gate::denies('dept_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new DeptResource(Dept::with(['bu'])->advancedFilter());
+        return new DeptResource(Dept::with(['bu'])->advancedFilter()->paginate(request('limit', 10)));
     }
 
     public function store(StoreDeptRequest $request)

@@ -107,6 +107,13 @@ export default {
                       this.$eventHub.$emit('reject-success')
                     })
                 }
+                else {
+                   this.$swal({
+                    icon: 'error',
+                    title: 'Failed',
+                    text: 'Masukkan Alasan'
+                   })
+                }
               })
           // console.log(result)
           //   this.$store

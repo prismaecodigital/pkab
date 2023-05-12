@@ -27,15 +27,16 @@ const set = key => (state, val) => {
       axios
         .get(route, { params: state.query })
         .then(response => {
-          commit('setJsonData', response.data.data)
           commit('setData', response.data.data)
           commit('setTotal', response.data.total)
+          commit('setJsonData', response.data.data)
         })
         .catch(error => {
           message = error.response.data.message || error.message
           // TODO error handling
         })
         .finally(() => {
+          // console.log(state.query)
           commit('setLoading', false)
         })
     },

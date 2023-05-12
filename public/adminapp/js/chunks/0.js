@@ -87,7 +87,7 @@ var render = function render() {
   return _c("div", {
     staticClass: "form-group bmd-form-group",
     "class": {
-      "has-items": _vm.query.s,
+      "is-filled": _vm.query.s,
       "is-focused": _vm.focus
     }
   }, [_c("label", {

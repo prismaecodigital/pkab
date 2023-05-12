@@ -17,7 +17,7 @@ class BuApiController extends Controller
     {
         abort_if(Gate::denies('bu_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new BuResource(Bu::advancedFilter());
+        return new BuResource(Bu::advancedFilter()->paginate(request('limit', 10)));
     }
 
     public function store(StoreBuRequest $request)

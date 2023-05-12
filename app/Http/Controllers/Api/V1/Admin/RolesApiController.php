@@ -18,7 +18,7 @@ class RolesApiController extends Controller
     {
         abort_if(Gate::denies('role_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new RoleResource(Role::with(['permissions'])->advancedFilter());
+        return new RoleResource(Role::with(['permissions'])->advancedFilter()->paginate(request('limit', 10)));
     }
 
     public function store(StoreRoleRequest $request)
