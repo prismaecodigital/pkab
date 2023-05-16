@@ -53,15 +53,6 @@ class PkabDone extends Model
         'updated_at',
     ];
 
-    // public const STATUS_SELECT = [
-    //     'leader_acc' => "Menunggu Persetujuan Leader",
-    //     'purchasing_acc_1' => "Pengajuan FPBD",
-    //     'purchasing_acc_2' => "Menunggu Dana",
-    //     'purchasing_acc_3' => "Proses Pembelian",
-    //     'user_acc' => "Menunggu konfirmasi penerimaan",
-    //     'cancel' =>"Dibatalkan",
-    //     'selesai' =>"Selesai"
-    // ];
     public const STATUS_SELECT = [
         [
             'label' => 'Menunggu Persetujuan Leader',
