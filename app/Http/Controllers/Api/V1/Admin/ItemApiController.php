@@ -15,6 +15,6 @@ class ItemApiController extends Controller
     {
         abort_if(Gate::denies('pkab_item_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ItemResource(Item::advancedFilter());
+        return new ItemResource(Item::advancedFilter()->paginate(request('limit', 10)));
     }
 }

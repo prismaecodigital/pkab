@@ -132,7 +132,9 @@ class PkabDoneApiController extends Controller
 
         $statusHistory = StatusHistory::create(['pkab_id' => $pkabItem->id,'status' => $pkabItem->status, 'user_id' => auth()->user()->id]);
         
-        return new PkabDoneResource(PkabItem::with(['user', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter());
+        return new PkabDoneResource(PkabItem::with(['user', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter()
+        ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
+        ->whereNot('status','selesai')->whereNot('status','cancel')->paginate(request('limit', 10)));
     }
 
     public function edit(PkabItem $pkabItem)

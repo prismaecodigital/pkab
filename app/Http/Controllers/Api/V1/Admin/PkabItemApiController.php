@@ -13,7 +13,7 @@ use App\Models\Item;
 use App\Models\StatusHistory;
 use Gate;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
 use Carbon\Carbon;
 use App\Exports\PkabItemExport;
 use Illuminate\Support\Facades\Http;
@@ -175,17 +175,39 @@ class PkabItemApiController extends Controller
 
         $statusHistory = StatusHistory::create(['pkab_id' => $pkabItem->id,'status' => $pkabItem->status, 'user_id' => auth()->user()->id]);
 
-        // POST TO SIMESRA IF DEPT_ID = PKU KEMANG / SENTUL
-        if($pkabItem->dept_id == '7' || $pkabItem->dept_id == '8') {
-            if($pkabItem->dept_id == '7') {
-                
-            }
-            if($pkabItem->dept_id == '7') {
+        // POST To SIMESRA
 
+        if($pkabItem->dept_id == 7 || $pkabItem->dept_id == 8 ) {  // Replace bu & dept id with PKU SYE
+            if($pkabItem->dept_id == 7) {
+                $token_2 = '1|1BAzBsUymgmvt40CLYXJulTr6EvBlvDHAt5WGrg7';  // Replace token PKU SYE Kemang
+                $dept_id = '1';
             }
+            if($pkabItem->dept_id == 8) {
+                $token_2 = '1|1BAzBsUymgmvt40CLYXJulTr6EvBlvDHAt5WGrg7';  // Replace token PKU SYE Sentul
+                $dept_id = '2';
+            }
+
+            $url_2 = 'http://192.168.65.79:8000/api/v1/orders/'.$pkabItem->code;  // Replace url_2 with desired
+
+            // parameter POST
+            $params_simesra = ['code' => $pkabItem->code, 'type' => 'penambahan', 'status' => $pkabItem->status, 'ok_id' => $dept_id, 'order_to' => 'purchasing', 'items' => []];
+            foreach ($pkabItem->items as $index => $item) {
+                $params_simesra['items'][$index]['name'] = $item['name'];
+                $params_simesra['items'][$index]['merk'] = $item['merk'];
+                $params_simesra['items'][$index]['spesifikasi'] = $item['spesifikasi'];
+                $params_simesra['items'][$index]['qty'] = $item['qty'];
+                // Add any other fields you need to the items array
+            }
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $token_2,
+                'Content-Type' => 'application/json'
+            ])->patch($url_2, $params_simesra);
+            
         }
         
-        return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter());
+        return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter()
+        ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
+        ->whereNot('status','selesai')->whereNot('status','cancel')->paginate(request('limit', 10)));
     }
 
     public function rejectData(Request $request, PkabItem $pkabItem)
@@ -194,7 +216,9 @@ class PkabItemApiController extends Controller
         $pkabItem->update(['status' => 'cancel', 'ket' => $request->ket]);
         $statusHistory = StatusHistory::create(['pkab_id' => $pkabItem->id,'status' => $pkabItem->status, 'user_id' => auth()->user()->id]);
         
-        return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter());
+        return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter()
+        ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
+        ->whereNot('status','selesai')->whereNot('status','cancel')->paginate(request('limit', 10)));
     }
 
     public function edit(PkabItem $pkabItem)
@@ -263,5 +287,9 @@ class PkabItemApiController extends Controller
     {
         $pkab = explode(',' , $pkabItem);
          
+    }
+
+    public function updateSimesra(Request $request) {
+        
     }
 }
