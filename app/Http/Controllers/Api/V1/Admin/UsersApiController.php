@@ -66,6 +66,7 @@ class UsersApiController extends Controller
         $user->update($request->validated());
         $user->roles()->sync($request->input('roles.*.id', []));
         $user->dept()->sync($request->input('dept.*.id', []));
+        $user->bu()->sync($request->input('bu.*.id', []));
 
 
         return (new UserResource($user))
