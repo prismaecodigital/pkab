@@ -111,7 +111,7 @@
                   <th>Name</th>
                   <th>Merk</th>
                   <th>Spesifikasi</th>
-                  <th>Qty</th>
+                  <th>Qty & Satuan</th>
                 </thead>
                 <tbody>
                   <tr v-for="(item, k) in entry.items" :key="k">

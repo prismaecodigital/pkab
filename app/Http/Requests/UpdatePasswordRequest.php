@@ -29,6 +29,7 @@ class UpdatePasswordRequest extends FormRequest
     {
         return [
             'password' => ['required', 'string', 'min:8'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . auth()->id()],
         ];
     }
 }
