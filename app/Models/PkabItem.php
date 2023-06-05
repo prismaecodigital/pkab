@@ -26,10 +26,12 @@ class PkabItem extends Model
 
     protected $orderable = [
         'id',
+        'code',
         'req_date',
         'user.name',
         'status',
         'dept.name',
+        'created_at',
         'updated_at',
     ];
 
@@ -40,6 +42,7 @@ class PkabItem extends Model
         'user.name',
         'status',
         'dept.name',
+        'created_at',
         'updated_at',
     ];
 

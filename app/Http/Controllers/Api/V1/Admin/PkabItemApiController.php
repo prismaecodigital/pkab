@@ -67,45 +67,6 @@ class PkabItemApiController extends Controller
                     'pkab_id' => $pkabItem->id,
                 ]);
             }
-
-            // POST To SIMESRA
-
-            // if($data['dept_id'] == 7 || $data['dept_id'] == 8 ) {  // Replace bu & dept id with PKU SYE
-            //     if($data['dept_id'] == 7) {
-            //         $token_2 = '1|1BAzBsUymgmvt40CLYXJulTr6EvBlvDHAt5WGrg7';  // Replace token PKU SYE Kemang
-            //         $dept_id = '1';
-            //     }
-            //     if($data['dept_id'] == 8) {
-            //         $token_2 = '1|1BAzBsUymgmvt40CLYXJulTr6EvBlvDHAt5WGrg7';  // Replace token PKU SYE Sentul
-            //         $dept_id = '2';
-            //     }
-            //     $url_2 = 'http://127.0.0.1:8001/api/v1/orders';  // Replace url_2 with desired
-
-            //     // parameter POST
-            //     $params_simesra = ['code' => $pkabItem->code, 'type' => 'penambahan', 'status' => $data['status'], 'ok_id' => $dept_id, 'order_to' => 'purchasing', 'items' => []];
-            //     foreach ($request->items as $index => $item) {
-            //         $params_simesra['items'][$index]['name'] = $itemData['name'];
-            //         $params_simesra['items'][$index]['merk'] = $itemData['merk'];
-            //         $params_simesra['items'][$index]['spesifikasi'] = $itemData['spesifikasi'];
-            //         $params_simesra['items'][$index]['qty'] = $itemData['qty'];
-            //         // Add any other fields you need to the items array
-            //     }
-
-            //     try {
-            //         $response = Http::withHeaders([
-            //             'Authorization' => 'Bearer ' . $token_2,
-            //             'Content-Type' => 'application/json'
-            //         ])->post($url_2, json_encode($params_simesra));
-        
-            //         return response()->json([
-            //             'data' => $response->json()
-            //         ]);
-            //     } catch (\Exception $e) {
-            //         return response()->json([
-            //             'error' => $e->getMessage()
-            //         ], Response::HTTP_INTERNAL_SERVER_ERROR);
-            //     }
-            // }
     
             return (new PkabItemResource($pkabItem))
                 ->response()
@@ -175,35 +136,6 @@ class PkabItemApiController extends Controller
 
         $statusHistory = StatusHistory::create(['pkab_id' => $pkabItem->id,'status' => $pkabItem->status, 'user_id' => auth()->user()->id]);
 
-        // POST To SIMESRA
-
-        if($pkabItem->dept_id == 7 || $pkabItem->dept_id == 8 ) {  // Replace bu & dept id with PKU SYE
-            if($pkabItem->dept_id == 7) {
-                $token_2 = '1|1BAzBsUymgmvt40CLYXJulTr6EvBlvDHAt5WGrg7';  // Replace token PKU SYE Kemang
-                $dept_id = '1';
-            }
-            if($pkabItem->dept_id == 8) {
-                $token_2 = '1|1BAzBsUymgmvt40CLYXJulTr6EvBlvDHAt5WGrg7';  // Replace token PKU SYE Sentul
-                $dept_id = '2';
-            }
-
-            $url_2 = 'http://192.168.65.79:8000/api/v1/orders/'.$pkabItem->code;  // Replace url_2 with desired
-
-            // parameter POST
-            $params_simesra = ['code' => $pkabItem->code, 'type' => 'penambahan', 'status' => $pkabItem->status, 'ok_id' => $dept_id, 'order_to' => 'purchasing', 'items' => []];
-            foreach ($pkabItem->items as $index => $item) {
-                $params_simesra['items'][$index]['name'] = $item['name'];
-                $params_simesra['items'][$index]['merk'] = $item['merk'];
-                $params_simesra['items'][$index]['spesifikasi'] = $item['spesifikasi'];
-                $params_simesra['items'][$index]['qty'] = $item['qty'];
-                // Add any other fields you need to the items array
-            }
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $token_2,
-                'Content-Type' => 'application/json'
-            ])->patch($url_2, $params_simesra);
-            
-        }
         
         return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter()
         ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))

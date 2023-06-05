@@ -80,4 +80,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Dept::class);
     }
 
+    public function bu()
+    {
+        return $this->belongsToMany(Bu::class);
+    }
+
 }

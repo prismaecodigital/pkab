@@ -26,19 +26,23 @@ class PkabDone extends Model
 
     protected $orderable = [
         'id',
+        'code',
         'req_date',
         'user.name',
         'status',
         'dept.name',
+        'created_at',
         'updated_at',
     ];
 
     protected $filterable = [
         'id',
+        'code',
         'req_date',
         'user.name',
         'status',
         'dept.name',
+        'created_at',
         'updated_at',
     ];
 

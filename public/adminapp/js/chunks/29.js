@@ -251,7 +251,7 @@ var render = function render() {
     attrs: {
       name: "bu",
       label: "name",
-      value: _vm.entry.dept[0].bu,
+      value: _vm.entry.bu,
       options: _vm.lists.bu,
       closeOnSelect: false,
       multiple: ""

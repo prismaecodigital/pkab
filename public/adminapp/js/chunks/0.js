@@ -238,7 +238,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.dropdown-menu .dropdown-item[data-v-08699db8]:hover,\r\n.dropdown-menu .dropdown-item[data-v-08699db8]:focus {\r\n  box-shadow: none;\r\n  background-color: #f4f4f4;\r\n  color: #000;\r\n  cursor: pointer !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.dropdown-menu .dropdown-item[data-v-08699db8]:hover,\n.dropdown-menu .dropdown-item[data-v-08699db8]:focus {\n  box-shadow: none;\n  background-color: #f4f4f4;\n  color: #000;\n  cursor: pointer !important;\n}\n", ""]);
 
 // exports
 

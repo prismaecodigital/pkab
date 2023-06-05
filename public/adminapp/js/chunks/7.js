@@ -172,7 +172,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.badge[data-v-730e136a] {\r\n  font-size: 0.875rem;\r\n  font-weight: 500;\r\n  text-transform: none;\n}\r\n", ""]);
+exports.push([module.i, "\n.badge[data-v-730e136a] {\n  font-size: 0.875rem;\n  font-weight: 500;\n  text-transform: none;\n}\n", ""]);
 
 // exports
 

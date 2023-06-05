@@ -116,7 +116,7 @@
                       name="bu"
                       label="name"
                       :key="'bu-field'"
-                      :value="entry.dept[0].bu"
+                      :value="entry.bu"
                       :options="lists.bu"
                       :closeOnSelect="false"
                       multiple

@@ -404,7 +404,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.btn[data-v-4128b8c9] {\r\n  padding: 5px 10px !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.btn[data-v-4128b8c9] {\n  padding: 5px 10px !important;\n}\n", ""]);
 
 // exports
 

@@ -329,7 +329,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\ninput:disabled, textarea:disabled {\r\ncursor: auto;\n}\r\n", ""]);
+exports.push([module.i, "\ninput:disabled, textarea:disabled {\ncursor: auto;\n}\n", ""]);
 
 // exports
 

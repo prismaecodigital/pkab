@@ -395,7 +395,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.trashIconContainer[data-v-2b689aa2]:hover {\r\n  cursor: pointer;\r\n  color: red;\n}\r\n", ""]);
+exports.push([module.i, "\n.trashIconContainer[data-v-2b689aa2]:hover {\n  cursor: pointer;\n  color: red;\n}\n", ""]);
 
 // exports
 
