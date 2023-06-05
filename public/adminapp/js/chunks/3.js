@@ -116,12 +116,12 @@ __webpack_require__.r(__webpack_exports__);
           gate: 'dept_access'
         }]
       }, {
-        title: 'cruds.statusHistory.title',
+        title: 'Profile',
         icon: 'table_view',
         path: {
-          name: 'status_histories.index'
+          name: 'profile.password.edit'
         },
-        gate: 'status_history_access'
+        gate: 'profile'
       }]
     };
   }

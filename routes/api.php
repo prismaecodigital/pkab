@@ -42,4 +42,12 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Status History
     Route::resource('status-histories', 'StatusHistoryApiController', ['except' => ['create', 'store', 'edit', 'update', 'show']]);
+
+    // Change password
+        Route::get('password/edit', 'ChangePasswordController@edit')->name('password.edit');
+        Route::post('password', 'ChangePasswordController@update')->name('password.update');
+        Route::post('profile', 'ChangePasswordController@updateProfile')->name('password.updateProfile');
+        Route::post('profile/destroy', 'ChangePasswordController@destroy')->name('password.destroyProfile');
+
 });
+

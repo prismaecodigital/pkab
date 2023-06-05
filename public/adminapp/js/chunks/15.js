@@ -324,7 +324,7 @@ var render = function render() {
     })]), _vm._v(" "), _c("td", [_c("input", {
       staticClass: "form-control wrapText",
       attrs: {
-        type: "number",
+        type: "text",
         required: ""
       },
       domProps: {

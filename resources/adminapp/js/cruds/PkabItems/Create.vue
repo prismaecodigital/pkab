@@ -128,7 +128,7 @@
                         <textarea class="form-control wrapText" :value="item.spesifikasi" @input="updateItemSpec(k, $event, $event.target, item)" required></textarea>
                     </td>
                     <td>
-                        <input class="form-control wrapText" type="number" :value="item.qty" @input="updateItemQty(k, $event)" required/>
+                        <input class="form-control wrapText" type="text" :value="item.qty" @input="updateItemQty(k, $event)" required/>
                     </td>
                   </tr>
                 </tbody>

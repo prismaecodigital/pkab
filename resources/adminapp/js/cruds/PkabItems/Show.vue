@@ -114,8 +114,8 @@
                       <textarea disabled v-else class="form-control wrapText" :value="item.spesifikasi"/>
                   </td>
                   <td>
-                      <input v-if="$can(entry.status) && $can('pkab_item_edit')" class="form-control wrapText" type="number" :value="item.qty" @input="updateItemQty(k, $event)"/>
-                      <input disabled v-else class="form-control wrapText" type="number" :value="item.qty"/>
+                      <input v-if="$can(entry.status) && $can('pkab_item_edit')" class="form-control wrapText" type="text" :value="item.qty" @input="updateItemQty(k, $event)"/>
+                      <input disabled v-else class="form-control wrapText" type="text" :value="item.qty"/>
                   </td>
                 </tr>
               </tbody>

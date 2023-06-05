@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"937f73b791e589430138","1":"54bec2de9852496ecae6","2":"d42bbf943a0f0c1fb88b","3":"07699fc8c81ef923553e","4":"8b3f72a731705b37984d","5":"ff2e05cd7e2cd6088e0a","6":"3f4b1cf99a2a8c5f41af","7":"b8e8a3668b833ad3efca","8":"71cf033decd79713fae3","9":"1104a9b35efd9be63c6b","10":"15ba1f8842d1144d2fe5","11":"0851c4a3cea1ef23d00f","12":"1c89fdbba6a50238d643","13":"dd29deefeb77af2f269f","14":"1f41480bc0e271a208bb","15":"4b07a68120a1220c6018","16":"ba4a3a9136a15c0050dc","17":"2090243df20832aa7fa6","18":"4fba13908c7eacab14d5","19":"9915d8b9f39ce5731471","20":"a9caa49ae3b2bf9dfa7c","21":"aeda330a5f998074fe92","22":"6c369cac6bb6b9ad17e7","23":"3377ffd1539a75c2a309","24":"b91230429fdb424ab092","25":"5106b29355d8caad3ad6","26":"f538f9a9b958e0f684b9","27":"06029eae84c92fe8f39e","28":"7c22cf465706442478b5","29":"0d5516e79b893f98561d","30":"253214dc198d12c6be19"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"937f73b791e589430138","1":"54bec2de9852496ecae6","2":"d42bbf943a0f0c1fb88b","3":"dce7e14ccf267c06f44b","4":"8b3f72a731705b37984d","5":"ff2e05cd7e2cd6088e0a","6":"3f4b1cf99a2a8c5f41af","7":"b8e8a3668b833ad3efca","8":"71cf033decd79713fae3","9":"1104a9b35efd9be63c6b","10":"15ba1f8842d1144d2fe5","11":"0851c4a3cea1ef23d00f","12":"ef92e06346171f5e8744","13":"dd29deefeb77af2f269f","14":"2ccc159214e13da77ace","15":"301ba84415b8b1434d64","16":"ba4a3a9136a15c0050dc","17":"2090243df20832aa7fa6","18":"4fba13908c7eacab14d5","19":"9915d8b9f39ce5731471","20":"a9caa49ae3b2bf9dfa7c","21":"aeda330a5f998074fe92","22":"6c369cac6bb6b9ad17e7","23":"3377ffd1539a75c2a309","24":"b91230429fdb424ab092","25":"5106b29355d8caad3ad6","26":"f538f9a9b958e0f684b9","27":"06029eae84c92fe8f39e","28":"7c22cf465706442478b5","29":"0d5516e79b893f98561d","30":"253214dc198d12c6be19"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -60066,13 +60066,13 @@ var routes = [{
       }
     }]
   }, {
-    path: 'status-histories',
-    name: 'status_histories.index',
+    path: 'profile/edit',
+    name: 'profile.password.edit',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! @cruds/StatusHistories/Index.vue */ "./resources/adminapp/js/cruds/StatusHistories/Index.vue"));
+      return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! @cruds/Profile/Edit.vue */ "./resources/adminapp/js/cruds/Profile/Edit.vue"));
     },
     meta: {
-      title: 'cruds.statusHistory.title'
+      title: 'Profile'
     }
   }]
 }];
@@ -62347,6 +62347,236 @@ var mutations = {
 
 /***/ }),
 
+/***/ "./resources/adminapp/js/store/cruds/Profile/single.js":
+/*!*************************************************************!*\
+  !*** ./resources/adminapp/js/store/cruds/Profile/single.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function initialState() {
+  return {
+    entry: {
+      id: null,
+      name: '',
+      email: null,
+      email_verified_at: '',
+      username: null,
+      password: null,
+      roles: [],
+      remember_token: '',
+      bu: [],
+      dept: [],
+      created_at: '',
+      updated_at: '',
+      deleted_at: ''
+    },
+    lists: {
+      roles: [],
+      dept: []
+    },
+    loading: false
+  };
+}
+var route = 'password';
+var getters = {
+  entry: function entry(state) {
+    return state.entry;
+  },
+  lists: function lists(state) {
+    return state.lists;
+  },
+  loading: function loading(state) {
+    return state.loading;
+  }
+};
+var actions = {
+  storeData: function storeData(_ref) {
+    var commit = _ref.commit,
+      state = _ref.state,
+      dispatch = _ref.dispatch;
+    commit('setLoading', true);
+    dispatch('Alert/resetState', null, {
+      root: true
+    });
+    return new Promise(function (resolve, reject) {
+      var params = objectToFormData(state.entry, {
+        indices: true,
+        booleansAsIntegers: true
+      });
+      axios.post(route, params).then(function (response) {
+        resolve(response);
+      })["catch"](function (error) {
+        var message = error.response.data.message || error.message;
+        var errors = error.response.data.errors;
+        dispatch('Alert/setAlert', {
+          message: message,
+          errors: errors,
+          color: 'danger'
+        }, {
+          root: true
+        });
+        reject(error);
+      })["finally"](function () {
+        commit('setLoading', false);
+      });
+    });
+  },
+  updateData: function updateData(_ref2) {
+    var commit = _ref2.commit,
+      state = _ref2.state,
+      dispatch = _ref2.dispatch;
+    commit('setLoading', true);
+    dispatch('Alert/resetState', null, {
+      root: true
+    });
+    return new Promise(function (resolve, reject) {
+      var params = objectToFormData(state.entry, {
+        indices: true,
+        booleansAsIntegers: true
+      });
+      params.set('_method', 'POST');
+      axios.post("".concat(route), params).then(function (response) {
+        resolve(response);
+      })["catch"](function (error) {
+        var message = error.response.data.message || error.message;
+        var errors = error.response.data.errors;
+        dispatch('Alert/setAlert', {
+          message: message,
+          errors: errors,
+          color: 'danger'
+        }, {
+          root: true
+        });
+        reject(error);
+      })["finally"](function () {
+        commit('setLoading', false);
+      });
+    });
+  },
+  setName: function setName(_ref3, value) {
+    var commit = _ref3.commit;
+    commit('setName', value);
+  },
+  setUsername: function setUsername(_ref4, value) {
+    var commit = _ref4.commit;
+    commit('setUsername', value);
+  },
+  setEmail: function setEmail(_ref5, value) {
+    var commit = _ref5.commit;
+    commit('setEmail', value);
+  },
+  setEmailVerifiedAt: function setEmailVerifiedAt(_ref6, value) {
+    var commit = _ref6.commit;
+    commit('setEmailVerifiedAt', value);
+  },
+  setPassword: function setPassword(_ref7, value) {
+    var commit = _ref7.commit;
+    commit('setPassword', value);
+  },
+  setRoles: function setRoles(_ref8, value) {
+    var commit = _ref8.commit;
+    commit('setRoles', value);
+  },
+  setRememberToken: function setRememberToken(_ref9, value) {
+    var commit = _ref9.commit;
+    commit('setRememberToken', value);
+  },
+  setBu: function setBu(_ref10, value) {
+    var commit = _ref10.commit;
+    commit('setBu', value);
+  },
+  setDept: function setDept(_ref11, value) {
+    var commit = _ref11.commit;
+    commit('setDept', value);
+  },
+  setCreatedAt: function setCreatedAt(_ref12, value) {
+    var commit = _ref12.commit;
+    commit('setCreatedAt', value);
+  },
+  setUpdatedAt: function setUpdatedAt(_ref13, value) {
+    var commit = _ref13.commit;
+    commit('setUpdatedAt', value);
+  },
+  setDeletedAt: function setDeletedAt(_ref14, value) {
+    var commit = _ref14.commit;
+    commit('setDeletedAt', value);
+  },
+  fetchEditData: function fetchEditData(_ref15) {
+    var commit = _ref15.commit,
+      dispatch = _ref15.dispatch;
+    axios.get("".concat(route, "/edit")).then(function (response) {
+      commit('setEntry', response.data.data);
+      commit('setLists', response.data.meta);
+    });
+  },
+  resetState: function resetState(_ref16) {
+    var commit = _ref16.commit;
+    commit('resetState');
+  }
+};
+var mutations = {
+  setEntry: function setEntry(state, entry) {
+    state.entry = entry;
+  },
+  setName: function setName(state, value) {
+    state.entry.name = value;
+  },
+  setUsername: function setUsername(state, value) {
+    state.entry.username = value;
+  },
+  setEmail: function setEmail(state, value) {
+    state.entry.email = value;
+  },
+  setEmailVerifiedAt: function setEmailVerifiedAt(state, value) {
+    state.entry.email_verified_at = value;
+  },
+  setPassword: function setPassword(state, value) {
+    state.entry.password = value;
+  },
+  setRoles: function setRoles(state, value) {
+    state.entry.roles = value;
+  },
+  setRememberToken: function setRememberToken(state, value) {
+    state.entry.remember_token = value;
+  },
+  setBu: function setBu(state, value) {
+    state.entry.bu = value;
+  },
+  setDept: function setDept(state, value) {
+    state.entry.dept = value;
+  },
+  setCreatedAt: function setCreatedAt(state, value) {
+    state.entry.created_at = value;
+  },
+  setUpdatedAt: function setUpdatedAt(state, value) {
+    state.entry.updated_at = value;
+  },
+  setDeletedAt: function setDeletedAt(state, value) {
+    state.entry.deleted_at = value;
+  },
+  setLists: function setLists(state, lists) {
+    state.lists = lists;
+  },
+  setLoading: function setLoading(state, loading) {
+    state.loading = loading;
+  },
+  resetState: function resetState(state) {
+    state = Object.assign(state, initialState());
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: initialState,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
 /***/ "./resources/adminapp/js/store/cruds/Roles/index.js":
 /*!**********************************************************!*\
   !*** ./resources/adminapp/js/store/cruds/Roles/index.js ***!
@@ -62614,99 +62844,6 @@ var mutations = {
   },
   resetState: function resetState(state) {
     state = Object.assign(state, initialState());
-  }
-};
-/* harmony default export */ __webpack_exports__["default"] = ({
-  namespaced: true,
-  state: initialState,
-  getters: getters,
-  actions: actions,
-  mutations: mutations
-});
-
-/***/ }),
-
-/***/ "./resources/adminapp/js/store/cruds/StatusHistories/index.js":
-/*!********************************************************************!*\
-  !*** ./resources/adminapp/js/store/cruds/StatusHistories/index.js ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var set = function set(key) {
-  return function (state, val) {
-    state[key] = val;
-  };
-};
-function initialState() {
-  return {
-    data: [],
-    total: 0,
-    query: {},
-    loading: false
-  };
-}
-var route = 'status-histories';
-var getters = {
-  data: function data(state) {
-    return state.data;
-  },
-  total: function total(state) {
-    return state.total;
-  },
-  loading: function loading(state) {
-    return state.loading;
-  }
-};
-var actions = {
-  fetchIndexData: function fetchIndexData(_ref) {
-    var commit = _ref.commit,
-      state = _ref.state;
-    commit('setLoading', true);
-    axios.get(route, {
-      params: state.query
-    }).then(function (response) {
-      commit('setData', response.data.data);
-      commit('setTotal', response.data.total);
-    })["catch"](function (error) {
-      message = error.response.data.message || error.message;
-      // TODO error handling
-    })["finally"](function () {
-      commit('setLoading', false);
-    });
-  },
-  destroyData: function destroyData(_ref2, id) {
-    var commit = _ref2.commit,
-      state = _ref2.state,
-      dispatch = _ref2.dispatch;
-    axios["delete"]("".concat(route, "/").concat(id)).then(function (response) {
-      dispatch('fetchIndexData');
-    })["catch"](function (error) {
-      message = error.response.data.message || error.message;
-      // TODO error handling
-    });
-  },
-  setQuery: function setQuery(_ref3, value) {
-    var commit = _ref3.commit;
-    commit('setQuery', _.cloneDeep(value));
-  },
-  resetState: function resetState(_ref4) {
-    var commit = _ref4.commit;
-    commit('resetState');
-  }
-};
-var mutations = {
-  setData: set('data'),
-  setTotal: set('total'),
-  setQuery: function setQuery(state, query) {
-    query.page = (query.offset + query.limit) / query.limit;
-    state.query = query;
-  },
-  setLoading: set('loading'),
-  resetState: function resetState(state) {
-    Object.assign(state, initialState());
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -63257,7 +63394,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cruds_PkabDones_single__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./cruds/PkabDones/single */ "./resources/adminapp/js/store/cruds/PkabDones/single.js");
 /* harmony import */ var _cruds_Items__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./cruds/Items */ "./resources/adminapp/js/store/cruds/Items/index.js");
 /* harmony import */ var _cruds_Items_single__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./cruds/Items/single */ "./resources/adminapp/js/store/cruds/Items/single.js");
-/* harmony import */ var _cruds_StatusHistories__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./cruds/StatusHistories */ "./resources/adminapp/js/store/cruds/StatusHistories/index.js");
+/* harmony import */ var _cruds_Profile_single__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./cruds/Profile/single */ "./resources/adminapp/js/store/cruds/Profile/single.js");
 
 
 
@@ -63301,7 +63438,7 @@ var debug = "development" !== 'production';
     PkabDonesSingle: _cruds_PkabDones_single__WEBPACK_IMPORTED_MODULE_17__["default"],
     ItemsIndex: _cruds_Items__WEBPACK_IMPORTED_MODULE_18__["default"],
     ItemsSingle: _cruds_Items_single__WEBPACK_IMPORTED_MODULE_19__["default"],
-    StatusHistoriesIndex: _cruds_StatusHistories__WEBPACK_IMPORTED_MODULE_20__["default"]
+    ProfileSingle: _cruds_Profile_single__WEBPACK_IMPORTED_MODULE_20__["default"]
   },
   strict: debug
 }));

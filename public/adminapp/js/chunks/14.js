@@ -311,7 +311,7 @@ var render = function render() {
     })]), _vm._v(" "), _c("td", [_vm.$can(_vm.entry.status) && _vm.$can("pkab_item_edit") ? _c("input", {
       staticClass: "form-control wrapText",
       attrs: {
-        type: "number"
+        type: "text"
       },
       domProps: {
         value: item.qty
@@ -325,7 +325,7 @@ var render = function render() {
       staticClass: "form-control wrapText",
       attrs: {
         disabled: "",
-        type: "number"
+        type: "text"
       },
       domProps: {
         value: item.qty

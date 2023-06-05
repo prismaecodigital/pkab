@@ -100,10 +100,10 @@ export default {
           ]
         },
         {
-          title: 'cruds.statusHistory.title',
+          title: 'Profile',
           icon: 'table_view',
-          path: { name: 'status_histories.index' },
-          gate: 'status_history_access'
+          path: { name: 'profile.password.edit' },
+          gate: 'profile'
         }
       ]
     }

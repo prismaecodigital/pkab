@@ -198,10 +198,10 @@ const routes = [
         ]
       },
       {
-        path: 'status-histories',
-        name: 'status_histories.index',
-        component: () => import('@cruds/StatusHistories/Index.vue'),
-        meta: { title: 'cruds.statusHistory.title' }
+        path: 'profile/edit',
+        name: 'profile.password.edit',
+        component: () => import('@cruds/Profile/Edit.vue'),
+        meta: { title: 'Profile' }
       }
     ]
   }
