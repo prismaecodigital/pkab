@@ -16,6 +16,7 @@ class PkabItem extends Model
 
     protected $appends = [
         'status_label',
+        'status_value',
     ];
 
     protected $dates = [
@@ -51,21 +52,13 @@ class PkabItem extends Model
         'code',
         'user_id',
         'status',
+        'status_label',
         'ket',
         'dept_id',
         'created_at',
         'updated_at',
     ];
 
-    // public const STATUS_SELECT = [
-    //     'leader_acc' => "Menunggu Persetujuan Leader",
-    //     'purchasing_acc_1' => "Pengajuan FPBD",
-    //     'purchasing_acc_2' => "Menunggu Dana",
-    //     'purchasing_acc_3' => "Proses Pembelian",
-    //     'user_acc' => "Menunggu konfirmasi penerimaan",
-    //     'cancel' =>"Dibatalkan",
-    //     'selesai' =>"Selesai"
-    // ];
     public const STATUS_SELECT = [
         [
             'label' => 'Menunggu Persetujuan Leader',
@@ -97,6 +90,11 @@ class PkabItem extends Model
         ],
     ];
 
+    public function scopeFilterByStatusLabel($query, $statusLabel)
+    {
+        return $query->where('status', $statusLabel);
+    }
+
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
@@ -110,6 +108,11 @@ class PkabItem extends Model
     public function getStatusLabelAttribute()
     {
         return collect(static::STATUS_SELECT)->firstWhere('value', $this->status)['label'] ?? '';
+    }
+
+    public function getStatusValueAttribute()
+    {
+        return collect(static::STATUS_SELECT)->firstWhere('label', $this->status)['value'] ?? '';
     }
 
     public function dept()
