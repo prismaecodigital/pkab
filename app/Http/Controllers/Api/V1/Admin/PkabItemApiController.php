@@ -23,8 +23,12 @@ class PkabItemApiController extends Controller
     public function index()
     {
         abort_if(Gate::denies('pkab_item_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // $pkabItem = PkabItem::with('dept')->get();
+        // foreach ($pkabItem as $pkab) {
+        //     $pkab->update(['bu_id' => $pkab->dept->bu_id]);
+        // }
                 
-        return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])
+        return new PkabItemResource(PkabItem::with(['user', 'dept.bu', 'bu'])
                 ->advancedFilter()
                 ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
                 ->whereNot('status','selesai')->whereNot('status','cancel')->paginate(request('limit', 10)));

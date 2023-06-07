@@ -43,6 +43,7 @@ class PkabItem extends Model
         'user.name',
         'status',
         'dept.name',
+        'bu.name',
         'created_at',
         'updated_at',
     ];
@@ -54,6 +55,7 @@ class PkabItem extends Model
         'status',
         'status_label',
         'ket',
+        'bu_id',
         'dept_id',
         'created_at',
         'updated_at',
@@ -120,6 +122,11 @@ class PkabItem extends Model
         return $this->belongsTo(Dept::class);
     }
 
+    public function bu()
+    {
+        return $this->belongsTo(Bu::class);
+    }
+
     public function getReqDateAttribute($value)
     {
         return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d-m-Y') : null;
@@ -144,9 +151,4 @@ class PkabItem extends Model
     {
         return $this->hasMany(StatusHistory::class, 'pkab_id');
     }
-
-    // public function bu()
-    // {
-    //     return $this->hasOneThrough(Bu::class, Dept::class);
-    // }
 }
