@@ -8,6 +8,7 @@ function initialState() {
         user_id: null,
         status: 'leader_acc',
         dept_id: null,
+        bu_id: null,
         ket: '',
         created_at: '',
         updated_at: '',
@@ -337,6 +338,9 @@ function initialState() {
     },
     setDept(state, value) {
       state.entry.dept_id = value
+    },
+    setBu(state, value) {
+      state.entry.bu_id = value
     },
     setKet(state, value) {
       state.entry.ket = value

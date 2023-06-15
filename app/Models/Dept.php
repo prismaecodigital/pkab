@@ -24,6 +24,7 @@ class Dept extends Model
         'id',
         'name',
         'code',
+        'bu.name',
     ];
 
     protected $dates = [
