@@ -257,7 +257,8 @@ export default {
             .then(result => {
 
               //redirect logic
-              this.$router.push('/pkab/pkab-items');
+              this.fetchShowData(this.$route.params.id)
+              this.$eventHub.$emit('approve-success')
             })
         }
       })
@@ -281,7 +282,8 @@ export default {
             .then(result => {
               
               //redirect logic
-              this.$router.push('/pkab/pkab-items');
+              this.fetchShowData(this.$route.params.id)
+              this.$eventHub.$emit('reject-success')
             })
         }
         else {

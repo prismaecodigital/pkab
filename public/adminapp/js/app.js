@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"937f73b791e589430138","1":"54bec2de9852496ecae6","2":"d42bbf943a0f0c1fb88b","3":"dce7e14ccf267c06f44b","4":"8b3f72a731705b37984d","5":"ff2e05cd7e2cd6088e0a","6":"3f4b1cf99a2a8c5f41af","7":"b8e8a3668b833ad3efca","8":"71cf033decd79713fae3","9":"1104a9b35efd9be63c6b","10":"15ba1f8842d1144d2fe5","11":"0851c4a3cea1ef23d00f","12":"f5ec7df5518868a5e469","13":"c507922f6a5334cefccb","14":"0f91ae8cca385589c79d","15":"97c6f93b570a1a506afc","16":"7e818ecdfc4c687d475e","17":"797f369dd225649beb83","18":"3209b163e8acabee4bfe","19":"54c97be6de9456f101ea","20":"d97cebad563951dc7be9","21":"43bb0aa401977b069594","22":"8eacef17454f016068aa","23":"99d4ec51286a4f56dec2","24":"072a73ddc10b19d25760","25":"49e90e593acc2c17a4c0","26":"f538f9a9b958e0f684b9","27":"06029eae84c92fe8f39e","28":"7c22cf465706442478b5","29":"0d5516e79b893f98561d","30":"253214dc198d12c6be19"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"835858ee4dfa3b6ce6f3","1":"ca561ec2e10ba137f2b2","2":"22f39ac279a25100e582","3":"540a03858745aea9d975","4":"f9fecd8bc68d0c780c3f","5":"b1e23a3cec8f4f2a5f06","6":"038e8cb6958361c156d5","7":"7cc945cc6765857bc93d","8":"6e71d80b758b87d9df00","9":"3b561cc06f8073eb02a9","10":"08768225fc135fb5e8bf","11":"e6ad1c7f28086061b0ff","12":"99bb12944d2fd85da48d","13":"6ba638c75677b51acb98","14":"79813fb9fa04ba402243","15":"793615c86c56adc3406c","16":"17cf56aa87cb7b5e33ff","17":"f77cd0d6151da498f838","18":"7a25b7142d0f64937fda","19":"483a7f07946172cf5a08","20":"0e12c8519772e6d19aca","21":"5c0d777bd16d128d9b41","22":"40be305650d0f7cf29f3","23":"575979e8dd58cc47b571","24":"437dee66dee91cb9ba4d","25":"4cc7d791bf16ac671596","26":"9dfc7680392519c80908","27":"81beb837784040edce70","28":"565f6ef09cf82fe4ac19","29":"6f96a2fd52234f2dc0d2","30":"8ecb4b1cc1cb0c1c99b8"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -3456,12 +3456,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  computed: Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('Alert', ['message', 'errors', 'color'])),
+  computed: Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('Alert', ['message', 'errors', 'color'])),
   beforeDestroy: function beforeDestroy() {
     this.resetState();
   },
@@ -3470,7 +3470,7 @@ __webpack_require__.r(__webpack_exports__);
       this.resetState();
     }
   },
-  methods: Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('Alert', ['resetState']))
+  methods: Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('Alert', ['resetState']))
 });
 
 /***/ }),
@@ -3546,7 +3546,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3578,7 +3578,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$jquery.notify({
         icon: 'check',
         message: this.$i18n.t('global.update_success')
-      }, Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, this.notificationSettings), {}, {
+      }, Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, this.notificationSettings), {}, {
         type: 'primary'
       }));
     },
@@ -3586,7 +3586,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$jquery.notify({
         icon: 'check',
         message: this.$i18n.t('global.delete_success')
-      }, Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, this.notificationSettings), {}, {
+      }, Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, this.notificationSettings), {}, {
         type: 'warning'
       }));
     },
@@ -3594,7 +3594,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$jquery.notify({
         icon: 'check',
         message: this.$i18n.t('global.approve_success')
-      }, Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, this.notificationSettings), {}, {
+      }, Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, this.notificationSettings), {}, {
         type: 'primary'
       }));
     }
@@ -3639,7 +3639,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
@@ -3647,8 +3647,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
-  computed: Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('I18NStore', ['locale', 'languages'])),
-  methods: Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('I18NStore', ['setLocale']))
+  computed: Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('I18NStore', ['locale', 'languages'])),
+  methods: Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('I18NStore', ['setLocale']))
 });
 
 /***/ }),
@@ -37592,6 +37592,23 @@ __webpack_require__.r(__webpack_exports__);
     colLen () {
       return this.columns.length + !!this.selection
     }
+  },
+  methods: {
+    getRowClass(item) {
+      if (item.status === 'purchasing_acc_1') {
+        return 'status1-row';
+      } else if (item.status === 'purchasing_acc_2') {
+        return 'status2-row';
+      } else if (item.status === 'user_acc') {
+        return 'status4-row';
+      } else if (item.status === 'purchasing_acc_3') {
+        return 'status3-row';
+      } else if (item.status === 'cancel') {
+        return 'status5-row';
+      } else {
+        return '';
+      }
+    },
   }
 });
 
@@ -38761,6 +38778,7 @@ var render = function render() {
               return [
                 _c(
                   "tr",
+                  { class: _vm.getRowClass(item) },
                   [
                     _vm.shouldRenderSelection
                       ? _c(
@@ -38969,7 +38987,7 @@ var render = function render() {
   return _c(
     "table",
     {
-      staticClass: "table table-striped table-hover",
+      staticClass: "table table-hover",
       class: _vm.tblClass,
       staticStyle: { "margin-bottom": "0" },
       style: _vm.tblStyle,
@@ -58459,7 +58477,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.vue */ "./resources/adminapp/js/App.vue");
 /* harmony import */ var _routes_routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes/routes */ "./resources/adminapp/js/routes/routes.js");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./resources/adminapp/js/store/store.js");
@@ -58518,7 +58536,7 @@ var app = new Vue({
   created: function created() {
     this.fetchLanguages();
   },
-  methods: Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapActions"])('I18NStore', ['fetchLanguages']))
+  methods: Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapActions"])('I18NStore', ['fetchLanguages']))
 });
 
 /***/ }),
@@ -63463,8 +63481,8 @@ var debug = "development" !== 'production';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\62895\laravel9\pkab\resources\adminapp\js\app.js */"./resources/adminapp/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\62895\laravel9\pkab\resources\adminapp\sass\app.scss */"./resources/adminapp/sass/app.scss");
+__webpack_require__(/*! C:\Users\62895\laravel9\pkab-deploy\pkab\pkab\resources\adminapp\js\app.js */"./resources/adminapp/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\62895\laravel9\pkab-deploy\pkab\pkab\resources\adminapp\sass\app.scss */"./resources/adminapp/sass/app.scss");
 
 
 /***/ })

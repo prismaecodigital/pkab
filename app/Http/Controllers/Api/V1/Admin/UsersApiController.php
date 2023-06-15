@@ -20,14 +20,6 @@ class UsersApiController extends Controller
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::all();
-        foreach ($users as $user) {
-            foreach ($user->dept as $dept) {
-                // Check if the bu_id is already attached
-                $user->bu()->syncWithoutDetaching($dept->bu_id);
-            }
-        }
-
         return new UserResource(User::with(['roles','dept.bu'])->advancedFilter()->paginate(request('limit', 10)));
     }
 

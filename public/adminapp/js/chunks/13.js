@@ -9,16 +9,13 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
-/* harmony import */ var core_js_modules_es_array_push_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.push.js */ "./node_modules/core-js/modules/es.array.push.js");
-/* harmony import */ var core_js_modules_es_array_push_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_push_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_Datatables_DatatableSingle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @components/Datatables/DatatableSingle */ "./resources/adminapp/js/components/Datatables/DatatableSingle.vue");
-/* harmony import */ var _components_Datatables_DatatableEnum__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @components/Datatables/DatatableEnum */ "./resources/adminapp/js/components/Datatables/DatatableEnum.vue");
-/* harmony import */ var _components_Datatables_BuDeptSingle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @components/Datatables/BuDeptSingle */ "./resources/adminapp/js/components/Datatables/BuDeptSingle.vue");
-/* harmony import */ var vue_cute_timeline_dist_index_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-cute-timeline/dist/index.css */ "./node_modules/vue-cute-timeline/dist/index.css");
-/* harmony import */ var vue_cute_timeline_dist_index_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_cute_timeline_dist_index_css__WEBPACK_IMPORTED_MODULE_6__);
-
+/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_Datatables_DatatableSingle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @components/Datatables/DatatableSingle */ "./resources/adminapp/js/components/Datatables/DatatableSingle.vue");
+/* harmony import */ var _components_Datatables_DatatableEnum__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @components/Datatables/DatatableEnum */ "./resources/adminapp/js/components/Datatables/DatatableEnum.vue");
+/* harmony import */ var _components_Datatables_BuDeptSingle__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @components/Datatables/BuDeptSingle */ "./resources/adminapp/js/components/Datatables/BuDeptSingle.vue");
+/* harmony import */ var vue_cute_timeline_dist_index_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-cute-timeline/dist/index.css */ "./node_modules/vue-cute-timeline/dist/index.css");
+/* harmony import */ var vue_cute_timeline_dist_index_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_cute_timeline_dist_index_css__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
@@ -27,9 +24,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    DatatableSingle: _components_Datatables_DatatableSingle__WEBPACK_IMPORTED_MODULE_3__["default"],
-    DatatableEnum: _components_Datatables_DatatableEnum__WEBPACK_IMPORTED_MODULE_4__["default"],
-    BuDeptSingle: _components_Datatables_BuDeptSingle__WEBPACK_IMPORTED_MODULE_5__["default"]
+    DatatableSingle: _components_Datatables_DatatableSingle__WEBPACK_IMPORTED_MODULE_2__["default"],
+    DatatableEnum: _components_Datatables_DatatableEnum__WEBPACK_IMPORTED_MODULE_3__["default"],
+    BuDeptSingle: _components_Datatables_BuDeptSingle__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
@@ -54,7 +51,7 @@ __webpack_require__.r(__webpack_exports__);
   beforeDestroy: function beforeDestroy() {
     this.resetState();
   },
-  computed: Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('PkabItemsSingle', ['entry', 'jsonData', 'mergedData', 'timelineData'])),
+  computed: Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('PkabItemsSingle', ['entry', 'jsonData', 'mergedData', 'timelineData'])),
   watch: {
     '$route.params.id': {
       immediate: true,
@@ -64,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  methods: Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('PkabItemsSingle', ['fetchShowData', 'loading', 'resetState', 'approveData', 'updateData', 'setItemName', 'updateMergedData', 'rejectData', 'setItemMerk', 'setItemSpesifikasi', 'setItemQty', 'setKet'])), {}, {
+  methods: Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('PkabItemsSingle', ['fetchShowData', 'loading', 'resetState', 'approveData', 'updateData', 'setItemName', 'updateMergedData', 'rejectData', 'setItemMerk', 'setItemSpesifikasi', 'setItemQty', 'setKet'])), {}, {
     updateItemName: function updateItemName(index, event, val) {
       val = event.target.value;
       this.setItemName({
@@ -113,7 +110,8 @@ __webpack_require__.r(__webpack_exports__);
           _this.setKet(value);
           _this.$store.dispatch(_this.xprops.module + '/updateData', id).then(function (result) {
             //redirect logic
-            _this.$router.push('/pkab/pkab-items');
+            _this.fetchShowData(_this.$route.params.id);
+            _this.$eventHub.$emit('approve-success');
           });
         }
       });
@@ -138,7 +136,8 @@ __webpack_require__.r(__webpack_exports__);
             'ket': result.value
           }).then(function (result) {
             //redirect logic
-            _this2.$router.push('/pkab/pkab-items');
+            _this2.fetchShowData(_this2.$route.params.id);
+            _this2.$eventHub.$emit('reject-success');
           });
         } else {
           _this2.$swal({

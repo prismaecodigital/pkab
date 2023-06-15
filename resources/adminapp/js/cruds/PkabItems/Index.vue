@@ -118,7 +118,7 @@ export default {
           field: 'status',
           thComp: TranslatedHeader,
           sortable: true,
-          tdComp: DatatableEnum
+          tdComp: DatatableEnum,
         },
         {
           title: 'cruds.pkabItem.fields.dept',
@@ -127,12 +127,6 @@ export default {
           tdComp: BuDeptSingle,
           sortable: true
         },
-        // {
-        //   title: 'cruds.pkabItem.fields.updated_at',
-        //   field: 'updated_at',
-        //   thComp: TranslatedHeader,
-        //   sortable: true
-        // },
         {
           title: 'global.actions',
           thComp: TranslatedHeader,
@@ -163,7 +157,7 @@ export default {
     this.resetState()
   },
   computed: {
-    ...mapGetters('PkabItemsIndex', ['data', 'total', 'loading', 'jsonData'])
+    ...mapGetters('PkabItemsIndex', ['data', 'total', 'loading', 'jsonData']),
   },
   watch: {
     query: {

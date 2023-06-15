@@ -23,11 +23,21 @@ class PkabItemApiController extends Controller
     public function index()
     {
         abort_if(Gate::denies('pkab_item_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-                
-        return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])
-                ->advancedFilter()
-                ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
-                ->whereNot('status','selesai')->whereNot('status','cancel')->paginate(request('limit', 10)));
+
+        if (auth()->user()->hasRole('purchasing')) {
+            return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])
+            ->advancedFilter()
+            ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
+            ->whereNot('status','selesai')->whereNot('status','cancel')->whereNot('status', 'leader_acc')->paginate(request('limit', 10)));
+            // User has the 'purchasing' role
+        } else {
+            // User does not have the 'purchasing' role
+            return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])
+            ->advancedFilter()
+            ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
+            ->whereNot('status','selesai')->whereNot('status','cancel')->paginate(request('limit', 10)));
+        }
+
         // return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])->advancedFilter()->paginate(request('limit', 10)));
         
     }
@@ -136,10 +146,11 @@ class PkabItemApiController extends Controller
 
         $statusHistory = StatusHistory::create(['pkab_id' => $pkabItem->id,'status' => $pkabItem->status, 'user_id' => auth()->user()->id]);
 
+        return new PkabItemResource($pkabItem->load(['user', 'dept.bu','items', 'statusHistory.user']));
         
-        return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter()
-        ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
-        ->whereNot('status','selesai')->whereNot('status','cancel')->paginate(request('limit', 10)));
+        // return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter()
+        // ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
+        // ->whereNot('status','selesai')->whereNot('status','cancel')->paginate(request('limit', 10)));
     }
 
     public function rejectData(Request $request, PkabItem $pkabItem)

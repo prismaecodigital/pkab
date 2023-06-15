@@ -68,8 +68,22 @@ class FilterQueryBuilder
                 $this->{Str::camel($filter['operator'])}($filter, $q);
             });
         } else {
-            $filter['column'] = "{$this->table}.{$filter['column']}";
-            $this->{Str::camel($filter['operator'])}($filter, $query);
+            if ($filter['column'] === 'status') {
+                $value = $filter['query_1'];
+    
+                $query->orWhere(function ($query) use ($filter) {
+                    foreach (\App\Models\PkabItem::STATUS_SELECT as $status) {
+                        if (strpos(strtolower($status['label']), strtolower($filter['query_1'])) !== false) {
+                            $query->orWhere('status', $status['value']);
+                            // need to do $this something to call filter
+                        }
+                    }
+                });
+            } else {
+                $filter['column'] = "{$this->table}.{$filter['column']}";
+
+                $this->{Str::camel($filter['operator'])}($filter, $query);
+            }
         }
     }
 
