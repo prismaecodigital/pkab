@@ -13,7 +13,7 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->string('merk')->nullable();
             $table->longText('spesifikasi');
-            $table->integer('qty')->nullable();
+            $table->string('qty')->nullable();
             $table->timestamps();
         });
     }

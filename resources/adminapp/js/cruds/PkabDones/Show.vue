@@ -119,7 +119,7 @@
                       <textarea disabled class="form-control wrapText" :value="item.spesifikasi"/>
                   </td>
                   <td>
-                      <input disabled class="form-control wrapText" type="number" :value="item.qty"/>
+                      <input disabled class="form-control wrapText" type="text" :value="item.qty"/>
                   </td>
                 </tr>
               </tbody>

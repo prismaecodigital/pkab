@@ -246,7 +246,7 @@ var render = function render() {
       staticClass: "form-control wrapText",
       attrs: {
         disabled: "",
-        type: "number"
+        type: "text"
       },
       domProps: {
         value: item.qty
