@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"835858ee4dfa3b6ce6f3","1":"ca561ec2e10ba137f2b2","2":"22f39ac279a25100e582","3":"540a03858745aea9d975","4":"f9fecd8bc68d0c780c3f","5":"b1e23a3cec8f4f2a5f06","6":"038e8cb6958361c156d5","7":"7cc945cc6765857bc93d","8":"6e71d80b758b87d9df00","9":"3b561cc06f8073eb02a9","10":"08768225fc135fb5e8bf","11":"e6ad1c7f28086061b0ff","12":"7080cb2c46ef91368c25","13":"6ba638c75677b51acb98","14":"79813fb9fa04ba402243","15":"793615c86c56adc3406c","16":"17cf56aa87cb7b5e33ff","17":"f77cd0d6151da498f838","18":"7a25b7142d0f64937fda","19":"483a7f07946172cf5a08","20":"0e12c8519772e6d19aca","21":"5c0d777bd16d128d9b41","22":"40be305650d0f7cf29f3","23":"575979e8dd58cc47b571","24":"437dee66dee91cb9ba4d","25":"4cc7d791bf16ac671596","26":"9dfc7680392519c80908","27":"81beb837784040edce70","28":"565f6ef09cf82fe4ac19","29":"6f96a2fd52234f2dc0d2","30":"8ecb4b1cc1cb0c1c99b8"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"835858ee4dfa3b6ce6f3","1":"ca561ec2e10ba137f2b2","2":"22f39ac279a25100e582","3":"540a03858745aea9d975","4":"f9fecd8bc68d0c780c3f","5":"b1e23a3cec8f4f2a5f06","6":"038e8cb6958361c156d5","7":"7cc945cc6765857bc93d","8":"6e71d80b758b87d9df00","9":"3b561cc06f8073eb02a9","10":"08768225fc135fb5e8bf","11":"e6ad1c7f28086061b0ff","12":"37948cb80ee3b815c5ae","13":"e7004915b98fdd5e2e03","14":"004d42f51bd8057c5414","15":"793615c86c56adc3406c","16":"17cf56aa87cb7b5e33ff","17":"f77cd0d6151da498f838","18":"7a25b7142d0f64937fda","19":"483a7f07946172cf5a08","20":"0e12c8519772e6d19aca","21":"5c0d777bd16d128d9b41","22":"40be305650d0f7cf29f3","23":"575979e8dd58cc47b571","24":"437dee66dee91cb9ba4d","25":"4cc7d791bf16ac671596","26":"9dfc7680392519c80908","27":"81beb837784040edce70","28":"565f6ef09cf82fe4ac19","29":"6f96a2fd52234f2dc0d2","30":"8ecb4b1cc1cb0c1c99b8"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -61933,7 +61933,8 @@ function initialState() {
         name: '',
         merk: '',
         spesifikasi: '',
-        qty: ''
+        qty: '',
+        satuan: ''
       }]
     },
     lists: {
@@ -62160,41 +62161,50 @@ var actions = {
       val: val
     });
   },
-  addItem: function addItem(_ref24) {
+  setItemSatuan: function setItemSatuan(_ref24, _ref25) {
     var commit = _ref24.commit;
+    var index = _ref25.index,
+      val = _ref25.val;
+    commit('setItemSatuan', {
+      index: index,
+      val: val
+    });
+  },
+  addItem: function addItem(_ref26) {
+    var commit = _ref26.commit;
     commit('addItem');
   },
-  exportData: function exportData(_ref25) {
-    var commit = _ref25.commit;
+  exportData: function exportData(_ref27) {
+    var commit = _ref27.commit;
     commit('exportData');
   },
-  deleteItem: function deleteItem(_ref26) {
-    var commit = _ref26.commit;
+  deleteItem: function deleteItem(_ref28) {
+    var commit = _ref28.commit;
     commit('deleteItem');
   },
-  fetchCreateData: function fetchCreateData(_ref27) {
-    var commit = _ref27.commit;
+  fetchCreateData: function fetchCreateData(_ref29) {
+    var commit = _ref29.commit;
     axios.get("".concat(route, "/create")).then(function (response) {
       commit('setLists', response.data.meta);
     });
   },
-  fetchEditData: function fetchEditData(_ref28, id) {
-    var commit = _ref28.commit,
-      dispatch = _ref28.dispatch;
+  fetchEditData: function fetchEditData(_ref30, id) {
+    var commit = _ref30.commit,
+      dispatch = _ref30.dispatch;
     axios.get("".concat(route, "/").concat(id, "/edit")).then(function (response) {
       commit('setEntry', response.data.data);
       commit('setLists', response.data.meta);
     });
   },
-  fetchShowData: function fetchShowData(_ref29, id) {
-    var commit = _ref29.commit,
-      dispatch = _ref29.dispatch;
+  fetchShowData: function fetchShowData(_ref31, id) {
+    var commit = _ref31.commit,
+      dispatch = _ref31.dispatch;
     axios.get("".concat(route, "/").concat(id)).then(function (response) {
       commit('setEntry', response.data.data);
     });
   },
-  resetState: function resetState(_ref30) {
-    var commit = _ref30.commit;
+  resetState: function resetState(_ref32) {
+    var commit = _ref32.commit;
     commit('resetState');
   }
 };
@@ -62227,7 +62237,8 @@ var mutations = (_mutations = {
         'name': val.name,
         'merk': val.merk,
         'spesifikasi': val.spesifikasi,
-        'qty': val.qty
+        'qty': val.qty,
+        'satuan': val.satuan
       });
     }), state.timelineData = [{
       'status_val': '',
@@ -62315,28 +62326,33 @@ var mutations = (_mutations = {
   state.entry.deleted_at = value;
 }), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItems", function setItems(state, value) {
   state.entry.items = value;
-}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemName", function setItemName(state, _ref31) {
-  var index = _ref31.index,
-    val = _ref31.val;
-  state.entry.items[index].name = val;
-}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemMerk", function setItemMerk(state, _ref32) {
-  var index = _ref32.index,
-    val = _ref32.val;
-  state.entry.items[index].merk = val;
-}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemSpesifikasi", function setItemSpesifikasi(state, _ref33) {
+}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemName", function setItemName(state, _ref33) {
   var index = _ref33.index,
     val = _ref33.val;
-  state.entry.items[index].spesifikasi = val;
-}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemQty", function setItemQty(state, _ref34) {
+  state.entry.items[index].name = val;
+}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemMerk", function setItemMerk(state, _ref34) {
   var index = _ref34.index,
     val = _ref34.val;
+  state.entry.items[index].merk = val;
+}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemSpesifikasi", function setItemSpesifikasi(state, _ref35) {
+  var index = _ref35.index,
+    val = _ref35.val;
+  state.entry.items[index].spesifikasi = val;
+}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemQty", function setItemQty(state, _ref36) {
+  var index = _ref36.index,
+    val = _ref36.val;
   state.entry.items[index].qty = val;
+}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemSatuan", function setItemSatuan(state, _ref37) {
+  var index = _ref37.index,
+    val = _ref37.val;
+  state.entry.items[index].satuan = val;
 }), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "addItem", function addItem(state) {
   state.entry.items.push({
     name: '',
     merk: '',
     spesifikasi: '',
-    qty: ''
+    qty: '',
+    satuan: ''
   });
 }), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "deleteItem", function deleteItem(state, index) {
   state.entry.items.splice(index, 1);

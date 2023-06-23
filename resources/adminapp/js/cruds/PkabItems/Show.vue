@@ -97,7 +97,8 @@
                 <th>Name</th>
                 <th>Merk</th>
                 <th>Spesifikasi</th>
-                <th>Qty & Satuan</th>
+                <th>Qty</th>
+                <th>Satuan</th>
               </thead>
               <tbody>
                 <tr v-for="(item, k) in entry.items" :key="k">
@@ -114,8 +115,12 @@
                       <textarea disabled v-else class="form-control wrapText" :value="item.spesifikasi"/>
                   </td>
                   <td>
-                      <input v-if="$can(entry.status) && $can('pkab_item_edit')" class="form-control wrapText" type="text" :value="item.qty" @input="updateItemQty(k, $event)"/>
-                      <input disabled v-else class="form-control wrapText" type="text" :value="item.qty"/>
+                      <input v-if="$can(entry.status) && $can('pkab_item_edit')" class="form-control wrapText" type="number" :value="item.qty" @input="updateItemQty(k, $event)"/>
+                      <input disabled v-else class="form-control wrapText" type="number" :value="item.qty"/>
+                  </td>
+                  <td>
+                      <input v-if="$can(entry.status) && $can('pkab_item_edit')" class="form-control wrapText" type="text" :value="item.satuan" @input="updateItemSatuan(k, $event)"/>
+                      <input disabled v-else class="form-control wrapText" type="text" :value="item.satuan"/>
                   </td>
                 </tr>
               </tbody>
@@ -190,7 +195,8 @@ export default {
         'name': 'name',
         'merk': 'merk',
         'spesifikasi': 'spesifikasi',
-        'qty' : 'qty'
+        'qty' : 'qty',
+        'satuan' : 'satuan'
       },
       xprops: {
         module: 'PkabItemsSingle',
@@ -218,6 +224,7 @@ export default {
       'setItemMerk',
       'setItemSpesifikasi',
       'setItemQty',
+      'setItemSatuan',
       'setKet']),
     updateItemName(index, event, val) {
       val = event.target.value
@@ -238,6 +245,10 @@ export default {
       val = event.target.value
       this.setItemQty({index, val})
       // this.entry.items[index].qty = event.target.value;
+    },
+    updateItemSatuan(index, event, val) {
+      val = event.target.value
+      this.setItemSatuan({index, val})
     },
     approveData(id) {
       this.$swal({

@@ -44,7 +44,8 @@ __webpack_require__.r(__webpack_exports__);
         'name': 'name',
         'merk': 'merk',
         'spesifikasi': 'spesifikasi',
-        'qty': 'qty'
+        'qty': 'qty',
+        'satuan': 'satuan'
       },
       xprops: {
         module: 'SelesaiSingle'
@@ -64,7 +65,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  methods: Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('PkabDonesSingle', ['fetchShowData', 'loading', 'resetState', 'approveData', 'updateData', 'setItemName', 'updateMergedData', 'setItemMerk', 'setItemSpesifikasi', 'setItemQty'])), {}, {
+  methods: Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('PkabDonesSingle', ['fetchShowData', 'loading', 'resetState', 'approveData', 'updateData', 'setItemName', 'updateMergedData', 'setItemMerk', 'setItemSpesifikasi', 'setItemSatuan', 'setItemQty'])), {}, {
     updateItemName: function updateItemName(index, event, val) {
       val = event.target.value;
       console.log(val);
@@ -251,6 +252,15 @@ var render = function render() {
       domProps: {
         value: item.qty
       }
+    })]), _vm._v(" "), _c("td", [_c("input", {
+      staticClass: "form-control wrapText",
+      attrs: {
+        disabled: "",
+        type: "text"
+      },
+      domProps: {
+        value: item.satuan
+      }
     })])]);
   }), 0)])], 1), _vm._v(" "), _c("div", {
     staticClass: "card-body"
@@ -287,7 +297,7 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Merk")]), _vm._v(" "), _c("th", [_vm._v("Spesifikasi")]), _vm._v(" "), _c("th", [_vm._v("Qty")])]);
+  return _c("thead", [_c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Merk")]), _vm._v(" "), _c("th", [_vm._v("Spesifikasi")]), _vm._v(" "), _c("th", [_vm._v("Qty")]), _vm._v(" "), _c("th", [_vm._v("Satuan")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;

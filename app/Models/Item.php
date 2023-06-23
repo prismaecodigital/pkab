@@ -40,6 +40,7 @@ class Item extends Model
         'merk',
         'spesifikasi',
         'qty',
+        'satuan',
         'pkab_id',
         'created_at',
         'updated_at',

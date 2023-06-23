@@ -18,6 +18,7 @@ function initialState() {
           merk : '',
           spesifikasi : '',
           qty : '',
+          satuan: ''
         }]
       },
       lists: {
@@ -193,6 +194,9 @@ function initialState() {
     setItemQty({ commit }, {index, val}) {
       commit('setItemQty', {index, val})
     },
+    setItemSatuan({ commit }, {index, val}) {
+      commit('setItemSatuan', {index, val})
+    },
     addItem({commit}) {
       commit('addItem')
     },
@@ -255,6 +259,7 @@ function initialState() {
           'merk': val.merk,
           'spesifikasi': val.spesifikasi,
           'qty' : val.qty,
+          'satuan' : val.satuan,
         })
       }),
       state.timelineData = [
@@ -369,12 +374,16 @@ function initialState() {
     setItemQty(state, {index,val}) {
       state.entry.items[index].qty = val
     },
+    setItemSatuan(state, {index,val}) {
+      state.entry.items[index].satuan = val
+    },
     addItem(state) {
       state.entry.items.push({
         name: '',
         merk: '',
         spesifikasi: '',
-        qty: ''
+        qty: '',
+        satuan: ''
       });
     },
     deleteItem(state, index) {

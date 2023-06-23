@@ -41,7 +41,8 @@ __webpack_require__.r(__webpack_exports__);
         'name': 'name',
         'merk': 'merk',
         'spesifikasi': 'spesifikasi',
-        'qty': 'qty'
+        'qty': 'qty',
+        'satuan': 'satuan'
       },
       xprops: {
         module: 'PkabItemsSingle'
@@ -61,7 +62,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  methods: Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('PkabItemsSingle', ['fetchShowData', 'loading', 'resetState', 'approveData', 'updateData', 'setItemName', 'updateMergedData', 'rejectData', 'setItemMerk', 'setItemSpesifikasi', 'setItemQty', 'setKet'])), {}, {
+  methods: Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('PkabItemsSingle', ['fetchShowData', 'loading', 'resetState', 'approveData', 'updateData', 'setItemName', 'updateMergedData', 'rejectData', 'setItemMerk', 'setItemSpesifikasi', 'setItemQty', 'setItemSatuan', 'setKet'])), {}, {
     updateItemName: function updateItemName(index, event, val) {
       val = event.target.value;
       this.setItemName({
@@ -93,6 +94,13 @@ __webpack_require__.r(__webpack_exports__);
         val: val
       });
       // this.entry.items[index].qty = event.target.value;
+    },
+    updateItemSatuan: function updateItemSatuan(index, event, val) {
+      val = event.target.value;
+      this.setItemSatuan({
+        index: index,
+        val: val
+      });
     },
     approveData: function approveData(id) {
       var _this = this;
@@ -310,7 +318,7 @@ var render = function render() {
     })]), _vm._v(" "), _c("td", [_vm.$can(_vm.entry.status) && _vm.$can("pkab_item_edit") ? _c("input", {
       staticClass: "form-control wrapText",
       attrs: {
-        type: "text"
+        type: "number"
       },
       domProps: {
         value: item.qty
@@ -324,10 +332,32 @@ var render = function render() {
       staticClass: "form-control wrapText",
       attrs: {
         disabled: "",
-        type: "text"
+        type: "number"
       },
       domProps: {
         value: item.qty
+      }
+    })]), _vm._v(" "), _c("td", [_vm.$can(_vm.entry.status) && _vm.$can("pkab_item_edit") ? _c("input", {
+      staticClass: "form-control wrapText",
+      attrs: {
+        type: "text"
+      },
+      domProps: {
+        value: item.satuan
+      },
+      on: {
+        input: function input($event) {
+          return _vm.updateItemSatuan(k, $event);
+        }
+      }
+    }) : _c("input", {
+      staticClass: "form-control wrapText",
+      attrs: {
+        disabled: "",
+        type: "text"
+      },
+      domProps: {
+        value: item.satuan
       }
     })])]);
   }), 0)])], 1), _vm._v(" "), _c("div", {
@@ -391,7 +421,7 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Merk")]), _vm._v(" "), _c("th", [_vm._v("Spesifikasi")]), _vm._v(" "), _c("th", [_vm._v("Qty & Satuan")])]);
+  return _c("thead", [_c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Merk")]), _vm._v(" "), _c("th", [_vm._v("Spesifikasi")]), _vm._v(" "), _c("th", [_vm._v("Qty")]), _vm._v(" "), _c("th", [_vm._v("Satuan")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;

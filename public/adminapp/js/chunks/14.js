@@ -41,7 +41,7 @@ __webpack_require__.r(__webpack_exports__);
   beforeDestroy: function beforeDestroy() {
     this.resetState();
   },
-  methods: Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('PkabItemsSingle', ['storeData', 'resetState', 'setReqDate', 'setBu', 'setDept', 'setItems', 'setItemName', 'setItemMerk', 'setItemSpesifikasi', 'setItemQty', 'addItem', 'deleteItem', 'fetchCreateData'])), {}, {
+  methods: Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('PkabItemsSingle', ['storeData', 'resetState', 'setReqDate', 'setBu', 'setDept', 'setItems', 'setItemName', 'setItemMerk', 'setItemSpesifikasi', 'setItemQty', 'setItemSatuan', 'addItem', 'deleteItem', 'fetchCreateData'])), {}, {
     updateReqDate: function updateReqDate(value) {
       //let value = moment(date).format('DD-MM-YYYY')
       this.setReqDate(value);
@@ -114,6 +114,14 @@ __webpack_require__.r(__webpack_exports__);
     updateItemQty: function updateItemQty(index, event, val) {
       val = event.target.value;
       this.setItemQty({
+        index: index,
+        val: val
+      });
+      // this.entry.items[index].qty = event.target.value;
+    },
+    updateItemSatuan: function updateItemSatuan(index, event, val) {
+      val = event.target.value;
+      this.setItemSatuan({
         index: index,
         val: val
       });
@@ -324,7 +332,7 @@ var render = function render() {
     })]), _vm._v(" "), _c("td", [_c("input", {
       staticClass: "form-control wrapText",
       attrs: {
-        type: "text",
+        type: "number",
         required: ""
       },
       domProps: {
@@ -333,6 +341,20 @@ var render = function render() {
       on: {
         input: function input($event) {
           return _vm.updateItemQty(k, $event);
+        }
+      }
+    })]), _vm._v(" "), _c("td", [_c("input", {
+      staticClass: "form-control wrapText",
+      attrs: {
+        type: "text",
+        required: ""
+      },
+      domProps: {
+        value: item.satuan
+      },
+      on: {
+        input: function input($event) {
+          return _vm.updateItemSatuan(k, $event);
         }
       }
     })])]);
@@ -376,7 +398,7 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("th"), _vm._v(" "), _c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Merk")]), _vm._v(" "), _c("th", [_vm._v("Spesifikasi")]), _vm._v(" "), _c("th", [_vm._v("Qty & Satuan")])]);
+  return _c("thead", [_c("th"), _vm._v(" "), _c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Merk")]), _vm._v(" "), _c("th", [_vm._v("Spesifikasi")]), _vm._v(" "), _c("th", [_vm._v("Qty")]), _vm._v(" "), _c("th", [_vm._v("Satuan")])]);
 }];
 render._withStripped = true;
 

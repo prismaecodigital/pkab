@@ -24,6 +24,29 @@ class PkabItemApiController extends Controller
     {
         abort_if(Gate::denies('pkab_item_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $items = Item::all();
+
+        foreach($items as $item)
+        {
+            $newQty = $this->separateNumberAndString($item->qty);
+            if ($newQty !== null) {
+                $number = $newQty[0];
+                $string = $newQty[1];
+                $item->update(['qty' => $number, 'satuan' => $string]);
+            }
+        }
+
+        $pkabs = PkabItem::with('statusHistory')->get();
+
+        foreach($pkabs as $pkab)
+        {
+            if($pkab->status == 'user_acc' && (strtotime($pkab->statusHistory->sortByDesc('created_at')->first()->created_at) < strtotime('-3 days')) )
+            {
+                $pkab->update(['status' => 'selesai']);
+                $statusHistory = StatusHistory::create(['status' => 'selesai', 'user_id' => 1, 'pkab_id' => $pkab->id]);
+            }
+        }
+
         if (auth()->user()->hasRole('purchasing')) {
             return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])
             ->advancedFilter()
@@ -74,6 +97,7 @@ class PkabItemApiController extends Controller
                     'merk' => $itemData['merk'],
                     'spesifikasi' => $itemData['spesifikasi'],
                     'qty' => $itemData['qty'],
+                    'satuan' => $itemData['satuan'],
                     'pkab_id' => $pkabItem->id,
                 ]);
             }
@@ -125,7 +149,7 @@ class PkabItemApiController extends Controller
     public function update(UpdatePkabItemRequest $request, PkabItem $pkabItem)
     {
         foreach($request->items as $item) {
-            Item::where('id', $item['id'])->update(['name' =>$item['name'], 'merk' => $item['merk'], 'spesifikasi' => $item['spesifikasi'], 'qty' => $item['qty'], 'pkab_id' => $pkabItem->id]);
+            Item::where('id', $item['id'])->update(['name' =>$item['name'], 'merk' => $item['merk'], 'spesifikasi' => $item['spesifikasi'], 'qty' => $item['qty'], 'satuan' => $item['satuan'], 'pkab_id' => $pkabItem->id]);
         }
 
         if($pkabItem->status == 'user_acc') {
@@ -232,7 +256,28 @@ class PkabItemApiController extends Controller
          
     }
 
-    public function updateSimesra(Request $request) {
+    public function separateNumberAndString($inputString) {
+        $pattern = '/(\d+)(\D+)/';
+        $matches = [];
         
+        if (preg_match($pattern, $inputString, $matches)) {
+            $number = intval($matches[1]);
+            $string = trim($matches[2]);
+            return [$number, $string];
+        } else {
+            return null;
+        }
     }
+    
+    // // Example usage
+    // $a = '22 pcs';
+    // list($aNumber, $aString) = separateNumberAndString($a);
+    // echo $aNumber . PHP_EOL;  // Output: 22
+    // echo $aString . PHP_EOL;  // Output: pcs
+    
+    // $b = 'aaa 22 bb';
+    // list($bNumber, $bString) = separateNumberAndString($b);
+    // echo $bNumber . PHP_EOL;  // Output: 22
+    // echo $bString . PHP_EOL;  // Output: aaabb
+    
 }

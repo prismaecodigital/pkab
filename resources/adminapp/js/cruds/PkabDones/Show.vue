@@ -106,6 +106,7 @@
                 <th>Merk</th>
                 <th>Spesifikasi</th>
                 <th>Qty</th>
+                <th>Satuan</th>
               </thead>
               <tbody>
                 <tr v-for="(item, k) in entry.items" :key="k">
@@ -120,6 +121,9 @@
                   </td>
                   <td>
                       <input disabled class="form-control wrapText" type="text" :value="item.qty"/>
+                  </td>
+                  <td>
+                      <input disabled class="form-control wrapText" type="text" :value="item.satuan"/>
                   </td>
                 </tr>
               </tbody>
@@ -186,7 +190,8 @@ export default {
         'name': 'name',
         'merk': 'merk',
         'spesifikasi': 'spesifikasi',
-        'qty' : 'qty'
+        'qty' : 'qty',
+        'satuan' : 'satuan',
       },
       xprops: {
         module: 'SelesaiSingle',
@@ -212,6 +217,7 @@ export default {
     ...mapActions('PkabDonesSingle', ['fetchShowData', 'loading', 'resetState', 'approveData', 'updateData', 'setItemName', 'updateMergedData',
       'setItemMerk',
       'setItemSpesifikasi',
+      'setItemSatuan',
       'setItemQty',]),
     updateItemName(index, event, val) {
       val = event.target.value
