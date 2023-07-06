@@ -136,7 +136,7 @@ export default {
           tdClass: 'text-right td-actions'
         }
       ],
-      query: { sort: 'req_date', order: 'desc', limit: 100, s: '' },
+      query: { sort: 'status', order: 'asc', limit: 100, s: '' },
       xprops: {
         module: 'PkabItemsIndex',
         route: 'pkab_items',

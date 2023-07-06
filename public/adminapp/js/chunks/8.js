@@ -175,8 +175,8 @@ __webpack_require__.r(__webpack_exports__);
         tdClass: 'text-right td-actions'
       }],
       query: {
-        sort: 'req_date',
-        order: 'desc',
+        sort: 'status',
+        order: 'asc',
         limit: 100,
         s: ''
       },
