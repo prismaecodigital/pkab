@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"835858ee4dfa3b6ce6f3","1":"ca561ec2e10ba137f2b2","2":"22f39ac279a25100e582","3":"540a03858745aea9d975","4":"f9fecd8bc68d0c780c3f","5":"b1e23a3cec8f4f2a5f06","6":"038e8cb6958361c156d5","7":"7cc945cc6765857bc93d","8":"08c52e63bde70b7d7010","9":"3b561cc06f8073eb02a9","10":"08768225fc135fb5e8bf","11":"e6ad1c7f28086061b0ff","12":"37948cb80ee3b815c5ae","13":"e7004915b98fdd5e2e03","14":"004d42f51bd8057c5414","15":"793615c86c56adc3406c","16":"17cf56aa87cb7b5e33ff","17":"f77cd0d6151da498f838","18":"7a25b7142d0f64937fda","19":"483a7f07946172cf5a08","20":"0e12c8519772e6d19aca","21":"5c0d777bd16d128d9b41","22":"40be305650d0f7cf29f3","23":"575979e8dd58cc47b571","24":"437dee66dee91cb9ba4d","25":"4cc7d791bf16ac671596","26":"9dfc7680392519c80908","27":"81beb837784040edce70","28":"565f6ef09cf82fe4ac19","29":"6f96a2fd52234f2dc0d2","30":"8ecb4b1cc1cb0c1c99b8"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"835858ee4dfa3b6ce6f3","1":"ca561ec2e10ba137f2b2","2":"22f39ac279a25100e582","3":"540a03858745aea9d975","4":"f9fecd8bc68d0c780c3f","5":"b1e23a3cec8f4f2a5f06","6":"038e8cb6958361c156d5","7":"7cc945cc6765857bc93d","8":"cfdd02ef8daa1579e6b1","9":"f4a62412a0dd9a8bf118","10":"08768225fc135fb5e8bf","11":"e6ad1c7f28086061b0ff","12":"8bc0ef541750f0a8352a","13":"61053a0959c52cc51ac7","14":"004d42f51bd8057c5414","15":"793615c86c56adc3406c","16":"17cf56aa87cb7b5e33ff","17":"f77cd0d6151da498f838","18":"7a25b7142d0f64937fda","19":"483a7f07946172cf5a08","20":"0e12c8519772e6d19aca","21":"5c0d777bd16d128d9b41","22":"40be305650d0f7cf29f3","23":"575979e8dd58cc47b571","24":"437dee66dee91cb9ba4d","25":"4cc7d791bf16ac671596","26":"9dfc7680392519c80908","27":"81beb837784040edce70","28":"565f6ef09cf82fe4ac19","29":"6f96a2fd52234f2dc0d2","30":"8ecb4b1cc1cb0c1c99b8"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -61360,6 +61360,7 @@ function initialState() {
       user_id: null,
       status: 'leader_acc',
       dept_id: null,
+      bu_id: null,
       ket: '',
       created_at: '',
       updated_at: '',
@@ -61599,7 +61600,7 @@ var mutations = {
       'kode': entry.code,
       'Tanggal dibuat': entry.created_at,
       'Tanggal dibutuhlan': entry.req_date,
-      'BU': entry.dept.bu.name,
+      'BU': entry.bu.name,
       'Dept': entry.dept.name,
       'User': entry.user.name,
       '---': '---',
@@ -61615,7 +61616,7 @@ var mutations = {
         'kode': entry.code,
         'Tanggal dibuat': entry.created_at,
         'Tanggal dibutuhkan': entry.req_date,
-        'BU': entry.dept.bu.name,
+        'BU': entry.bu.name,
         'Dept': entry.dept.name,
         'User': entry.user.name,
         'status': entry.status_label,
@@ -62214,7 +62215,7 @@ var mutations = (_mutations = {
       'kode': entry.code,
       'Tanggal dibuat': entry.created_at,
       'Tanggal dibutuhlan': entry.req_date,
-      'BU': entry.dept.bu.name,
+      'BU': entry.bu.name,
       'Dept': entry.dept.name,
       'User': entry.user.name,
       '---': '---',
@@ -62230,7 +62231,7 @@ var mutations = (_mutations = {
         'kode': entry.code,
         'Tanggal dibuat': entry.created_at,
         'Tanggal dibutuhkan': entry.req_date,
-        'BU': entry.dept.bu.name,
+        'BU': entry.bu.name,
         'Dept': entry.dept.name,
         'User': entry.user.name,
         'status': entry.status_label,

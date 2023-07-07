@@ -36,10 +36,12 @@ class PkabItemApiController extends Controller
             }
         }
 
-        $pkabs = PkabItem::with('statusHistory')->get();
+        $pkabs = PkabItem::with('statusHistory', 'dept')->get();
 
         foreach($pkabs as $pkab)
         {
+            $bu_id = $pkab->dept->bu_id;
+            $pkab->update(['bu_id' => $bu_id]);
             if($pkab->status == 'user_acc' && (strtotime($pkab->statusHistory->sortByDesc('created_at')->first()->created_at) < strtotime('-3 days')) )
             {
                 $pkab->update(['status' => 'selesai']);
@@ -48,14 +50,14 @@ class PkabItemApiController extends Controller
         }
 
         if (auth()->user()->hasRole('purchasing')) {
-            return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])
+            return new PkabItemResource(PkabItem::with(['user', 'dept', 'bu'])
             ->advancedFilter()
             ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
             ->whereNot('status','selesai')->whereNot('status','cancel')->whereNot('status', 'leader_acc')->paginate(request('limit', 10)));
             // User has the 'purchasing' role
         } else {
             // User does not have the 'purchasing' role
-            return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])
+            return new PkabItemResource(PkabItem::with(['user', 'dept', 'bu'])
             ->advancedFilter()
             ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
             ->whereNot('status','selesai')->whereNot('status','cancel')->paginate(request('limit', 10)));
@@ -143,7 +145,7 @@ class PkabItemApiController extends Controller
     {
         abort_if(Gate::denies('pkab_item_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new PkabItemResource($pkabItem->load(['user', 'dept.bu','items', 'statusHistory.user']));
+        return new PkabItemResource($pkabItem->load(['user', 'dept', 'bu','items', 'statusHistory.user']));
     }
 
     public function update(UpdatePkabItemRequest $request, PkabItem $pkabItem)

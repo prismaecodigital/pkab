@@ -77,11 +77,20 @@
                       </tr>
                       <tr>
                         <td class="text-primary">
+                          {{ $t('cruds.pkabItem.fields.bu') }}
+                        </td>
+                        <td>
+                          <datatable-single :row="entry" field="bu.name">
+                          </datatable-single>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-primary">
                           {{ $t('cruds.pkabItem.fields.dept') }}
                         </td>
                         <td>
-                          <bu-dept-single :row="entry" field="dept.bu">
-                          </bu-dept-single>
+                          <datatable-single :row="entry" field="dept.name">
+                          </datatable-single>
                         </td>
                       </tr>
                     </tbody>

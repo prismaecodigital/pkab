@@ -234,10 +234,17 @@ var render = function render() {
     }
   })], 1)]), _vm._v(" "), _c("tr", [_c("td", {
     staticClass: "text-primary"
-  }, [_vm._v("\n                        " + _vm._s(_vm.$t("cruds.pkabItem.fields.dept")) + "\n                      ")]), _vm._v(" "), _c("td", [_c("bu-dept-single", {
+  }, [_vm._v("\n                        " + _vm._s(_vm.$t("cruds.pkabItem.fields.bu")) + "\n                      ")]), _vm._v(" "), _c("td", [_c("datatable-single", {
     attrs: {
       row: _vm.entry,
-      field: "dept.bu"
+      field: "bu.name"
+    }
+  })], 1)]), _vm._v(" "), _c("tr", [_c("td", {
+    staticClass: "text-primary"
+  }, [_vm._v("\n                        " + _vm._s(_vm.$t("cruds.pkabItem.fields.dept")) + "\n                      ")]), _vm._v(" "), _c("td", [_c("datatable-single", {
+    attrs: {
+      row: _vm.entry,
+      field: "dept.name"
     }
   })], 1)])])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "card-body"

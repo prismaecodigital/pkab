@@ -161,10 +161,16 @@ __webpack_require__.r(__webpack_exports__);
         sortable: true,
         tdComp: _components_Datatables_DatatableEnum__WEBPACK_IMPORTED_MODULE_7__["default"]
       }, {
-        title: 'cruds.pkabItem.fields.dept',
-        field: 'dept.bu.name',
+        title: 'cruds.pkabItem.fields.bu',
+        field: 'bu.name',
         thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_3__["default"],
-        tdComp: _components_Datatables_BuDeptSingle__WEBPACK_IMPORTED_MODULE_8__["default"],
+        tdComp: _components_Datatables_DatatableSingle__WEBPACK_IMPORTED_MODULE_6__["default"],
+        sortable: true
+      }, {
+        title: 'cruds.pkabItem.fields.dept',
+        field: 'dept.name',
+        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_3__["default"],
+        tdComp: _components_Datatables_DatatableSingle__WEBPACK_IMPORTED_MODULE_6__["default"],
         sortable: true
       }, {
         title: 'global.actions',

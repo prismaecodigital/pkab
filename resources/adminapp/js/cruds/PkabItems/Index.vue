@@ -121,10 +121,17 @@ export default {
           tdComp: DatatableEnum,
         },
         {
-          title: 'cruds.pkabItem.fields.dept',
-          field: 'dept.bu.name',
+          title: 'cruds.pkabItem.fields.bu',
+          field: 'bu.name',
           thComp: TranslatedHeader,
-          tdComp: BuDeptSingle,
+          tdComp: DatatableSingle,
+          sortable: true
+        },
+        {
+          title: 'cruds.pkabItem.fields.dept',
+          field: 'dept.name',
+          thComp: TranslatedHeader,
+          tdComp: DatatableSingle,
           sortable: true
         },
         {
