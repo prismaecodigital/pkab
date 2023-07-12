@@ -8,7 +8,8 @@
               <i class="material-icons">assignment</i>
             </div>
             <h4 class="card-title">
-              <strong>{{ $t('cruds.pkabItem.title') }}</strong>
+              {{ $t('global.table') }}
+              <strong>{{ $t('cruds.site.title') }}</strong>
             </h4>
           </div>
           <div class="card-body">
@@ -34,11 +35,6 @@
               </i>
               {{ $t('global.refresh') }}
             </button>
-            <export-excel v-if="$can('export')"
-                :fields   = "dataFields"
-                :data   = "jsonData">
-                <button class="btn btn-success">Export</button>
-            </export-excel>
           </div>
           <div class="card-body">
             <div class="row">
@@ -72,13 +68,11 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import PkabActions from '@components/Datatables/PkabActions'
+import DatatableActions from '@components/Datatables/DatatableActions'
 import TranslatedHeader from '@components/Datatables/TranslatedHeader'
 import HeaderSettings from '@components/Datatables/HeaderSettings'
 import GlobalSearch from '@components/Datatables/GlobalSearch'
 import DatatableSingle from '@components/Datatables/DatatableSingle'
-import DatatableEnum from '@components/Datatables/DatatableEnum'
-import BuDeptSingle from '@components/Datatables/BuDeptSingle'
 
 export default {
   components: {
@@ -89,54 +83,21 @@ export default {
     return {
       columns: [
         {
-          title: 'cruds.pkabItem.fields.code',
-          field: 'code',
-          thComp: TranslatedHeader,
-          sortable: true
-        },
-        {
-          title: 'cruds.pkabItem.fields.created_at',
-          field: 'created_at',
-          thComp: TranslatedHeader,
-          sortable: true
-        },
-        {
-          title: 'cruds.pkabItem.fields.req_date',
-          field: 'req_date',
-          thComp: TranslatedHeader,
-          sortable: true
-        },
-        {
-          title: 'cruds.pkabItem.fields.user',
-          field: 'user.name',
-          thComp: TranslatedHeader,
-          tdComp: DatatableSingle,
-          sortable: true
-        },
-        {
-          title: 'cruds.pkabItem.fields.status',
-          field: 'status',
+          title: 'cruds.site.fields.id',
+          field: 'id',
           thComp: TranslatedHeader,
           sortable: true,
-          tdComp: DatatableEnum,
+          colStyle: 'width: 100px;'
         },
         {
-          title: 'cruds.pkabItem.fields.bu',
-          field: 'bu.code',
+          title: 'cruds.site.fields.name',
+          field: 'name',
           thComp: TranslatedHeader,
-          tdComp: DatatableSingle,
           sortable: true
         },
         {
-          title: 'cruds.pkabItem.fields.site',
-          field: 'site.name',
-          thComp: TranslatedHeader,
-          tdComp: DatatableSingle,
-          sortable: true
-        },
-        {
-          title: 'cruds.pkabItem.fields.dept',
-          field: 'dept.name',
+          title: 'cruds.site.fields.bu',
+          field: 'bu.name',
           thComp: TranslatedHeader,
           tdComp: DatatableSingle,
           sortable: true
@@ -144,27 +105,18 @@ export default {
         {
           title: 'global.actions',
           thComp: TranslatedHeader,
-          tdComp: PkabActions,
+          tdComp: DatatableActions,
           visible: true,
           thClass: 'text-right',
-          tdClass: 'text-right td-actions'
+          tdClass: 'text-right td-actions',
+          colStyle: 'width: 150px;'
         }
       ],
-      query: { sort: 'status', order: 'asc', limit: 100, s: '' },
+      query: { sort: 'id', order: 'desc', limit: 100, s: '' },
       xprops: {
-        module: 'PkabItemsIndex',
-        route: 'pkab_items',
-        permission_prefix: 'pkab_item_'
-      },
-      dataFields : {
-        'Kode' : 'code',
-        'Tgl dibuat' : 'created_at',
-        'Tgl dibutuhkan' : 'req_date',
-        'User' : 'user.name',
-        'BU' : 'bu.name',
-        'Site' : 'site.name',
-        'Dept' : 'dept.name',
-        'Status' : 'status_label'
+        module: 'SitesIndex',
+        route: 'sites',
+        permission_prefix: 'site_'
       }
     }
   },
@@ -172,7 +124,7 @@ export default {
     this.resetState()
   },
   computed: {
-    ...mapGetters('PkabItemsIndex', ['data', 'total', 'loading', 'jsonData']),
+    ...mapGetters('SitesIndex', ['data', 'total', 'loading'])
   },
   watch: {
     query: {
@@ -184,11 +136,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('PkabItemsIndex', [
-      'fetchIndexData',
-      'setQuery',
-      'resetState'
-    ]),
+    ...mapActions('SitesIndex', ['fetchIndexData', 'setQuery', 'resetState'])
   }
 }
 </script>

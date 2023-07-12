@@ -92,6 +92,15 @@
                           </datatable-single>
                         </td>
                       </tr>
+                      <tr v-if="entry.site">
+                        <td class="text-primary">
+                          {{ $t('cruds.pkabItem.fields.site') }}
+                        </td>
+                        <td>
+                          <datatable-single :row="entry" field="site.name">
+                          </datatable-single>
+                        </td>
+                      </tr>
                       <tr>
                         <td class="text-primary">
                           {{ $t('cruds.pkabItem.fields.dept') }}

@@ -31,6 +31,7 @@ class PkabDone extends Model
         'user.name',
         'status',
         'dept.name',
+        'site.name',
         'created_at',
         'updated_at',
     ];
@@ -41,6 +42,7 @@ class PkabDone extends Model
         'req_date',
         'user.name',
         'status',
+        'site.name',
         'dept.name',
         'created_at',
         'updated_at',
@@ -53,6 +55,7 @@ class PkabDone extends Model
         'status',
         'ket',
         'dept_id',
+        'site_id',
         'created_at',
         'updated_at',
     ];
@@ -131,5 +134,10 @@ class PkabDone extends Model
     public function statusHistory()
     {
         return $this->hasMany(statusHistory::class, 'pkab_id');
+    }
+
+    public function site()
+    {
+        return $this->belongsTo(Site::class, 'site_id');
     }
 }

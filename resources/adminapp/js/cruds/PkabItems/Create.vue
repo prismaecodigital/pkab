@@ -75,6 +75,28 @@
                   <div
                     class="form-group bmd-form-group"
                     :class="{
+                      'is-filled': entry.site_id !== null,
+                      'is-focused': activeField == 'site'
+                    }"
+                  >
+                    <label class="">{{
+                      $t('cruds.pkabItem.fields.site')
+                    }}</label>
+                    <v-select
+                      name="site"
+                      label="name"
+                      :key="'site-field'"
+                      :value="entry.site_id"
+                      :options="sites"
+                      :reduce="entry => entry.id"
+                      @input="updateSite"
+                      @search.focus="focusField('site')"
+                      @search.blur="clearFocus"
+                    />
+                  </div>
+                  <div
+                    class="form-group bmd-form-group"
+                    :class="{
                       'is-filled': entry.dept_id !== null,
                       'is-focused': activeField == 'dept'
                     }"
@@ -176,6 +198,7 @@ export default {
       status: '',
       activeField: '',
       depts: [],
+      sites: [],
       date: {
         disabledDates: {
           to: new Date(new Date() - (24 * 60 * 60 * 1000))
@@ -205,6 +228,7 @@ export default {
       'setItemSpesifikasi',
       'setItemQty',
       'setItemSatuan',
+      'setSite',
       'addItem',
       'deleteItem',
       'fetchCreateData'
@@ -215,6 +239,7 @@ export default {
     },
     updateBu(value) {
       this.setDept([])
+      this.setSite([])
       this.setBu(value)
       if(value != null) {
         axios.get('/budept', {
@@ -228,14 +253,29 @@ export default {
         .catch(error => {
             console.log(error);
         });
+        axios.get('/busite', {
+          params: {
+              bu: value
+          }
+        })
+        .then(response => {
+            this.sites = response.data;
+        })
+        .catch(error => {
+            console.log(error);
+        });
       }
       else {
         this.depts = []
+        this.sites = []
       }
       
     },
     updateDept(value) {
       this.setDept(value)
+    },
+    updateSite(value) {
+      this.setSite(value)
     },
     submitForm() {
       this.storeData()

@@ -194,6 +194,30 @@ const routes = [
             name: 'depts.edit',
             component: () => import('@cruds/Depts/Edit.vue'),
             meta: { title: 'cruds.dept.title' }
+          },
+          {
+            path: 'sites',
+            name: 'sites.index',
+            component: () => import('@cruds/Sites/Index.vue'),
+            meta: { title: 'cruds.dept.title' }
+          },
+          {
+            path: 'sites/create',
+            name: 'sites.create',
+            component: () => import('@cruds/Sites/Create.vue'),
+            meta: { title: 'cruds.dept.title' }
+          },
+          {
+            path: 'sites/:id',
+            name: 'sites.show',
+            component: () => import('@cruds/Sites/Show.vue'),
+            meta: { title: 'cruds.dept.title' }
+          },
+          {
+            path: 'sites/:id/edit',
+            name: 'sites.edit',
+            component: () => import('@cruds/Sites/Edit.vue'),
+            meta: { title: 'cruds.dept.title' }
           }
         ]
       },

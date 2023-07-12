@@ -179,5 +179,25 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
+    'site' => [
+        'title'          => 'Site',
+        'title_singular' => 'Site',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => ' ',
+            'name'              => 'Name',
+            'name_helper'       => ' ',
+            'code'              => 'Code',
+            'code_helper'       => ' ',
+            'created_at'        => 'Created at',
+            'created_at_helper' => ' ',
+            'updated_at'        => 'Updated at',
+            'updated_at_helper' => ' ',
+            'deleted_at'        => 'Deleted at',
+            'deleted_at_helper' => ' ',
+            'bu'                => 'BU',
+            'bu_helper'         => ' ',
+        ],
+    ],
 
 ];

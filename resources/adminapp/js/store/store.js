@@ -21,6 +21,8 @@ import PkabDonesSingle from './cruds/PkabDones/single'
 import ItemsIndex from './cruds/Items'
 import ItemsSingle from './cruds/Items/single'
 import ProfileSingle from './cruds/Profile/single'
+import SitesIndex from './cruds/Sites'
+import SitesSingle from './cruds/Sites/single'
 
 Vue.use(Vuex)
 
@@ -46,7 +48,9 @@ export default new Vuex.Store({
     PkabDonesSingle,
     ItemsIndex,
     ItemsSingle,
-    ProfileSingle
+    ProfileSingle,
+    SitesIndex,
+    SitesSingle
   },
   strict: debug
 })

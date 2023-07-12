@@ -108,6 +108,13 @@ __webpack_require__.r(__webpack_exports__);
           },
           gate: 'bu_access'
         }, {
+          title: 'cruds.site.title',
+          icon: 'table_view',
+          path: {
+            name: 'sites.index'
+          },
+          gate: 'site_access'
+        }, {
           title: 'cruds.dept.title',
           icon: 'table_view',
           path: {

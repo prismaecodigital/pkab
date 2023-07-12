@@ -84,6 +84,15 @@
                           </datatable-single>
                         </td>
                       </tr>
+                      <tr v-if="entry.site_id">
+                        <td class="text-primary">
+                          {{ $t('cruds.pkabItem.fields.site') }}
+                        </td>
+                        <td>
+                          <datatable-single :row="entry" field="site.name">
+                          </datatable-single>
+                        </td>
+                      </tr>
                       <tr>
                         <td class="text-primary">
                           {{ $t('cruds.pkabItem.fields.dept') }}
@@ -199,7 +208,8 @@ export default {
         'Tgl dibutuhkan' : 'Tanggal dibutuhkan',
         'User' : 'User',
         'BU' : 'BU',
-        'Dept/Site' : 'Dept',
+        'Dept' : 'Dept',
+        'Site' : 'Site',
         'Status' : 'status',
         'name': 'name',
         'merk': 'merk',

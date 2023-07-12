@@ -32,6 +32,7 @@ class PkabItem extends Model
         'user.name',
         'status',
         'dept.name',
+        'site.name',
         'created_at',
         'updated_at',
     ];
@@ -44,6 +45,7 @@ class PkabItem extends Model
         'status',
         'dept.name',
         'bu.name',
+        'site.name',
         'created_at',
         'updated_at',
     ];
@@ -57,6 +59,7 @@ class PkabItem extends Model
         'ket',
         'bu_id',
         'dept_id',
+        'site_id',
         'created_at',
         'updated_at',
     ];
@@ -150,5 +153,10 @@ class PkabItem extends Model
     public function statusHistory()
     {
         return $this->hasMany(StatusHistory::class, 'pkab_id');
+    }
+
+    public function site()
+    {
+        return $this->belongsTo(Site::class, 'site_id');
     }
 }

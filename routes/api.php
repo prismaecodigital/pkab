@@ -20,9 +20,12 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Bu
     Route::resource('bus', 'BuApiController');
 
-    // Dept where Bu
+    // Get dept based on bu
     Route::get('budept','DeptApiController@budept');
     Route::get('budept-all','DeptApiController@budeptAll');
+
+    // Get site based on bu
+    Route::get('busite', 'SiteApiController@busite');;
 
     // Dept
     Route::resource('depts', 'DeptApiController');
@@ -42,6 +45,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Status History
     Route::resource('status-histories', 'StatusHistoryApiController', ['except' => ['create', 'store', 'edit', 'update', 'show']]);
+
+    // Site
+    Route::resource('sites', 'SiteApiController');
 
     // Change password
         Route::get('password/edit', 'ChangePasswordController@edit')->name('password.edit');

@@ -91,12 +91,18 @@ export default {
               path: { name: 'bus.index' },
               gate: 'bu_access'
             },
+                        {
+              title: 'cruds.site.title',
+              icon: 'table_view',
+              path: { name: 'sites.index' },
+              gate: 'site_access'
+            },
             {
               title: 'cruds.dept.title',
               icon: 'table_view',
               path: { name: 'depts.index' },
               gate: 'dept_access'
-            }
+            },
           ]
         },
         {

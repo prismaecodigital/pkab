@@ -8,6 +8,7 @@ function initialState() {
         user_id: null,
         status: 'leader_acc',
         dept_id: null,
+        site_id: null,
         bu_id: null,
         ket: '',
         created_at: '',
@@ -167,6 +168,9 @@ function initialState() {
     setDept({ commit }, value) {
       commit('setDept', value)
     },
+    setSite({ commit }, value) {
+      commit('setSite', value)
+    },
     setKet({ commit }, value) {
       commit('setKet', value)
     },
@@ -234,6 +238,7 @@ function initialState() {
         'Tanggal dibuat' : entry.created_at,
         'Tanggal dibutuhlan' : entry.req_date,
         'BU' : entry.bu.name,
+        'Site' : entry.site ? entry.site.name : ' ',
         'Dept' : entry.dept.name,
         'User' : entry.user.name,
         '---' : '---',
@@ -252,6 +257,7 @@ function initialState() {
           'Tanggal dibuat' : entry.created_at,
           'Tanggal dibutuhkan' : entry.req_date,
           'BU' : entry.bu.name,
+          'Site' : entry.site ? entry.site.name : ' ',
           'Dept' : entry.dept.name,
           'User' : entry.user.name,
           'status' : entry.status_label,
@@ -343,6 +349,9 @@ function initialState() {
     },
     setDept(state, value) {
       state.entry.dept_id = value
+    },
+    setSite(state, value) {
+      state.entry.site_id = value
     },
     setBu(state, value) {
       state.entry.bu_id = value

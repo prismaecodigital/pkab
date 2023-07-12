@@ -50,20 +50,20 @@ class PkabItemApiController extends Controller
         }
 
         if (auth()->user()->hasRole('purchasing')) {
-            return new PkabItemResource(PkabItem::with(['user', 'dept', 'bu'])
+            return new PkabItemResource(PkabItem::with(['user', 'site', 'dept', 'bu'])
             ->advancedFilter()
             ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
             ->whereNot('status','selesai')->whereNot('status','cancel')->whereNot('status', 'leader_acc')->paginate(request('limit', 10)));
             // User has the 'purchasing' role
         } else {
             // User does not have the 'purchasing' role
-            return new PkabItemResource(PkabItem::with(['user', 'dept', 'bu'])
+            return new PkabItemResource(PkabItem::with(['user', 'site', 'dept', 'bu'])
             ->advancedFilter()
             ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
             ->whereNot('status','selesai')->whereNot('status','cancel')->paginate(request('limit', 10)));
         }
 
-        // return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])->advancedFilter()->paginate(request('limit', 10)));
+        // return new PkabItemResource(PkabItem::with(['user', 'site', 'dept.bu'])->advancedFilter()->paginate(request('limit', 10)));
         
     }
 
@@ -77,7 +77,8 @@ class PkabItemApiController extends Controller
             'req_date',
             'ket',
             'status',
-            'dept_id'
+            'dept_id',
+            'site_id'
         ]);
     
         $data['user_id'] = auth()->user()->id;
@@ -145,7 +146,7 @@ class PkabItemApiController extends Controller
     {
         abort_if(Gate::denies('pkab_item_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new PkabItemResource($pkabItem->load(['user', 'dept', 'bu','items', 'statusHistory.user']));
+        return new PkabItemResource($pkabItem->load(['user', 'site', 'dept', 'bu','items', 'statusHistory.user']));
     }
 
     public function update(UpdatePkabItemRequest $request, PkabItem $pkabItem)
@@ -172,9 +173,9 @@ class PkabItemApiController extends Controller
 
         $statusHistory = StatusHistory::create(['pkab_id' => $pkabItem->id,'status' => $pkabItem->status, 'user_id' => auth()->user()->id]);
 
-        return new PkabItemResource($pkabItem->load(['user', 'dept.bu','items', 'statusHistory.user']));
+        return new PkabItemResource($pkabItem->load(['user', 'site', 'dept.bu','items', 'statusHistory.user']));
         
-        // return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter()
+        // return new PkabItemResource(PkabItem::with(['user', 'site', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter()
         // ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
         // ->whereNot('status','selesai')->whereNot('status','cancel')->paginate(request('limit', 10)));
     }
@@ -185,7 +186,7 @@ class PkabItemApiController extends Controller
         $pkabItem->update(['status' => 'cancel', 'ket' => $request->ket]);
         $statusHistory = StatusHistory::create(['pkab_id' => $pkabItem->id,'status' => $pkabItem->status, 'user_id' => auth()->user()->id]);
         
-        return new PkabItemResource(PkabItem::with(['user', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter()
+        return new PkabItemResource(PkabItem::with(['user', 'site', 'dept.bu'])->whereNot('status','selesai')->whereNot('status','cancel')->advancedFilter()
         ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
         ->whereNot('status','selesai')->whereNot('status','cancel')->paginate(request('limit', 10)));
     }
@@ -193,7 +194,7 @@ class PkabItemApiController extends Controller
     public function edit(PkabItem $pkabItem)
     {
         abort_if(Gate::denies('pkab_item_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        
         return response([
             'data' => new PkabItemResource($pkabItem->load(['dept.bu'])),
             'meta' => [
@@ -236,7 +237,7 @@ class PkabItemApiController extends Controller
 
         $statusHistory = StatusHistory::create(['pkab_id' => $pkab->id,'status' => $pkab->status, 'user_id' => auth()->user()->id]);
 
-        return new PkabItemResource($pkab->load(['user', 'dept','items']));
+        return new PkabItemResource($pkab->load(['user', 'site', 'dept','items']));
     }
 
     public function reject(Request $request)
@@ -249,7 +250,7 @@ class PkabItemApiController extends Controller
 
         $statusHistory = StatusHistory::create(['pkab_id' => $pkab->id,'status' => $pkab->status, 'user_id' => auth()->user()->id]);
 
-        return new PkabItemResource($pkab->load(['user', 'dept','items']));
+        return new PkabItemResource($pkab->load(['user', 'site', 'dept','items']));
     }
 
     public function export(PkabItem $pkabItem)

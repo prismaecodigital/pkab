@@ -12,10 +12,10 @@ const mix = require('laravel-mix')
  */
 
 mix.webpackConfig({
-  output: { chunkFilename: 'adminapp/js/chunks/[name].js?id=[chunkhash]' },
-  resolve: {
+  output: { chunkFilename: 'adminapp/js/chunks/[name].js?id=[chunkhash]' },  // output path and filename pattern
+  resolve: {  // module resolution
     extensions: ['.js', '.vue', '.json'],
-    alias: {
+    alias: {  // shorter aliases instead of long directory paths.
       '@': __dirname + '/resources/adminapp/js',
       '@pages': __dirname + '/resources/adminapp/js/pages',
       '@components': __dirname + '/resources/adminapp/js/components',
@@ -25,7 +25,7 @@ mix.webpackConfig({
 })
 
 // Admin App
-mix
+mix // asset compilation tasks
   .js('resources/adminapp/js/app.js', 'public/adminapp/js')
   .sass('resources/adminapp/sass/app.scss', 'public/adminapp/css')
 

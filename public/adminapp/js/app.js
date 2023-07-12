@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"835858ee4dfa3b6ce6f3","1":"ca561ec2e10ba137f2b2","2":"22f39ac279a25100e582","3":"540a03858745aea9d975","4":"f9fecd8bc68d0c780c3f","5":"b1e23a3cec8f4f2a5f06","6":"038e8cb6958361c156d5","7":"7cc945cc6765857bc93d","8":"cfdd02ef8daa1579e6b1","9":"f4a62412a0dd9a8bf118","10":"08768225fc135fb5e8bf","11":"e6ad1c7f28086061b0ff","12":"8bc0ef541750f0a8352a","13":"61053a0959c52cc51ac7","14":"004d42f51bd8057c5414","15":"793615c86c56adc3406c","16":"17cf56aa87cb7b5e33ff","17":"f77cd0d6151da498f838","18":"7a25b7142d0f64937fda","19":"483a7f07946172cf5a08","20":"0e12c8519772e6d19aca","21":"5c0d777bd16d128d9b41","22":"40be305650d0f7cf29f3","23":"575979e8dd58cc47b571","24":"437dee66dee91cb9ba4d","25":"4cc7d791bf16ac671596","26":"9dfc7680392519c80908","27":"81beb837784040edce70","28":"565f6ef09cf82fe4ac19","29":"6f96a2fd52234f2dc0d2","30":"8ecb4b1cc1cb0c1c99b8"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"835858ee4dfa3b6ce6f3","1":"ca561ec2e10ba137f2b2","2":"22f39ac279a25100e582","3":"bf8cdd5aa9c6c318c8f4","4":"f9fecd8bc68d0c780c3f","5":"b1e23a3cec8f4f2a5f06","6":"c10a98ec71c8162f199f","7":"d3ecb20a219b19d120a1","8":"dbbf00fa9cb677663bef","9":"3acf1f248008a7547775","10":"f41b8250279a26f07d51","11":"65a0d252b8bbcf4767f5","12":"2fc700fdb634431a1aab","13":"f8bb23d53249b584a9f2","14":"26f68e328c8c062fb9d5","15":"71eb812250eb6872c13e","16":"d218e73591a1b2406062","17":"fac4b78228610f58f6b5","18":"311d4e0abdc30fc1b833","19":"261345fc731e4cfcbaa8","20":"b83f86568498f78ffec3","21":"53a61dc3b5aae01a4b7a","22":"d8fbb973162aff043132","23":"5210609739d959945555","24":"22ef101e039701d77f92","25":"06b978ce3ce11896c444","26":"73ac81c83bb9233d069c","27":"92810617f870ebc0b2e4","28":"bfba31df69a964f4c0e4","29":"b92efd6e8b65697c1b12","30":"57d73b5019f2ec0c76cd","31":"db8f333a70127534235b","32":"816a13ae224a9414388a","33":"a20031b1ba9211b5dd88","34":"b148b055c9f4f268d1d0"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -59820,7 +59820,7 @@ var routes = [{
     path: 'dashboard',
     name: 'dashboard',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 30).then(__webpack_require__.bind(null, /*! @pages/Dashboard.vue */ "./resources/adminapp/js/pages/Dashboard.vue"));
+      return __webpack_require__.e(/*! import() */ 34).then(__webpack_require__.bind(null, /*! @pages/Dashboard.vue */ "./resources/adminapp/js/pages/Dashboard.vue"));
     },
     meta: {
       title: 'global.dashboard'
@@ -59836,7 +59836,7 @@ var routes = [{
       path: 'pkab-items',
       name: 'pkab_items.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! @cruds/PkabItems/Index.vue */ "./resources/adminapp/js/cruds/PkabItems/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! @cruds/PkabItems/Index.vue */ "./resources/adminapp/js/cruds/PkabItems/Index.vue"));
       },
       meta: {
         title: 'cruds.pkabItem.title'
@@ -59845,7 +59845,7 @@ var routes = [{
       path: 'pkab-items/create',
       name: 'pkab_items.create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! @cruds/PkabItems/Create.vue */ "./resources/adminapp/js/cruds/PkabItems/Create.vue"));
+        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! @cruds/PkabItems/Create.vue */ "./resources/adminapp/js/cruds/PkabItems/Create.vue"));
       },
       meta: {
         title: 'cruds.pkabItem.title'
@@ -59854,7 +59854,7 @@ var routes = [{
       path: 'pkab-items/:id',
       name: 'pkab_items.show',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! @cruds/PkabItems/Show.vue */ "./resources/adminapp/js/cruds/PkabItems/Show.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(14)]).then(__webpack_require__.bind(null, /*! @cruds/PkabItems/Show.vue */ "./resources/adminapp/js/cruds/PkabItems/Show.vue"));
       },
       meta: {
         title: 'cruds.pkabItem.title'
@@ -59863,7 +59863,7 @@ var routes = [{
       path: 'pkab-items/:id/edit',
       name: 'pkab_items.edit',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! @cruds/PkabItems/Edit.vue */ "./resources/adminapp/js/cruds/PkabItems/Edit.vue"));
+        return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! @cruds/PkabItems/Edit.vue */ "./resources/adminapp/js/cruds/PkabItems/Edit.vue"));
       },
       meta: {
         title: 'cruds.pkabItem.title'
@@ -59872,7 +59872,7 @@ var routes = [{
       path: 'pkab-dones',
       name: 'pkab_dones.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! @cruds/PkabDones/Index.vue */ "./resources/adminapp/js/cruds/PkabDones/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! @cruds/PkabDones/Index.vue */ "./resources/adminapp/js/cruds/PkabDones/Index.vue"));
       },
       meta: {
         title: 'cruds.pkabItem.title'
@@ -59881,7 +59881,7 @@ var routes = [{
       path: 'pkab-dones/:id',
       name: 'pkab-dones.show',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! @cruds/PkabDones/Show.vue */ "./resources/adminapp/js/cruds/PkabDones/Show.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! @cruds/PkabDones/Show.vue */ "./resources/adminapp/js/cruds/PkabDones/Show.vue"));
       },
       meta: {
         title: 'cruds.pkabItem.title'
@@ -59898,7 +59898,7 @@ var routes = [{
       path: 'permissions',
       name: 'permissions.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! @cruds/Permissions/Index.vue */ "./resources/adminapp/js/cruds/Permissions/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! @cruds/Permissions/Index.vue */ "./resources/adminapp/js/cruds/Permissions/Index.vue"));
       },
       meta: {
         title: 'cruds.permission.title'
@@ -59907,7 +59907,7 @@ var routes = [{
       path: 'permissions/create',
       name: 'permissions.create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! @cruds/Permissions/Create.vue */ "./resources/adminapp/js/cruds/Permissions/Create.vue"));
+        return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! @cruds/Permissions/Create.vue */ "./resources/adminapp/js/cruds/Permissions/Create.vue"));
       },
       meta: {
         title: 'cruds.permission.title'
@@ -59916,7 +59916,7 @@ var routes = [{
       path: 'permissions/:id',
       name: 'permissions.show',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 23).then(__webpack_require__.bind(null, /*! @cruds/Permissions/Show.vue */ "./resources/adminapp/js/cruds/Permissions/Show.vue"));
+        return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! @cruds/Permissions/Show.vue */ "./resources/adminapp/js/cruds/Permissions/Show.vue"));
       },
       meta: {
         title: 'cruds.permission.title'
@@ -59925,7 +59925,7 @@ var routes = [{
       path: 'permissions/:id/edit',
       name: 'permissions.edit',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! @cruds/Permissions/Edit.vue */ "./resources/adminapp/js/cruds/Permissions/Edit.vue"));
+        return __webpack_require__.e(/*! import() */ 23).then(__webpack_require__.bind(null, /*! @cruds/Permissions/Edit.vue */ "./resources/adminapp/js/cruds/Permissions/Edit.vue"));
       },
       meta: {
         title: 'cruds.permission.title'
@@ -59943,7 +59943,7 @@ var routes = [{
       path: 'roles/create',
       name: 'roles.create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! @cruds/Roles/Create.vue */ "./resources/adminapp/js/cruds/Roles/Create.vue"));
+        return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! @cruds/Roles/Create.vue */ "./resources/adminapp/js/cruds/Roles/Create.vue"));
       },
       meta: {
         title: 'cruds.role.title'
@@ -59952,7 +59952,7 @@ var routes = [{
       path: 'roles/:id',
       name: 'roles.show',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! @cruds/Roles/Show.vue */ "./resources/adminapp/js/cruds/Roles/Show.vue"));
+        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! @cruds/Roles/Show.vue */ "./resources/adminapp/js/cruds/Roles/Show.vue"));
       },
       meta: {
         title: 'cruds.role.title'
@@ -59961,7 +59961,7 @@ var routes = [{
       path: 'roles/:id/edit',
       name: 'roles.edit',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! @cruds/Roles/Edit.vue */ "./resources/adminapp/js/cruds/Roles/Edit.vue"));
+        return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! @cruds/Roles/Edit.vue */ "./resources/adminapp/js/cruds/Roles/Edit.vue"));
       },
       meta: {
         title: 'cruds.role.title'
@@ -59979,7 +59979,7 @@ var routes = [{
       path: 'users/create',
       name: 'users.create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! @cruds/Users/Create.vue */ "./resources/adminapp/js/cruds/Users/Create.vue"));
+        return __webpack_require__.e(/*! import() */ 32).then(__webpack_require__.bind(null, /*! @cruds/Users/Create.vue */ "./resources/adminapp/js/cruds/Users/Create.vue"));
       },
       meta: {
         title: 'cruds.user.title'
@@ -59988,7 +59988,7 @@ var routes = [{
       path: 'users/:id',
       name: 'users.show',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! @cruds/Users/Show.vue */ "./resources/adminapp/js/cruds/Users/Show.vue"));
+        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! @cruds/Users/Show.vue */ "./resources/adminapp/js/cruds/Users/Show.vue"));
       },
       meta: {
         title: 'cruds.user.title'
@@ -59997,7 +59997,7 @@ var routes = [{
       path: 'users/:id/edit',
       name: 'users.edit',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! @cruds/Users/Edit.vue */ "./resources/adminapp/js/cruds/Users/Edit.vue"));
+        return __webpack_require__.e(/*! import() */ 33).then(__webpack_require__.bind(null, /*! @cruds/Users/Edit.vue */ "./resources/adminapp/js/cruds/Users/Edit.vue"));
       },
       meta: {
         title: 'cruds.user.title'
@@ -60014,7 +60014,7 @@ var routes = [{
       path: 'bus',
       name: 'bus.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! @cruds/Bus/Index.vue */ "./resources/adminapp/js/cruds/Bus/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! @cruds/Bus/Index.vue */ "./resources/adminapp/js/cruds/Bus/Index.vue"));
       },
       meta: {
         title: 'cruds.bu.title'
@@ -60023,7 +60023,7 @@ var routes = [{
       path: 'bus/create',
       name: 'bus.create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! @cruds/Bus/Create.vue */ "./resources/adminapp/js/cruds/Bus/Create.vue"));
+        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! @cruds/Bus/Create.vue */ "./resources/adminapp/js/cruds/Bus/Create.vue"));
       },
       meta: {
         title: 'cruds.bu.title'
@@ -60032,7 +60032,7 @@ var routes = [{
       path: 'bus/:id',
       name: 'bus.show',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! @cruds/Bus/Show.vue */ "./resources/adminapp/js/cruds/Bus/Show.vue"));
+        return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! @cruds/Bus/Show.vue */ "./resources/adminapp/js/cruds/Bus/Show.vue"));
       },
       meta: {
         title: 'cruds.bu.title'
@@ -60041,7 +60041,7 @@ var routes = [{
       path: 'bus/:id/edit',
       name: 'bus.edit',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! @cruds/Bus/Edit.vue */ "./resources/adminapp/js/cruds/Bus/Edit.vue"));
+        return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! @cruds/Bus/Edit.vue */ "./resources/adminapp/js/cruds/Bus/Edit.vue"));
       },
       meta: {
         title: 'cruds.bu.title'
@@ -60059,7 +60059,7 @@ var routes = [{
       path: 'depts/create',
       name: 'depts.create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! @cruds/Depts/Create.vue */ "./resources/adminapp/js/cruds/Depts/Create.vue"));
+        return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! @cruds/Depts/Create.vue */ "./resources/adminapp/js/cruds/Depts/Create.vue"));
       },
       meta: {
         title: 'cruds.dept.title'
@@ -60068,7 +60068,7 @@ var routes = [{
       path: 'depts/:id',
       name: 'depts.show',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! @cruds/Depts/Show.vue */ "./resources/adminapp/js/cruds/Depts/Show.vue"));
+        return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! @cruds/Depts/Show.vue */ "./resources/adminapp/js/cruds/Depts/Show.vue"));
       },
       meta: {
         title: 'cruds.dept.title'
@@ -60077,7 +60077,43 @@ var routes = [{
       path: 'depts/:id/edit',
       name: 'depts.edit',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! @cruds/Depts/Edit.vue */ "./resources/adminapp/js/cruds/Depts/Edit.vue"));
+        return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! @cruds/Depts/Edit.vue */ "./resources/adminapp/js/cruds/Depts/Edit.vue"));
+      },
+      meta: {
+        title: 'cruds.dept.title'
+      }
+    }, {
+      path: 'sites',
+      name: 'sites.index',
+      component: function component() {
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! @cruds/Sites/Index.vue */ "./resources/adminapp/js/cruds/Sites/Index.vue"));
+      },
+      meta: {
+        title: 'cruds.dept.title'
+      }
+    }, {
+      path: 'sites/create',
+      name: 'sites.create',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! @cruds/Sites/Create.vue */ "./resources/adminapp/js/cruds/Sites/Create.vue"));
+      },
+      meta: {
+        title: 'cruds.dept.title'
+      }
+    }, {
+      path: 'sites/:id',
+      name: 'sites.show',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 31).then(__webpack_require__.bind(null, /*! @cruds/Sites/Show.vue */ "./resources/adminapp/js/cruds/Sites/Show.vue"));
+      },
+      meta: {
+        title: 'cruds.dept.title'
+      }
+    }, {
+      path: 'sites/:id/edit',
+      name: 'sites.edit',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 30).then(__webpack_require__.bind(null, /*! @cruds/Sites/Edit.vue */ "./resources/adminapp/js/cruds/Sites/Edit.vue"));
       },
       meta: {
         title: 'cruds.dept.title'
@@ -60087,7 +60123,7 @@ var routes = [{
     path: 'profile/edit',
     name: 'profile.password.edit',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! @cruds/Profile/Edit.vue */ "./resources/adminapp/js/cruds/Profile/Edit.vue"));
+      return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! @cruds/Profile/Edit.vue */ "./resources/adminapp/js/cruds/Profile/Edit.vue"));
     },
     meta: {
       title: 'Profile'
@@ -61361,6 +61397,7 @@ function initialState() {
       status: 'leader_acc',
       dept_id: null,
       bu_id: null,
+      site_id: null,
       ket: '',
       created_at: '',
       updated_at: '',
@@ -61601,6 +61638,7 @@ var mutations = {
       'Tanggal dibuat': entry.created_at,
       'Tanggal dibutuhlan': entry.req_date,
       'BU': entry.bu.name,
+      'Site': entry.site ? entry.site.name : '-',
       'Dept': entry.dept.name,
       'User': entry.user.name,
       '---': '---',
@@ -61617,6 +61655,7 @@ var mutations = {
         'Tanggal dibuat': entry.created_at,
         'Tanggal dibutuhkan': entry.req_date,
         'BU': entry.bu.name,
+        'Site': entry.site ? entry.site.name : '-',
         'Dept': entry.dept.name,
         'User': entry.user.name,
         'status': entry.status_label,
@@ -61925,6 +61964,7 @@ function initialState() {
       user_id: null,
       status: 'leader_acc',
       dept_id: null,
+      site_id: null,
       bu_id: null,
       ket: '',
       created_at: '',
@@ -62106,106 +62146,110 @@ var actions = {
     var commit = _ref10.commit;
     commit('setDept', value);
   },
-  setKet: function setKet(_ref11, value) {
+  setSite: function setSite(_ref11, value) {
     var commit = _ref11.commit;
+    commit('setSite', value);
+  },
+  setKet: function setKet(_ref12, value) {
+    var commit = _ref12.commit;
     commit('setKet', value);
   },
-  setCreatedAt: function setCreatedAt(_ref12, value) {
-    var commit = _ref12.commit;
+  setCreatedAt: function setCreatedAt(_ref13, value) {
+    var commit = _ref13.commit;
     commit('setCreatedAt', value);
   },
-  setUpdatedAt: function setUpdatedAt(_ref13, value) {
-    var commit = _ref13.commit;
+  setUpdatedAt: function setUpdatedAt(_ref14, value) {
+    var commit = _ref14.commit;
     commit('setUpdatedAt', value);
   },
-  setDeletedAt: function setDeletedAt(_ref14, value) {
-    var commit = _ref14.commit;
+  setDeletedAt: function setDeletedAt(_ref15, value) {
+    var commit = _ref15.commit;
     commit('setDeletedAt', value);
   },
-  setItems: function setItems(_ref15, value) {
-    var commit = _ref15.commit;
+  setItems: function setItems(_ref16, value) {
+    var commit = _ref16.commit;
     commit('setItems', value);
   },
-  setItemName: function setItemName(_ref16, _ref17) {
-    var commit = _ref16.commit;
-    var index = _ref17.index,
-      val = _ref17.val;
+  setItemName: function setItemName(_ref17, _ref18) {
+    var commit = _ref17.commit;
+    var index = _ref18.index,
+      val = _ref18.val;
     commit('setItemName', {
       index: index,
       val: val
     });
   },
-  setItemMerk: function setItemMerk(_ref18, _ref19) {
-    var commit = _ref18.commit;
-    var index = _ref19.index,
-      val = _ref19.val;
+  setItemMerk: function setItemMerk(_ref19, _ref20) {
+    var commit = _ref19.commit;
+    var index = _ref20.index,
+      val = _ref20.val;
     commit('setItemMerk', {
       index: index,
       val: val
     });
   },
-  setItemSpesifikasi: function setItemSpesifikasi(_ref20, _ref21) {
-    var commit = _ref20.commit;
-    var index = _ref21.index,
-      val = _ref21.val;
+  setItemSpesifikasi: function setItemSpesifikasi(_ref21, _ref22) {
+    var commit = _ref21.commit;
+    var index = _ref22.index,
+      val = _ref22.val;
     commit('setItemSpesifikasi', {
       index: index,
       val: val
     });
   },
-  setItemQty: function setItemQty(_ref22, _ref23) {
-    var commit = _ref22.commit;
-    var index = _ref23.index,
-      val = _ref23.val;
+  setItemQty: function setItemQty(_ref23, _ref24) {
+    var commit = _ref23.commit;
+    var index = _ref24.index,
+      val = _ref24.val;
     commit('setItemQty', {
       index: index,
       val: val
     });
   },
-  setItemSatuan: function setItemSatuan(_ref24, _ref25) {
-    var commit = _ref24.commit;
-    var index = _ref25.index,
-      val = _ref25.val;
+  setItemSatuan: function setItemSatuan(_ref25, _ref26) {
+    var commit = _ref25.commit;
+    var index = _ref26.index,
+      val = _ref26.val;
     commit('setItemSatuan', {
       index: index,
       val: val
     });
   },
-  addItem: function addItem(_ref26) {
-    var commit = _ref26.commit;
+  addItem: function addItem(_ref27) {
+    var commit = _ref27.commit;
     commit('addItem');
   },
-  exportData: function exportData(_ref27) {
-    var commit = _ref27.commit;
+  exportData: function exportData(_ref28) {
+    var commit = _ref28.commit;
     commit('exportData');
   },
-  deleteItem: function deleteItem(_ref28) {
-    var commit = _ref28.commit;
+  deleteItem: function deleteItem(_ref29) {
+    var commit = _ref29.commit;
     commit('deleteItem');
   },
-  fetchCreateData: function fetchCreateData(_ref29) {
-    var commit = _ref29.commit;
+  fetchCreateData: function fetchCreateData(_ref30) {
+    var commit = _ref30.commit;
     axios.get("".concat(route, "/create")).then(function (response) {
       commit('setLists', response.data.meta);
     });
   },
-  fetchEditData: function fetchEditData(_ref30, id) {
-    var commit = _ref30.commit,
-      dispatch = _ref30.dispatch;
+  fetchEditData: function fetchEditData(_ref31, id) {
+    var commit = _ref31.commit,
+      dispatch = _ref31.dispatch;
     axios.get("".concat(route, "/").concat(id, "/edit")).then(function (response) {
       commit('setEntry', response.data.data);
       commit('setLists', response.data.meta);
     });
   },
-  fetchShowData: function fetchShowData(_ref31, id) {
-    var commit = _ref31.commit,
-      dispatch = _ref31.dispatch;
+  fetchShowData: function fetchShowData(_ref32, id) {
+    var commit = _ref32.commit,
+      dispatch = _ref32.dispatch;
     axios.get("".concat(route, "/").concat(id)).then(function (response) {
       commit('setEntry', response.data.data);
     });
   },
-  resetState: function resetState(_ref32) {
-    var commit = _ref32.commit;
+  resetState: function resetState(_ref33) {
+    var commit = _ref33.commit;
     commit('resetState');
   }
 };
@@ -62216,6 +62260,7 @@ var mutations = (_mutations = {
       'Tanggal dibuat': entry.created_at,
       'Tanggal dibutuhlan': entry.req_date,
       'BU': entry.bu.name,
+      'Site': entry.site ? entry.site.name : ' ',
       'Dept': entry.dept.name,
       'User': entry.user.name,
       '---': '---',
@@ -62232,6 +62277,7 @@ var mutations = (_mutations = {
         'Tanggal dibuat': entry.created_at,
         'Tanggal dibutuhkan': entry.req_date,
         'BU': entry.bu.name,
+        'Site': entry.site ? entry.site.name : ' ',
         'Dept': entry.dept.name,
         'User': entry.user.name,
         'status': entry.status_label,
@@ -62314,6 +62360,9 @@ var mutations = (_mutations = {
   },
   setDept: function setDept(state, value) {
     state.entry.dept_id = value;
+  },
+  setSite: function setSite(state, value) {
+    state.entry.site_id = value;
   }
 }, Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setBu", function setBu(state, value) {
   state.entry.bu_id = value;
@@ -62327,25 +62376,25 @@ var mutations = (_mutations = {
   state.entry.deleted_at = value;
 }), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItems", function setItems(state, value) {
   state.entry.items = value;
-}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemName", function setItemName(state, _ref33) {
-  var index = _ref33.index,
-    val = _ref33.val;
-  state.entry.items[index].name = val;
-}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemMerk", function setItemMerk(state, _ref34) {
+}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemName", function setItemName(state, _ref34) {
   var index = _ref34.index,
     val = _ref34.val;
-  state.entry.items[index].merk = val;
-}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemSpesifikasi", function setItemSpesifikasi(state, _ref35) {
+  state.entry.items[index].name = val;
+}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemMerk", function setItemMerk(state, _ref35) {
   var index = _ref35.index,
     val = _ref35.val;
-  state.entry.items[index].spesifikasi = val;
-}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemQty", function setItemQty(state, _ref36) {
+  state.entry.items[index].merk = val;
+}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemSpesifikasi", function setItemSpesifikasi(state, _ref36) {
   var index = _ref36.index,
     val = _ref36.val;
-  state.entry.items[index].qty = val;
-}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemSatuan", function setItemSatuan(state, _ref37) {
+  state.entry.items[index].spesifikasi = val;
+}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemQty", function setItemQty(state, _ref37) {
   var index = _ref37.index,
     val = _ref37.val;
+  state.entry.items[index].qty = val;
+}), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "setItemSatuan", function setItemSatuan(state, _ref38) {
+  var index = _ref38.index,
+    val = _ref38.val;
   state.entry.items[index].satuan = val;
 }), Object(C_Users_62895_laravel9_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_mutations, "addItem", function addItem(state) {
   state.entry.items.push({
@@ -62853,6 +62902,285 @@ var mutations = {
   },
   setPermissions: function setPermissions(state, value) {
     state.entry.permissions = value;
+  },
+  setCreatedAt: function setCreatedAt(state, value) {
+    state.entry.created_at = value;
+  },
+  setUpdatedAt: function setUpdatedAt(state, value) {
+    state.entry.updated_at = value;
+  },
+  setDeletedAt: function setDeletedAt(state, value) {
+    state.entry.deleted_at = value;
+  },
+  setLists: function setLists(state, lists) {
+    state.lists = lists;
+  },
+  setLoading: function setLoading(state, loading) {
+    state.loading = loading;
+  },
+  resetState: function resetState(state) {
+    state = Object.assign(state, initialState());
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: initialState,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/adminapp/js/store/cruds/Sites/index.js":
+/*!**********************************************************!*\
+  !*** ./resources/adminapp/js/store/cruds/Sites/index.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var set = function set(key) {
+  return function (state, val) {
+    state[key] = val;
+  };
+};
+function initialState() {
+  return {
+    data: [],
+    total: 0,
+    query: {},
+    loading: false
+  };
+}
+var route = 'sites';
+var getters = {
+  data: function data(state) {
+    return state.data;
+  },
+  total: function total(state) {
+    return state.total;
+  },
+  loading: function loading(state) {
+    return state.loading;
+  }
+};
+var actions = {
+  fetchIndexData: function fetchIndexData(_ref) {
+    var commit = _ref.commit,
+      state = _ref.state;
+    commit('setLoading', true);
+    axios.get(route, {
+      params: state.query
+    }).then(function (response) {
+      commit('setData', response.data.data);
+      commit('setTotal', response.data.total);
+    })["catch"](function (error) {
+      message = error.response.data.message || error.message;
+      // TODO error handling
+    })["finally"](function () {
+      commit('setLoading', false);
+    });
+  },
+  destroyData: function destroyData(_ref2, id) {
+    var commit = _ref2.commit,
+      state = _ref2.state,
+      dispatch = _ref2.dispatch;
+    axios["delete"]("".concat(route, "/").concat(id)).then(function (response) {
+      dispatch('fetchIndexData');
+    })["catch"](function (error) {
+      message = error.response.data.message || error.message;
+      // TODO error handling
+    });
+  },
+  setQuery: function setQuery(_ref3, value) {
+    var commit = _ref3.commit;
+    commit('setQuery', _.cloneDeep(value));
+  },
+  resetState: function resetState(_ref4) {
+    var commit = _ref4.commit;
+    commit('resetState');
+  }
+};
+var mutations = {
+  setData: set('data'),
+  setTotal: set('total'),
+  setQuery: function setQuery(state, query) {
+    query.page = (query.offset + query.limit) / query.limit;
+    state.query = query;
+  },
+  setLoading: set('loading'),
+  resetState: function resetState(state) {
+    Object.assign(state, initialState());
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: initialState,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/adminapp/js/store/cruds/Sites/single.js":
+/*!***********************************************************!*\
+  !*** ./resources/adminapp/js/store/cruds/Sites/single.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function initialState() {
+  return {
+    entry: {
+      id: null,
+      name: '',
+      bu_id: null,
+      created_at: '',
+      updated_at: '',
+      deleted_at: ''
+    },
+    lists: {
+      bu: []
+    },
+    loading: false
+  };
+}
+var route = 'sites';
+var getters = {
+  entry: function entry(state) {
+    return state.entry;
+  },
+  lists: function lists(state) {
+    return state.lists;
+  },
+  loading: function loading(state) {
+    return state.loading;
+  }
+};
+var actions = {
+  storeData: function storeData(_ref) {
+    var commit = _ref.commit,
+      state = _ref.state,
+      dispatch = _ref.dispatch;
+    commit('setLoading', true);
+    dispatch('Alert/resetState', null, {
+      root: true
+    });
+    return new Promise(function (resolve, reject) {
+      var params = objectToFormData(state.entry, {
+        indices: true,
+        booleansAsIntegers: true
+      });
+      axios.post(route, params).then(function (response) {
+        resolve(response);
+      })["catch"](function (error) {
+        var message = error.response.data.message || error.message;
+        var errors = error.response.data.errors;
+        dispatch('Alert/setAlert', {
+          message: message,
+          errors: errors,
+          color: 'danger'
+        }, {
+          root: true
+        });
+        reject(error);
+      })["finally"](function () {
+        commit('setLoading', false);
+      });
+    });
+  },
+  updateData: function updateData(_ref2) {
+    var commit = _ref2.commit,
+      state = _ref2.state,
+      dispatch = _ref2.dispatch;
+    commit('setLoading', true);
+    dispatch('Alert/resetState', null, {
+      root: true
+    });
+    return new Promise(function (resolve, reject) {
+      var params = objectToFormData(state.entry, {
+        indices: true,
+        booleansAsIntegers: true
+      });
+      params.set('_method', 'PUT');
+      axios.post("".concat(route, "/").concat(state.entry.id), params).then(function (response) {
+        resolve(response);
+      })["catch"](function (error) {
+        var message = error.response.data.message || error.message;
+        var errors = error.response.data.errors;
+        dispatch('Alert/setAlert', {
+          message: message,
+          errors: errors,
+          color: 'danger'
+        }, {
+          root: true
+        });
+        reject(error);
+      })["finally"](function () {
+        commit('setLoading', false);
+      });
+    });
+  },
+  setName: function setName(_ref3, value) {
+    var commit = _ref3.commit;
+    commit('setName', value);
+  },
+  setBu: function setBu(_ref4, value) {
+    var commit = _ref4.commit;
+    commit('setBu', value);
+  },
+  setCreatedAt: function setCreatedAt(_ref5, value) {
+    var commit = _ref5.commit;
+    commit('setCreatedAt', value);
+  },
+  setUpdatedAt: function setUpdatedAt(_ref6, value) {
+    var commit = _ref6.commit;
+    commit('setUpdatedAt', value);
+  },
+  setDeletedAt: function setDeletedAt(_ref7, value) {
+    var commit = _ref7.commit;
+    commit('setDeletedAt', value);
+  },
+  fetchCreateData: function fetchCreateData(_ref8) {
+    var commit = _ref8.commit;
+    axios.get("".concat(route, "/create")).then(function (response) {
+      commit('setLists', response.data.meta);
+    });
+  },
+  fetchEditData: function fetchEditData(_ref9, id) {
+    var commit = _ref9.commit,
+      dispatch = _ref9.dispatch;
+    axios.get("".concat(route, "/").concat(id, "/edit")).then(function (response) {
+      commit('setEntry', response.data.data);
+      commit('setLists', response.data.meta);
+    });
+  },
+  fetchShowData: function fetchShowData(_ref10, id) {
+    var commit = _ref10.commit,
+      dispatch = _ref10.dispatch;
+    axios.get("".concat(route, "/").concat(id)).then(function (response) {
+      commit('setEntry', response.data.data);
+    });
+  },
+  resetState: function resetState(_ref11) {
+    var commit = _ref11.commit;
+    commit('resetState');
+  }
+};
+var mutations = {
+  setEntry: function setEntry(state, entry) {
+    state.entry = entry;
+  },
+  setName: function setName(state, value) {
+    state.entry.name = value;
+  },
+  setBu: function setBu(state, value) {
+    state.entry.bu_id = value;
   },
   setCreatedAt: function setCreatedAt(state, value) {
     state.entry.created_at = value;
@@ -63422,6 +63750,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cruds_Items__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./cruds/Items */ "./resources/adminapp/js/store/cruds/Items/index.js");
 /* harmony import */ var _cruds_Items_single__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./cruds/Items/single */ "./resources/adminapp/js/store/cruds/Items/single.js");
 /* harmony import */ var _cruds_Profile_single__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./cruds/Profile/single */ "./resources/adminapp/js/store/cruds/Profile/single.js");
+/* harmony import */ var _cruds_Sites__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./cruds/Sites */ "./resources/adminapp/js/store/cruds/Sites/index.js");
+/* harmony import */ var _cruds_Sites_single__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./cruds/Sites/single */ "./resources/adminapp/js/store/cruds/Sites/single.js");
+
+
 
 
 
@@ -63465,7 +63797,9 @@ var debug = "development" !== 'production';
     PkabDonesSingle: _cruds_PkabDones_single__WEBPACK_IMPORTED_MODULE_17__["default"],
     ItemsIndex: _cruds_Items__WEBPACK_IMPORTED_MODULE_18__["default"],
     ItemsSingle: _cruds_Items_single__WEBPACK_IMPORTED_MODULE_19__["default"],
-    ProfileSingle: _cruds_Profile_single__WEBPACK_IMPORTED_MODULE_20__["default"]
+    ProfileSingle: _cruds_Profile_single__WEBPACK_IMPORTED_MODULE_20__["default"],
+    SitesIndex: _cruds_Sites__WEBPACK_IMPORTED_MODULE_21__["default"],
+    SitesSingle: _cruds_Sites_single__WEBPACK_IMPORTED_MODULE_22__["default"]
   },
   strict: debug
 }));
