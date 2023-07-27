@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             BuTableSeeder::class,
             DeptTableSeeder::class,
             DeptUserTableSeeder::class,
+            SiteTableSeeder::class,
         ]);
     }
 }
