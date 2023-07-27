@@ -22,11 +22,19 @@ class PkabDoneApiController extends Controller
     public function index()
     {
         abort_if(Gate::denies('pkab_item_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return new PkabDoneResource(PkabItem::with(['user', 'dept', 'bu'])
-        ->advancedFilter()
-        ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
-        ->whereIn('status',['selesai','cancel'])->paginate(request('limit', 10)));
+        
+        if (auth()->user()->hasRole('purchasing')) {
+            return new PkabDoneResource(PkabItem::with(['user', 'site', 'dept', 'bu'])
+            ->advancedFilter()
+            ->whereIn('status',['selesai','cancel'])->paginate(request('limit', 10)));
+            // User has the 'purchasing' role
+        } else {
+            // User does not have the 'purchasing' role
+            return new PkabDoneResource(PkabItem::with(['user', 'site', 'dept', 'bu'])
+            ->advancedFilter()
+            ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
+            ->whereIn('status',['selesai','cancel'])->paginate(request('limit', 10)));
+        }
     }
 
     public function store(StorePkabItemRequest $request)

@@ -52,7 +52,6 @@ class PkabItemApiController extends Controller
         if (auth()->user()->hasRole('purchasing')) {
             return new PkabItemResource(PkabItem::with(['user', 'site', 'dept', 'bu'])
             ->advancedFilter()
-            ->whereIn('dept_id', auth()->user()->dept()->pluck('dept_id'))
             ->whereNot('status','selesai')->whereNot('status','cancel')->whereNot('status', 'leader_acc')->paginate(request('limit', 10)));
             // User has the 'purchasing' role
         } else {
