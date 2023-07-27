@@ -9,7 +9,7 @@ class AddRelationshipFieldsPkabItemsTable extends Migration
     public function up()
     {
         Schema::table('pkab_items', function (Blueprint $table) {
-            $table->foreignId('bu_id')->references('id')->on('bu')->nullable()->onDelete('cascade');
+            $table->foreignId('bu_id')->references('id')->on('bus')->nullable();
         });
     }
 }

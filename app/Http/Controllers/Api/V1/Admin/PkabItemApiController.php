@@ -76,6 +76,7 @@ class PkabItemApiController extends Controller
             'req_date',
             'ket',
             'status',
+            'bu_id',
             'dept_id',
             'site_id'
         ]);

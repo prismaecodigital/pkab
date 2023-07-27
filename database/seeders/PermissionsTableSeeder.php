@@ -124,6 +124,21 @@ class PermissionsTableSeeder extends Seeder
             [
                 'title' => 'user_acc',
             ],
+            [
+                'title' => 'site_create',
+            ],
+            [
+                'title' => 'site_edit',
+            ],
+            [
+                'title' => 'site_show',
+            ],
+            [
+                'title' => 'site_delete',
+            ],
+            [
+                'title' => 'site_access',
+            ],
         ];
 
         Permission::insert($permissions);
