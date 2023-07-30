@@ -62,6 +62,74 @@ const routes = [
         ]
       },
       {
+        path: 'marketlist',
+        name: 'marketlist',
+        component: View,
+        redirect: { name: 'marketlists.index' },
+        children: [
+          {
+            path: 'marketlist',
+            name: 'marketlists.index',
+            component: () => import('@cruds/Marketlists/Index.vue'),
+            meta: { title: 'cruds.marketlist.title' }
+          },
+          {
+            path: 'marketlist/create',
+            name: 'marketlists.create',
+            component: () => import('@cruds/Marketlists/Create.vue'),
+            meta: { title: 'cruds.marketlist.title' }
+          },
+          {
+            path: 'marketlist/:id',
+            name: 'marketlists.show',
+            component: () => import('@cruds/Marketlists/Show.vue'),
+            meta: { title: 'cruds.marketlist.title' }
+          },
+          {
+            path: 'marketlist/:id/edit',
+            name: 'marketlists.edit',
+            component: () => import('@cruds/Marketlists/Edit.vue'),
+            meta: { title: 'cruds.marketlist.title' }
+          },
+          {
+            path: 'marketlist-dones',
+            name: 'marketlist-dones.index',
+            component: () => import('@cruds/MarketlistDones/Index.vue'),
+            meta: { title: 'cruds.marketlist.title' }
+          },
+          {
+            path: 'marketlist-dones/:id',
+            name: 'marketlist-dones.show',
+            component: () => import('@cruds/MarketlistDones/Show.vue'),
+            meta: { title: 'cruds.marketlist.title' }
+          },
+          {
+            path: 'marketlist-items',
+            name: 'marketlist-items.index',
+            component: () => import('@cruds/MarketlistItems/Index.vue'),
+            meta: { title: 'cruds.marketlistItem.title' }
+          },
+          {
+            path: 'marketlist-items/create',
+            name: 'marketlist-items.create',
+            component: () => import('@cruds/MarketlistItems/Create.vue'),
+            meta: { title: 'cruds.marketlistItem.title' }
+          },
+          {
+            path: 'marketlist-items/:id',
+            name: 'marketlist-items.show',
+            component: () => import('@cruds/MarketlistItems/Show.vue'),
+            meta: { title: 'cruds.marketlistItem.title' }
+          },
+          {
+            path: 'marketlist-items/:id/edit',
+            name: 'marketlist-items.edit',
+            component: () => import('@cruds/MarketlistItems/Edit.vue'),
+            meta: { title: 'cruds.marketlistItem.title' }
+          },
+        ]
+      },
+      {
         path: 'user-management',
         name: 'user_management',
         component: View,

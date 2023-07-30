@@ -15,6 +15,7 @@ import vSelect from 'vue-select'
 import Datepicker from 'vuejs-datepicker';
 import excel from 'vue-excel-export'
 import { Timeline, TimelineItem, TimelineTitle } from 'vue-cute-timeline'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 
 const GlobalComponents = {
   install(Vue) {
@@ -25,6 +26,8 @@ const GlobalComponents = {
     Vue.use(Datatable)
     Vue.use(VueSweetalert2)
     Vue.use(excel)
+    Vue.use(BootstrapVue);
+    Vue.use(IconsPlugin);
 
     Vue.component('timeline', Timeline)
     Vue.component('timeline-item', TimelineItem)

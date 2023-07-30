@@ -23,6 +23,14 @@ import ItemsSingle from './cruds/Items/single'
 import ProfileSingle from './cruds/Profile/single'
 import SitesIndex from './cruds/Sites'
 import SitesSingle from './cruds/Sites/single'
+import MarketlistItemsIndex from './cruds/MarketlistItems'
+import MarketlistItemsSingle from './cruds/MarketlistItems/single'
+import CategoriesIndex from './cruds/Categories'
+import CategoriesSingle from './cruds/Categories/single'
+import MarketlistsIndex from './cruds/Marketlists'
+import MarketlistsSingle from './cruds/Marketlists/single'
+import MarketlistDonesIndex from './cruds/MarketlistDones'
+import MarketlistDonesSingle from './cruds/MarketlistDones/single'
 
 Vue.use(Vuex)
 
@@ -50,7 +58,15 @@ export default new Vuex.Store({
     ItemsSingle,
     ProfileSingle,
     SitesIndex,
-    SitesSingle
+    SitesSingle,
+    CategoriesIndex,
+    CategoriesSingle,
+    MarketlistItemsIndex,
+    MarketlistItemsSingle,
+    MarketlistsIndex,
+    MarketlistsSingle,
+    MarketlistDonesIndex,
+    MarketlistDonesSingle
   },
   strict: debug
 })

@@ -49,6 +49,19 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Site
     Route::resource('sites', 'SiteApiController');
 
+    // Marketlist Item
+    Route::resource('marketlist-items', 'MarketlistItemApiController');
+
+    // Marketlist
+    // Route::post('marketlists/approveData', 'MarketlistApiController@approveData')->name('marketlists.approveData');
+    Route::post('marketlists/rejectData', 'MarketlistApiController@rejectData')->name('marketlists.rejectData');
+    Route::resource('marketlists', 'MarketlistApiController');
+
+    Route::resource('marketlist-dones', 'MarketlistDoneApiController')->parameters(['marketlist-dones' => 'marketlists']);
+
+    // Category Marketlist
+    Route::resource('categories','CategoryApiController');
+
     // Change password
         Route::get('password/edit', 'ChangePasswordController@edit')->name('password.edit');
         Route::post('password', 'ChangePasswordController@update')->name('password.update');

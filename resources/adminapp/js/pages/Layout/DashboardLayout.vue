@@ -54,6 +54,32 @@ export default {
           ]
         },
         {
+          title: 'cruds.marketlist.title',
+          icon: 'table_view',
+          path: { name: 'marketlist' },
+          gate: 'marketlist_access',
+          children: [
+            {
+              title: 'cruds.marketlist.title',
+              icon: 'table_view',
+              path: { name: 'marketlists.index' },
+              gate: 'marketlist_access'
+            },
+            {
+              title: 'cruds.marketlist.selesai',
+              icon: 'table_view',
+              path: { name: 'marketlist-dones.index' },
+              gate: 'marketlist_access'
+            },
+            {
+              title: 'Item Marketlist Master',
+              icon: 'table_view',
+              path: { name: 'marketlist-items.index' },
+              gate: 'marketlist_access'
+            },
+          ]
+        },
+        {
           title: 'cruds.userManagement.title',
           icon: 'person',
           path: { name: 'user_management' },

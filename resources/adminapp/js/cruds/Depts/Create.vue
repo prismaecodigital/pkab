@@ -14,7 +14,7 @@
               </h4>
             </div>
             <div class="card-body">
-              <back-button></back-button>is-filled
+              <back-button></back-button>
             </div>
             <div class="card-body">
               <bootstrap-alert />
