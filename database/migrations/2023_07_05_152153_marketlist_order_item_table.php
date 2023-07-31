@@ -21,8 +21,8 @@ return new class extends Migration
             $table->date('required_date');
             $table->integer('qty');
             $table->string('satuan');
-            $table->integer('approved_qty');
-            $table->date('approved_date');
+            $table->integer('approved_qty')->nullable();
+            $table->date('approved_date')->nullable();
             $table->string('notes')->nullable();
             $table->timestamps();
         });

@@ -18,49 +18,49 @@ class PermissionMarketlistTableSeeder extends Seeder
     public function run()
     {
         
-        // $permissions = [
-        //     [
-        //         'title' => 'marketlist_access',
-        //     ],
-        //     [
-        //         'title' => 'marketlist_edit',
-        //     ],
-        //     [
-        //         'title' => 'marketlist_delete',
-        //     ],
-        //     [
-        //         'title' => 'marketlist_show',
-        //     ],
-        //     [
-        //         'title' => 'marketlist_create',
-        //     ],
-        //     [
-        //         'title' => 'marketlist_approve',
-        //     ],
-        //     [
-        //         'title' => 'marketlistItem_access',
-        //     ],
-        //     [
-        //         'title' => 'marketlistItem_edit',
-        //     ],
-        //     [
-        //         'title' => 'marketlistItem_delete',
-        //     ],
-        //     [
-        //         'title' => 'marketlistItem_show',
-        //     ],
-        //     [
-        //         'title' => 'marketlistItem_create',
-        //     ],
-        //     [
-        //         'title' => 'purchasing_ml_1',
-        //     ],
-        //     [
-        //         'title' => 'purchasing_ml_2',
-        //     ],
-        // ];
+        $permissions = [
+            [
+                'title' => 'marketlist_access',
+            ],
+            [
+                'title' => 'marketlist_edit',
+            ],
+            [
+                'title' => 'marketlist_delete',
+            ],
+            [
+                'title' => 'marketlist_show',
+            ],
+            [
+                'title' => 'marketlist_create',
+            ],
+            [
+                'title' => 'marketlist_approve',
+            ],
+            [
+                'title' => 'marketlistItem_access',
+            ],
+            [
+                'title' => 'marketlistItem_edit',
+            ],
+            [
+                'title' => 'marketlistItem_delete',
+            ],
+            [
+                'title' => 'marketlistItem_show',
+            ],
+            [
+                'title' => 'marketlistItem_create',
+            ],
+            [
+                'title' => 'purchasing_ml_1',
+            ],
+            [
+                'title' => 'purchasing_ml_2',
+            ],
+        ];
 
-        // $permission = Permission::insert($permissions);
+        $permission = Permission::insert($permissions);
 
         $marketlist_permissions = Permission::all();
         $purchasing_permissions = Permission::whereNot('title', 'leader_acc')
