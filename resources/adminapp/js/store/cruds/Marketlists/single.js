@@ -17,7 +17,7 @@ function initialState() {
           item_id : null,
           required_date : '',
           required_date_front_end : '',
-          qty : null,
+          qty : 0,
           satuan: '',
           approved_qty: '',
           approved_date: '',
