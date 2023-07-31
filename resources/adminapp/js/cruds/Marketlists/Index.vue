@@ -245,7 +245,7 @@ export default {
       this.filteredData.forEach((item) => {
           // Extract the relevant properties from the item
           const { name, Site, qty } = item;
-          console.log(name, Site, qty)
+          console.log(name, Site, Number(qty))
 
           // Check if the name exists in the transformedData object
           if (!transformedData[name]) {
@@ -254,11 +254,11 @@ export default {
           }
 
           // Set the quantity for the corresponding department in the transformedData object
-          transformedData[name][Site] = qty;
+          transformedData[name][Site] = Number(qty);
 
           // Calculate the total for each name
-          transformedData[name].total += qty;
-          console.log('total' + name + qty + ' : '+ transformedData[name].total)
+          transformedData[name].total += Number(qty);
+          console.log('total' + name + Number(qty) + ' : '+ transformedData[name].total)
 
         });
 
