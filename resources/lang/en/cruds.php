@@ -200,8 +200,8 @@ return [
         ],
     ],
     'marketlist' => [
-        'title'             => 'Marketlist',
-        'title_singular'    => 'Marketlist',
+        'title'             => 'MARKET LIST',
+        'title_singular'    => 'MARKET LIST',
         'selesai'           => 'Selesai',
         'fields'            => [
             'id'                    => 'ID',
