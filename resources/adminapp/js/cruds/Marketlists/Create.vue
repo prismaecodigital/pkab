@@ -392,25 +392,34 @@ export default {
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
         const excelData = utils.sheet_to_json(worksheet, {raw: false });
-
+        const rowExcel = excelData.filter(obj => obj.hasOwnProperty('Qty'));
+        console.log(rowExcel)
         // Process the excelData and add new rows based on the 'qty' column
-        for (let i = 0; i < excelData.length; i++) {
-          const rowData = excelData[i];
-          if (rowData.qty !== null) {
-            // Clone the 'rowData' object to prevent reactivity issues
-            const newRow = { ...rowData };
-            if(newRow.Qty !== undefined) {
-
-              // Process import to UI
-              if (i !== 0) {
+        for (let i = 0; i < rowExcel.length; i++) {
+          const rowData = rowExcel[i];
+          // if (rowData.qty !== null) {
+          //   // Clone the 'rowData' object to prevent reactivity issues
+          //   const newRow = { ...rowData };
+          //   if(newRow.Qty !== undefined) {
+          //     console.log(newRow)
+          //     // Process import to UI
+          //     this.addItem()
+          //     this.updateItemId2(i, newRow.Item)
+          //     this.updateItemRequiredDate2(i, newRow.Tanggal_dibutuhkan)
+          //     this.updateItemQty2(i, newRow.Qty)
+          //     this.updateItemSatuan2(i, newRow.Satuan)
+          //     this.updateItemNotes2(i, newRow.Notes)
+          //   }
+          // }
+          if(rowData.Qty !== undefined) {
+              if(i !== 0) {
                 this.addItem()
               }
-              this.updateItemId2(i, newRow.Item)
-              this.updateItemRequiredDate2(i, newRow.Tanggal_dibutuhkan)
-              this.updateItemQty2(i, newRow.Qty)
-              this.updateItemSatuan2(i, newRow.Satuan)
-              this.updateItemNotes2(i, newRow.Notes)
-            }
+              this.updateItemId2(i, rowData.Item)
+              this.updateItemRequiredDate2(i, rowData.Tanggal_dibutuhkan)
+              this.updateItemQty2(i, rowData.Qty)
+              this.updateItemSatuan2(i, rowData.Satuan)
+              this.updateItemNotes2(i, rowData.Notes)
           }
         }
       };

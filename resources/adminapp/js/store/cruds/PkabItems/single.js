@@ -207,8 +207,8 @@ function initialState() {
     exportData({commit}) {
       commit('exportData')
     },
-    deleteItem({commit}) {
-      commit('deleteItem')
+    deleteItem({commit}, index) {
+      commit('deleteItem', index)
     },
     fetchCreateData({ commit }) {
       axios.get(`${route}/create`).then(response => {

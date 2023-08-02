@@ -213,8 +213,8 @@ function initialState() {
     exportData({commit}) {
       commit('exportData')
     },
-    deleteItem({commit}) {
-      commit('deleteItem')
+    deleteItem({commit}, index) {
+      commit('deleteItem', index)
     },
     fetchCreateData({ commit }) {
       axios.get(`${route}/create`).then(response => {
@@ -320,7 +320,9 @@ function initialState() {
       });
     },
     deleteItem(state, index) {
+      console.log(index)
       state.entry.items.splice(index, 1);
+      console.log(state.entry.items)
     },
     setLists(state, lists) {
       state.lists = lists

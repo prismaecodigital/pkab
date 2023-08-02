@@ -217,24 +217,36 @@ __webpack_require__.r(__webpack_exports__);
         var excelData = xlsx__WEBPACK_IMPORTED_MODULE_5__["utils"].sheet_to_json(worksheet, {
           raw: false
         });
-
+        var rowExcel = excelData.filter(function (obj) {
+          return obj.hasOwnProperty('Qty');
+        });
+        console.log(rowExcel);
         // Process the excelData and add new rows based on the 'qty' column
-        for (var i = 0; i < excelData.length; i++) {
-          var rowData = excelData[i];
-          if (rowData.qty !== null) {
-            // Clone the 'rowData' object to prevent reactivity issues
-            var newRow = Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, rowData);
-            if (newRow.Qty !== undefined) {
-              // Process import to UI
-              if (i !== 0) {
-                _this4.addItem();
-              }
-              _this4.updateItemId2(i, newRow.Item);
-              _this4.updateItemRequiredDate2(i, newRow.Tanggal_dibutuhkan);
-              _this4.updateItemQty2(i, newRow.Qty);
-              _this4.updateItemSatuan2(i, newRow.Satuan);
-              _this4.updateItemNotes2(i, newRow.Notes);
+        for (var i = 0; i < rowExcel.length; i++) {
+          var rowData = rowExcel[i];
+          // if (rowData.qty !== null) {
+          //   // Clone the 'rowData' object to prevent reactivity issues
+          //   const newRow = { ...rowData };
+          //   if(newRow.Qty !== undefined) {
+          //     console.log(newRow)
+          //     // Process import to UI
+          //     this.addItem()
+          //     this.updateItemId2(i, newRow.Item)
+          //     this.updateItemRequiredDate2(i, newRow.Tanggal_dibutuhkan)
+          //     this.updateItemQty2(i, newRow.Qty)
+          //     this.updateItemSatuan2(i, newRow.Satuan)
+          //     this.updateItemNotes2(i, newRow.Notes)
+          //   }
+          // }
+          if (rowData.Qty !== undefined) {
+            if (i !== 0) {
+              _this4.addItem();
             }
+            _this4.updateItemId2(i, rowData.Item);
+            _this4.updateItemRequiredDate2(i, rowData.Tanggal_dibutuhkan);
+            _this4.updateItemQty2(i, rowData.Qty);
+            _this4.updateItemSatuan2(i, rowData.Satuan);
+            _this4.updateItemNotes2(i, rowData.Notes);
           }
         }
       };
