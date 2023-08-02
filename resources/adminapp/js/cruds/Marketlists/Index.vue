@@ -235,17 +235,16 @@ export default {
         const itemDate = new Date(dateObject.setMinutes(dateObject.getMinutes() - offsetInMinutes )); // Add 420 minutes (7 hours) for GMT+7
         // console.log(itemDate)
         // console.log(start)
-        console.log(row.tanggal_dibutuhkan, outputDate)
+        // console.log(row.tanggal_dibutuhkan, outputDate)
         return (
           row.tanggal_dibutuhkan === outputDate
         );
       });
       const transformedData = {};
-      console.log(this.filteredData)
+      const uniqueSites = [...new Set(this.filteredData.map(obj => obj.Site))];
       this.filteredData.forEach((item) => {
           // Extract the relevant properties from the item
           const { name, Site, qty } = item;
-          console.log(name, Site, Number(qty))
 
           // Check if the name exists in the transformedData object
           if (!transformedData[name]) {
@@ -253,14 +252,21 @@ export default {
             transformedData[name] = { name, total: 0 };
           }
 
-          // Set the quantity for the corresponding department in the transformedData object
-          transformedData[name][Site] = Number(qty);
+          uniqueSites.forEach((value) => {
+            // Set the quantity for the corresponding department in the transformedData object
+            if(value !== Site) {
+              transformedData[name][value] = transformedData[name][value] || 0;
+            }
+            if(value === Site) {
+               transformedData[name][value] = Number(qty);
+            }
 
-          // Calculate the total for each name
-          transformedData[name].total += Number(qty);
-          console.log('total' + name + Number(qty) + ' : '+ transformedData[name].total)
+            // Calculate the total for each name
+          })
+          transformedData[name].total += transformedData[name][Site];
+           //  console.log(transformedData)
 
-        });
+      });
 
         // Convert the object values back to an array
         this.filteredData = Object.values(transformedData).map((data) => {

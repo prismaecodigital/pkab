@@ -172,7 +172,16 @@
                         <input class="form-control wrapText" type="number" :value="item.qty" @input="updateItemQty(k, $event)" required/>
                     </td>
                     <td>
-                        <input class="form-control wrapText" type="text" :value="item.satuan" @input="updateItemSatuan(k, $event)" required/>
+                    <v-select
+                      name="satuan"
+                      label="name"
+                      :key="'satuan-field'"
+                      :value="item.satuan"
+                      :options="lists.satuan"
+                      @input="updateItemSatuan(k, $event)"
+                      @search.focus="focusField('item')"
+                      @search.blur="clearFocus"
+                    />
                     </td>
                     <td>
                         <input class="form-control wrapText" type="text" :value="item.notes" @input="updateItemNotes(k, $event)"/>
@@ -320,8 +329,7 @@ export default {
       this.setItemQty({index, val})
       // this.entry.items[index].qty = event.target.value;
     },
-    updateItemSatuan(index, event, val) {
-      val = event.target.value
+    updateItemSatuan(index, val) {
       this.setItemSatuan({index, val})
       // this.entry.items[index].qty = event.target.value;
     },

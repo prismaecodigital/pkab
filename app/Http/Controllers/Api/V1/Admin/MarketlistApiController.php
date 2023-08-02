@@ -57,11 +57,12 @@ class MarketlistApiController extends Controller
         return response([
             'meta' => [
                 'bu'   => Bu::whereIn('id', $bu_id)->get(['id', 'name']),
-                'item' => MarketlistItem::get(['id','name'])
+                'item' => MarketlistItem::get(['id','name']),
+                'satuan' => Marketlist::SATUAN_SELECT
             ],
         ]);       
 
-        return new MarketlistResource(Marketlist::with('items')->advancedFilter()->paginate(request('limit', 10)));
+        // return new MarketlistResource(Marketlist::with('items')->advancedFilter()->paginate(request('limit', 10)));
     }
 
     /**
@@ -114,7 +115,14 @@ class MarketlistApiController extends Controller
     public function show(Marketlist $marketlist)
     {
         // abort if gate denies
-        return new MarketlistResource($marketlist->load(['bu','site','user','items']));
+        return response([
+            'data' => new MarketlistResource($marketlist->load(['bu','site','user','items'])),
+            'meta' => [
+                'bu'   => Bu::get(['id', 'name']),
+                'site'   => Site::get(['id', 'name']),
+                'satuan' => Marketlist::SATUAN_SELECT
+            ],
+        ]);
     }
 
     /**
@@ -133,6 +141,7 @@ class MarketlistApiController extends Controller
             'meta' => [
                 'bu'   => Bu::get(['id', 'name']),
                 'site'   => Site::get(['id', 'name']),
+                'satuan' => Marketlist::SATUAN_SELECT
             ],
         ]);
     }

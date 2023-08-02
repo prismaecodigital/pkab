@@ -31,7 +31,8 @@ function initialState() {
         status: [],
         bu: [],
         site: [],
-        item: []
+        item: [],
+        satuan: []
       },
       loading: false,
       jsonData: [{
@@ -229,6 +230,7 @@ function initialState() {
     fetchShowData({ commit, dispatch }, id) {
       axios.get(`${route}/${id}`).then(response => {
         commit('setEntry', response.data.data)
+        commit('setLists', response.data.meta)
       })
     },
     resetState({ commit }) {

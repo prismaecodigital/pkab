@@ -68,8 +68,7 @@ __webpack_require__.r(__webpack_exports__);
       });
       // this.entry.items[index].qty = event.target.value;
     },
-    updateItemSatuan: function updateItemSatuan(index, event, val) {
-      val = event.target.value;
+    updateItemSatuan: function updateItemSatuan(index, val) {
       this.setItemSatuan({
         index: index,
         val: val
@@ -290,18 +289,25 @@ var render = function render() {
       staticStyle: {
         background: "#dadada"
       }
-    }, [_vm.$can(_vm.entry.status) && _vm.$can("marketlist_edit") ? _c("input", {
-      staticClass: "form-control wrapText",
+    }, [_vm.$can(_vm.entry.status) && _vm.$can("marketlist_edit") ? _c("v-select", {
+      key: "satuan-field",
       attrs: {
-        type: "text"
-      },
-      domProps: {
-        value: item.satuan
+        name: "satuan",
+        label: "name",
+        value: item.satuan,
+        options: _vm.lists.satuan
       },
       on: {
         input: function input($event) {
           return _vm.updateItemSatuan(k, $event);
-        }
+        },
+        search: [function ($event) {
+          if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "focus", undefined, $event.key, undefined)) return null;
+          return _vm.focusField("item");
+        }, function ($event) {
+          if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "blur", undefined, $event.key, undefined)) return null;
+          return _vm.clearFocus.apply(null, arguments);
+        }]
       }
     }) : _c("input", {
       staticClass: "form-control wrapText",
@@ -312,7 +318,7 @@ var render = function render() {
       domProps: {
         value: item.satuan
       }
-    })]), _vm._v(" "), _c("td", {
+    })], 1), _vm._v(" "), _c("td", {
       staticStyle: {
         background: "#dadada"
       }

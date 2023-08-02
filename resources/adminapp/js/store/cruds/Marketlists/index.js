@@ -90,11 +90,10 @@ const set = key => (state, val) => {
       data.forEach(function(value) {
         value.items.forEach(function(val) {
           state.jsonData.push({
-            'name': val.item.name,
+            'name': val.item.name + ' - ' + val.satuan,
             'Site' : value.site.name ?? 'ML',
             'tanggal_dibutuhkan': val.required_date,
             'qty' : val.qty,
-            'satuan' : val.satuan,
             'notes' : val.notes ?? ''
           })
         })

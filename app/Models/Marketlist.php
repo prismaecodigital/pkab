@@ -15,7 +15,7 @@ class Marketlist extends Model
     public $table = 'marketlist_order';
 
     protected $appends = [
-        'status_label'
+        'status_label',
     ];
 
     protected $orderable = [
@@ -56,6 +56,8 @@ class Marketlist extends Model
         'created_at',
         'updated_at',
     ];
+
+    public const SATUAN_SELECT = ['PCS','EKOR','KG','IKET','PACK','BTL','BAL'];
 
     public const STATUS_SELECT = [
         [

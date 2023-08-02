@@ -117,7 +117,16 @@
                       <input disabled v-else class="form-control wrapText" type="number" :value="item.qty"/>
                   </td>
                   <td style="background: #dadada">
-                      <input v-if="$can(entry.status) && $can('marketlist_edit')" class="form-control wrapText" type="text" :value="item.satuan" @input="updateItemSatuan(k, $event)"/>
+                    <v-select v-if="$can(entry.status) && $can('marketlist_edit')"
+                      name="satuan"
+                      label="name"
+                      :key="'satuan-field'"
+                      :value="item.satuan"
+                      :options="lists.satuan"
+                      @input="updateItemSatuan(k, $event)"
+                      @search.focus="focusField('item')"
+                      @search.blur="clearFocus"
+                    />
                       <input disabled v-else class="form-control wrapText" type="text" :value="item.satuan"/>
                   </td>
                   <td style="background: #dadada">
@@ -236,8 +245,7 @@ export default {
       this.setItemQty({index, val})
       // this.entry.items[index].qty = event.target.value;
     },
-    updateItemSatuan(index, event, val) {
-      val = event.target.value
+    updateItemSatuan(index, val) {
       this.setItemSatuan({index, val})
     },
     updateItemApprovedQty(index, event, val) {
