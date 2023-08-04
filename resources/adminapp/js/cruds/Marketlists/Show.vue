@@ -113,8 +113,8 @@
                       <input disabled class="form-control wrapText" :value="item.required_date"/>
                   </td>
                   <td style="background: #dadada">
-                      <input v-if="$can(entry.status) && $can('marketlist_edit')" class="form-control wrapText" type="number" :value="item.qty" @input="updateItemQty(k, $event)"/>
-                      <input disabled v-else class="form-control wrapText" type="number" :value="item.qty"/>
+                      <input v-if="$can(entry.status) && $can('marketlist_edit')" class="form-control wrapText" type="number" step="0.1" :value="item.qty" @input="updateItemQty(k, $event)"/>
+                      <input disabled v-else class="form-control wrapText" type="number" step="0.1" :value="item.qty"/>
                   </td>
                   <td style="background: #dadada">
                     <v-select v-if="$can(entry.status) && $can('marketlist_edit')"

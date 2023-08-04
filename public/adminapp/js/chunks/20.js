@@ -266,7 +266,8 @@ var render = function render() {
     }, [_vm.$can(_vm.entry.status) && _vm.$can("marketlist_edit") ? _c("input", {
       staticClass: "form-control wrapText",
       attrs: {
-        type: "number"
+        type: "number",
+        step: "0.1"
       },
       domProps: {
         value: item.qty
@@ -280,7 +281,8 @@ var render = function render() {
       staticClass: "form-control wrapText",
       attrs: {
         disabled: "",
-        type: "number"
+        type: "number",
+        step: "0.1"
       },
       domProps: {
         value: item.qty
