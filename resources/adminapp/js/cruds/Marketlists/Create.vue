@@ -169,7 +169,7 @@
                     </vuejs-datepicker>
                     </td>
                     <td>
-                        <input class="form-control wrapText" type="number" :value="item.qty" @input="updateItemQty(k, $event)" required/>
+                        <input class="form-control wrapText" type="number" step="0.1" :value="item.qty" @input="updateItemQty(k, $event)" required/>
                     </td>
                     <td>
                     <v-select

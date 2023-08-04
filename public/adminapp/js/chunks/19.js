@@ -448,6 +448,7 @@ var render = function render() {
       staticClass: "form-control wrapText",
       attrs: {
         type: "number",
+        step: "0.1",
         required: ""
       },
       domProps: {
