@@ -431,13 +431,13 @@ var _excluded = ["total"];
             transformedData[name][value] = transformedData[name][value] || 0;
           }
           if (value === Site) {
-            transformedData[name][value] = Number(qty);
+            transformedData[name][value] = transformedData[name][value] + Number(qty) || Number(qty);
           }
 
           // Calculate the total for each name
         });
 
-        transformedData[name].total += transformedData[name][Site];
+        transformedData[name].total += Number(qty);
         //  console.log(transformedData)
       });
 
@@ -524,7 +524,14 @@ var render = function render() {
       background: "#f2a8ff",
       "margin-left": "20px"
     }
-  }, [_vm._v(" Export")]) : _vm._e()], 1), _vm._v(" "), _vm.$can("export") ? _c("div", {
+  }, [_vm._v(" Export")]) : _vm._e(), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-success"
+  }, [_c("export-excel", {
+    attrs: {
+      data: _vm.jsonData,
+      name: _vm.rawData
+    }
+  }, [_vm._v("\n            Export Raw\n          ")])], 1)], 1), _vm._v(" "), _vm.$can("export") ? _c("div", {
     staticClass: "card-body row"
   }, [_c("b-modal", {
     attrs: {

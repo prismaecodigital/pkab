@@ -7,16 +7,14 @@
     >
     Detail
     </router-link>
-
-    <!-- <a
-      href="#"
+<!-- 
+    <router-link
       class="btn btn-lg btn-round btn-success"
-      v-if="$can(row.status)"
-      @click.prevent="approveData(row.id)"
-      type="button"
+      v-if="$can(xprops.permission_prefix + 'edit') && $can(row.status)"
+      :to="{ name: xprops.route + '.edit', params: { id: row.id } }"
     >
-    Approve
-    </a> -->
+      Edit
+    </router-link> -->
 
     <a
       href="#"

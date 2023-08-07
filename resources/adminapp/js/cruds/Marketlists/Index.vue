@@ -35,7 +35,9 @@
               {{ $t('global.refresh') }}
             </button>
             <b-button v-if="$can('export')" class="btn btn-primary" v-b-modal="'modal-1'" style="background: #f2a8ff; margin-left: 20px"> Export</b-button>
-
+            <button class="btn btn-success"><export-excel :data="jsonData" :name="rawData">
+              Export Raw
+            </export-excel></button>
           </div>
           <div v-if="$can('export')" class="card-body row">
             <!-- <div class="col-lg-2">
@@ -258,12 +260,12 @@ export default {
               transformedData[name][value] = transformedData[name][value] || 0;
             }
             if(value === Site) {
-               transformedData[name][value] = Number(qty);
+               transformedData[name][value] = transformedData[name][value] + Number(qty) || Number(qty);
             }
 
             // Calculate the total for each name
           })
-          transformedData[name].total += transformedData[name][Site];
+          transformedData[name].total += Number(qty);
            //  console.log(transformedData)
 
       });

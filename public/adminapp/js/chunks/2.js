@@ -212,7 +212,7 @@ var render = function render() {
         }
       }
     }
-  }, [_vm._v("\n  Detail\n  ")]) : _vm._e(), _vm._v(" "), _vm.$can(_vm.xprops.permission_prefix + "delete") ? _c("a", {
+  }, [_vm._v("\n    Detail\n    ")]) : _vm._e(), _vm._v(" "), _vm.$can(_vm.xprops.permission_prefix + "delete") ? _c("a", {
     staticClass: "btn btn-lg btn-round btn-danger",
     attrs: {
       href: "#",
@@ -224,7 +224,7 @@ var render = function render() {
         return _vm.destroyData(_vm.row.id);
       }
     }
-  }, [_vm._v("\n  Hapus\n  ")]) : _vm._e()], 1);
+  }, [_vm._v("\n    Hapus\n    ")]) : _vm._e()], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
