@@ -38,7 +38,6 @@
             <button class="btn btn-success" @click="logCheckedValues"><export-excel :data="rawData">
               Export Raw
             </export-excel></button>
-            <button @click="logCheckedValues">Log Checked Values</button>
           </div>
           <div v-if="$can('export')" class="card-body row">
             <!-- <div class="col-lg-2">

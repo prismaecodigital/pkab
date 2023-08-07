@@ -646,11 +646,7 @@ var render = function render() {
     attrs: {
       data: _vm.rawData
     }
-  }, [_vm._v("\n            Export Raw\n          ")])], 1), _vm._v(" "), _c("button", {
-    on: {
-      click: _vm.logCheckedValues
-    }
-  }, [_vm._v("Log Checked Values")])], 1), _vm._v(" "), _vm.$can("export") ? _c("div", {
+  }, [_vm._v("\n            Export Raw\n          ")])], 1)], 1), _vm._v(" "), _vm.$can("export") ? _c("div", {
     staticClass: "card-body row"
   }, [_c("b-modal", {
     attrs: {
