@@ -120,7 +120,8 @@ class MarketlistApiController extends Controller
             'meta' => [
                 'bu'   => Bu::get(['id', 'name']),
                 'site'   => Site::get(['id', 'name']),
-                'satuan' => Marketlist::SATUAN_SELECT
+                'satuan' => Marketlist::SATUAN_SELECT,
+                
             ],
         ]);
     }
@@ -141,7 +142,8 @@ class MarketlistApiController extends Controller
             'meta' => [
                 'bu'   => Bu::get(['id', 'name']),
                 'site'   => Site::get(['id', 'name']),
-                'satuan' => Marketlist::SATUAN_SELECT
+                'satuan' => Marketlist::SATUAN_SELECT,
+                'item' => MarketlistItem::get(['id','name']),
             ],
         ]);
     }
@@ -179,6 +181,33 @@ class MarketlistApiController extends Controller
                 $marketlistOrder->update(['qty' => $item['qty'], 'satuan' => $item['satuan']]);
             }
             $marketlist->update(['status' => 'purchasing_ml_2']);
+        }
+
+        return new MarketlistResource($marketlist->load(['user', 'site', 'bu', 'items']));
+
+    }
+
+    public function updateDataOnly(Request $request, Marketlist $marketlist)
+    {
+        // dd($request->all());
+        $marketlist = Marketlist::where('id', $request->id)->first();
+        // return response()->json($request->all());
+        $marketlist->update($request->all());
+        foreach($request->items as $item) {
+            $marketlistOrder = MarketlistOrderItem::where('id', $item['id'] ?? $item['item_id'])->first();
+            if(isset($marketlistOrder)) {
+                $marketlistOrder->update(['item_id' => $item['item_id'], 'required_date' => $item['required_date'], 'qty' => $item['qty'], 'satuan' => $item['satuan'], 'notes' => $item['notes'] ?? '']);
+            }
+            if(!isset($marketlistOrder)) {
+                $marketlistOrder = MarketlistOrderItem::create([
+                    'item_id' => $item['item_id'],
+                    'ml_id' => $marketlist->id,
+                    'required_date' => $item['required_date'],
+                    'qty' => $item['qty'],
+                    'satuan' => $item['satuan'],
+                    'notes' => $item['notes'] ?? '',
+                ]);
+            }
         }
 
         return new MarketlistResource($marketlist->load(['user', 'site', 'bu', 'items']));

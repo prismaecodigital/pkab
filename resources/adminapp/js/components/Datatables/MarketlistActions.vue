@@ -7,14 +7,14 @@
     >
     Detail
     </router-link>
-<!-- 
+
     <router-link
       class="btn btn-lg btn-round btn-success"
-      v-if="$can(xprops.permission_prefix + 'edit') && $can(row.status)"
+      v-if="$can(xprops.permission_prefix + 'edit') && row.status === 'purchasing_ml_1'"
       :to="{ name: xprops.route + '.edit', params: { id: row.id } }"
     >
       Edit
-    </router-link> -->
+    </router-link>
 
     <a
       href="#"

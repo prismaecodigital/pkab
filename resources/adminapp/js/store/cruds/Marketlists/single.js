@@ -118,6 +118,37 @@ function initialState() {
           })
       })
     },
+    updateDataOnly({ commit, state, dispatch }) {
+      commit('setLoading', true)
+      dispatch('Alert/resetState', null, { root: true })
+  
+      return new Promise((resolve, reject) => {
+        let params = objectToFormData(state.entry, {
+          indices: true,
+          booleansAsIntegers: true
+        })
+        axios
+          .post(`${route}/updateDataOnly/${state.entry.id}`, params)
+          .then(response => {
+            resolve(response)
+          })
+          .catch(error => {
+            let message = error.response.data.message || error.message
+            let errors = error.response.data.errors
+  
+            dispatch(
+              'Alert/setAlert',
+              { message: message, errors: errors, color: 'danger' },
+              { root: true }
+            )
+  
+            reject(error)
+          })
+          .finally(() => {
+            commit('setLoading', false)
+          })
+      })
+    },
     rejectData({ commit, state, dispatch }, {id, ket}) {
       commit('setLoading', true)
       dispatch('Alert/resetState', null, { root: true })
