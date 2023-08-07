@@ -57,7 +57,7 @@ class Marketlist extends Model
         'updated_at',
     ];
 
-    public const SATUAN_SELECT = ['PCS','EKOR','KG','IKET','PACK','BTL','BAL'];
+    public const SATUAN_SELECT = ['PCS','EKOR','KG','IKET','PACK','BTL','BAL', 'GRAM'];
 
     public const STATUS_SELECT = [
         [
