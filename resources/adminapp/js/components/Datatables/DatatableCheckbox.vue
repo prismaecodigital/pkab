@@ -4,8 +4,8 @@
       <input
         class="form-check-input"
         type="checkbox"
-        disabled
-        :checked="value"
+        :checked="row.selected"
+        @change="handleCheckboxChange"
       />
       <span class="form-check-sign">
         <span class="check"></span>
@@ -16,7 +16,18 @@
 
 <script>
 export default {
-  props: ['value']
+  props: ['row'],
+  methods: {
+  handleCheckboxChange(event) {
+    const isChecked = event.target.checked;
+    console.log('Value prop:', this.row);
+    console.log('Checkbox checked state:', isChecked);
+    this.$emit('change', isChecked);
+
+    // You can also emit an event if needed
+    // this.$emit('input', isChecked);
+  },
+},
 }
 </script>
 

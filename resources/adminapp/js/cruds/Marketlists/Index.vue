@@ -38,6 +38,7 @@
             <button class="btn btn-success"><export-excel :data="jsonData">
               Export Raw
             </export-excel></button>
+            <!-- <button @click="logCheckedValues">Log Checked Values</button> -->
           </div>
           <div v-if="$can('export')" class="card-body row">
             <!-- <div class="col-lg-2">
@@ -94,6 +95,9 @@
                 >
                   <global-search :query="query" class="pull-left" />
                   <header-settings :columns="columns" class="pull-right" />
+                        <template slot="DatatableCheckbox" slot-scope="props">
+                          <DatatableCheckbox :value="props.row.selected" @change="handleCheckboxChange(props.row)" />
+                        </template>
                 </datatable>
               </div>
             </div>
@@ -120,6 +124,7 @@ import HeaderSettings from '@components/Datatables/HeaderSettings'
 import GlobalSearch from '@components/Datatables/GlobalSearch'
 import DatatableSingle from '@components/Datatables/DatatableSingle'
 import DatatableEnum from '@components/Datatables/DatatableEnum'
+import DatatableCheckbox from '../../components/Datatables/DatatableCheckbox.vue'
 
 export default {
   components: {
@@ -133,6 +138,13 @@ export default {
       endDate: '',
       filteredData: [],
       columns: [
+        {
+          title: '',
+          field: 'selected',
+          thComp: '',
+          tdComp: DatatableCheckbox,
+          sortable: false
+        },
         {
           title: 'cruds.marketlist.fields.code',
           field: 'code',
@@ -219,6 +231,13 @@ export default {
       'setQuery',
       'resetState'
     ]),
+    handleCheckboxChange(row) {
+      row.selected = !row.selected;
+    },
+    logCheckedValues() {
+      const checkedValues = this.data.filter(row => row.selected);
+      console.log('Checked Values:', checkedValues);
+    },
     filterData() {
       // console.log(this.jsonData)
       this.customFilename = this.startDate
