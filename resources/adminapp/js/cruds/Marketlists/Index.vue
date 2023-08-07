@@ -35,7 +35,7 @@
               {{ $t('global.refresh') }}
             </button>
             <b-button v-if="$can('export')" class="btn btn-primary" v-b-modal="'modal-1'" style="background: #f2a8ff; margin-left: 20px"> Export</b-button>
-            <button class="btn btn-success"><export-excel :data="jsonData" :name="rawData">
+            <button class="btn btn-success"><export-excel :data="jsonData">
               Export Raw
             </export-excel></button>
           </div>

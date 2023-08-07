@@ -28,6 +28,7 @@ mix.webpackConfig({
 mix // asset compilation tasks
   .js('resources/adminapp/js/app.js', 'public/adminapp/js')
   .sass('resources/adminapp/sass/app.scss', 'public/adminapp/css')
+  .version()
 
 if (mix.inProduction()) {
   mix.version()

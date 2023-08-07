@@ -60,7 +60,7 @@ class MarketlistOrderItem extends Model
 
     public function item()
     {
-        return $this->belongsTo(MarketlistItem::class, 'item_id');
+        return $this->belongsTo(MarketlistItem::class, 'item_id')->with('category');
     }
 
     protected function serializeDate(DateTimeInterface $date)

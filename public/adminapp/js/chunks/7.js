@@ -528,8 +528,7 @@ var render = function render() {
     staticClass: "btn btn-success"
   }, [_c("export-excel", {
     attrs: {
-      data: _vm.jsonData,
-      name: _vm.rawData
+      data: _vm.jsonData
     }
   }, [_vm._v("\n            Export Raw\n          ")])], 1)], 1), _vm._v(" "), _vm.$can("export") ? _c("div", {
     staticClass: "card-body row"
