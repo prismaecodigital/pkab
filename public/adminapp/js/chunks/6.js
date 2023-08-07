@@ -276,16 +276,16 @@ function _unsupportedIterableToArray(o, minLen) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['row'],
+  props: ['row', 'data'],
   methods: {
     handleCheckboxChange: function handleCheckboxChange(event) {
       var isChecked = event.target.checked;
-      console.log('Value prop:', this.row);
-      console.log('Checkbox checked state:', isChecked);
-      this.$emit('change', isChecked);
-
-      // You can also emit an event if needed
-      // this.$emit('input', isChecked);
+      this.row.selected = !this.row.selected;
+      var checkedValues = this.data.filter(function (row) {
+        return row.selected;
+      });
+      this.$emit('change', isChecked); // Emit input event for v-model
+      this.$emit('checked-values', checkedValues); // Emit checked-values event
     }
   }
 });
@@ -301,18 +301,22 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectWithoutProperties_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
-/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
-/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_slicedToArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
-/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_Datatables_MarketlistActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @components/Datatables/MarketlistActions */ "./resources/adminapp/js/components/Datatables/MarketlistActions.vue");
-/* harmony import */ var _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @components/Datatables/TranslatedHeader */ "./resources/adminapp/js/components/Datatables/TranslatedHeader.vue");
-/* harmony import */ var _components_Datatables_HeaderSettings__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @components/Datatables/HeaderSettings */ "./resources/adminapp/js/components/Datatables/HeaderSettings.vue");
-/* harmony import */ var _components_Datatables_GlobalSearch__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @components/Datatables/GlobalSearch */ "./resources/adminapp/js/components/Datatables/GlobalSearch.vue");
-/* harmony import */ var _components_Datatables_DatatableSingle__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @components/Datatables/DatatableSingle */ "./resources/adminapp/js/components/Datatables/DatatableSingle.vue");
-/* harmony import */ var _components_Datatables_DatatableEnum__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @components/Datatables/DatatableEnum */ "./resources/adminapp/js/components/Datatables/DatatableEnum.vue");
-/* harmony import */ var _components_Datatables_DatatableCheckbox_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/Datatables/DatatableCheckbox.vue */ "./resources/adminapp/js/components/Datatables/DatatableCheckbox.vue");
+/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_typeof_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/typeof.js */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectWithoutProperties_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_slicedToArray_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
+/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var core_js_modules_es_array_push_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.array.push.js */ "./node_modules/core-js/modules/es.array.push.js");
+/* harmony import */ var core_js_modules_es_array_push_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_push_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_Datatables_MarketlistActions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @components/Datatables/MarketlistActions */ "./resources/adminapp/js/components/Datatables/MarketlistActions.vue");
+/* harmony import */ var _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @components/Datatables/TranslatedHeader */ "./resources/adminapp/js/components/Datatables/TranslatedHeader.vue");
+/* harmony import */ var _components_Datatables_HeaderSettings__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @components/Datatables/HeaderSettings */ "./resources/adminapp/js/components/Datatables/HeaderSettings.vue");
+/* harmony import */ var _components_Datatables_GlobalSearch__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @components/Datatables/GlobalSearch */ "./resources/adminapp/js/components/Datatables/GlobalSearch.vue");
+/* harmony import */ var _components_Datatables_DatatableSingle__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @components/Datatables/DatatableSingle */ "./resources/adminapp/js/components/Datatables/DatatableSingle.vue");
+/* harmony import */ var _components_Datatables_DatatableEnum__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @components/Datatables/DatatableEnum */ "./resources/adminapp/js/components/Datatables/DatatableEnum.vue");
+/* harmony import */ var _components_Datatables_DatatableCheckbox_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/Datatables/DatatableCheckbox.vue */ "./resources/adminapp/js/components/Datatables/DatatableCheckbox.vue");
+
 
 
 
@@ -326,10 +330,11 @@ var _excluded = ["total"];
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    GlobalSearch: _components_Datatables_GlobalSearch__WEBPACK_IMPORTED_MODULE_8__["default"],
-    HeaderSettings: _components_Datatables_HeaderSettings__WEBPACK_IMPORTED_MODULE_7__["default"]
+    GlobalSearch: _components_Datatables_GlobalSearch__WEBPACK_IMPORTED_MODULE_10__["default"],
+    HeaderSettings: _components_Datatables_HeaderSettings__WEBPACK_IMPORTED_MODULE_9__["default"]
   },
   data: function data() {
     return {
@@ -337,49 +342,50 @@ var _excluded = ["total"];
       startDate: '',
       endDate: '',
       filteredData: [],
+      rawData: [],
       columns: [{
         title: '',
         field: 'selected',
         thComp: '',
-        tdComp: _components_Datatables_DatatableCheckbox_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+        tdComp: _components_Datatables_DatatableCheckbox_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
         sortable: false
       }, {
         title: 'cruds.marketlist.fields.code',
         field: 'code',
-        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_6__["default"],
+        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_8__["default"],
         sortable: true
       }, {
         title: 'cruds.marketlist.fields.event',
         field: 'event',
-        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_6__["default"],
+        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_8__["default"],
         sortable: true
       }, {
         title: 'cruds.marketlist.fields.created_at',
         field: 'created_at',
-        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_6__["default"],
+        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_8__["default"],
         sortable: true
       }, {
         title: 'cruds.marketlist.fields.user',
         field: 'user.name',
-        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_6__["default"],
-        tdComp: _components_Datatables_DatatableSingle__WEBPACK_IMPORTED_MODULE_9__["default"],
+        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_8__["default"],
+        tdComp: _components_Datatables_DatatableSingle__WEBPACK_IMPORTED_MODULE_11__["default"],
         sortable: true
       }, {
         title: 'cruds.marketlist.fields.bu',
         field: 'bu.name',
-        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_6__["default"],
-        tdComp: _components_Datatables_DatatableSingle__WEBPACK_IMPORTED_MODULE_9__["default"],
+        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_8__["default"],
+        tdComp: _components_Datatables_DatatableSingle__WEBPACK_IMPORTED_MODULE_11__["default"],
         sortable: true
       }, {
         title: 'cruds.marketlist.fields.site',
         field: 'site.name',
-        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_6__["default"],
-        tdComp: _components_Datatables_DatatableSingle__WEBPACK_IMPORTED_MODULE_9__["default"],
+        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_8__["default"],
+        tdComp: _components_Datatables_DatatableSingle__WEBPACK_IMPORTED_MODULE_11__["default"],
         sortable: true
       }, {
         title: 'global.actions',
-        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_6__["default"],
-        tdComp: _components_Datatables_MarketlistActions__WEBPACK_IMPORTED_MODULE_5__["default"],
+        thComp: _components_Datatables_TranslatedHeader__WEBPACK_IMPORTED_MODULE_8__["default"],
+        tdComp: _components_Datatables_MarketlistActions__WEBPACK_IMPORTED_MODULE_7__["default"],
         visible: true,
         thClass: 'text-right',
         tdClass: 'text-right td-actions'
@@ -408,7 +414,7 @@ var _excluded = ["total"];
   beforeDestroy: function beforeDestroy() {
     this.resetState();
   },
-  computed: Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_3__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('MarketlistsIndex', ['data', 'total', 'loading', 'jsonData'])),
+  computed: Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_4__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])('MarketlistsIndex', ['data', 'total', 'loading', 'jsonData'])),
   watch: {
     query: {
       handler: function handler(query) {
@@ -419,22 +425,41 @@ var _excluded = ["total"];
       deep: true
     }
   },
-  methods: Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_3__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_3__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapActions"])('MarketlistsIndex', ['fetchIndexData', 'setQuery', 'resetState'])), {}, {
+  methods: Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_4__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_4__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapActions"])('MarketlistsIndex', ['fetchIndexData', 'setQuery', 'resetState'])), {}, {
     handleCheckboxChange: function handleCheckboxChange(row) {
       row.selected = !row.selected;
+      console.log(row.selected);
     },
     logCheckedValues: function logCheckedValues() {
-      var checkedValues = this.data.filter(function (row) {
+      var obj = this.data.filter(function (row) {
         return row.selected;
       });
-      console.log('Checked Values:', checkedValues);
+      console.log(obj);
+      this.rawData = [];
+      var self = this;
+      obj.forEach(function (value) {
+        value.items.forEach(function (val) {
+          var _value$site$name, _val$notes;
+          self.rawData.push({
+            'Kode ML': value.code,
+            'BU': value.bu.name,
+            'Site': (_value$site$name = value.site.name) !== null && _value$site$name !== void 0 ? _value$site$name : 'ML',
+            'Kategori': val.item.category.name,
+            'name': val.item.name + ' - ' + val.satuan,
+            'tanggal_dibutuhkan': val.required_date,
+            'qty': val.qty,
+            'notes': (_val$notes = val.notes) !== null && _val$notes !== void 0 ? _val$notes : ''
+          });
+        });
+      });
+      console.log(this.rawData);
     },
     filterData: function filterData() {
       // console.log(this.jsonData)
       this.customFilename = this.startDate;
       var start = new Date(this.startDate);
       var _this$startDate$split = this.startDate.split("-"),
-        _this$startDate$split2 = Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_slicedToArray_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_this$startDate$split, 3),
+        _this$startDate$split2 = Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_slicedToArray_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_this$startDate$split, 3),
         year = _this$startDate$split2[0],
         month = _this$startDate$split2[1],
         day = _this$startDate$split2[2];
@@ -451,7 +476,7 @@ var _excluded = ["total"];
         return row.tanggal_dibutuhkan === outputDate;
       });
       var transformedData = {};
-      var uniqueSites = Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_1__["default"])(new Set(this.filteredData.map(function (obj) {
+      var uniqueSites = Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_2__["default"])(new Set(this.filteredData.map(function (obj) {
         return obj.Site;
       })));
       this.filteredData.forEach(function (item) {
@@ -488,13 +513,13 @@ var _excluded = ["total"];
       this.filteredData = Object.values(transformedData).map(function (data) {
         // Extract the "total" property from the object
         var total = data.total,
-          rest = Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectWithoutProperties_js__WEBPACK_IMPORTED_MODULE_0__["default"])(data, _excluded);
+          rest = Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectWithoutProperties_js__WEBPACK_IMPORTED_MODULE_1__["default"])(data, _excluded);
         // Create a new object with the desired column order (move "total" to the last column)
-        return Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_3__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_3__["default"])({}, rest), {}, {
+        return Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_4__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_4__["default"])({}, rest), {}, {
           total: total
         });
       });
-      console.log(this.filteredData);
+      console.log(Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_typeof_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.filteredData));
     }
   })
 });
@@ -613,12 +638,19 @@ var render = function render() {
       "margin-left": "20px"
     }
   }, [_vm._v(" Export")]) : _vm._e(), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-success"
+    staticClass: "btn btn-success",
+    on: {
+      click: _vm.logCheckedValues
+    }
   }, [_c("export-excel", {
     attrs: {
-      data: _vm.jsonData
+      data: _vm.rawData
     }
-  }, [_vm._v("\n            Export Raw\n          ")])], 1)], 1), _vm._v(" "), _vm.$can("export") ? _c("div", {
+  }, [_vm._v("\n            Export Raw\n          ")])], 1), _vm._v(" "), _c("button", {
+    on: {
+      click: _vm.logCheckedValues
+    }
+  }, [_vm._v("Log Checked Values")])], 1), _vm._v(" "), _vm.$can("export") ? _c("div", {
     staticClass: "card-body row"
   }, [_c("b-modal", {
     attrs: {

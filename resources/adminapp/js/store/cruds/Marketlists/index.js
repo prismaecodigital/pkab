@@ -38,7 +38,6 @@ const set = key => (state, val) => {
         .finally(() => {
           // console.log(state.query)
           commit('setLoading', false)
-          console.log(state.jsonData)
         })
     },
     destroyData({ commit, state, dispatch }, id) {
@@ -88,8 +87,10 @@ const set = key => (state, val) => {
     setData: set('data'),
     setJsonData(state, data) {
       data.forEach(function(value) {
+        value.selected = false
         value.items.forEach(function(val) {
           state.jsonData.push({
+            'ml_id' : value.id,
             'BU': value.bu.name,
             'Site' : value.site.name ?? 'ML',
             'Kategori': val.item.category.name,

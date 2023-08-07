@@ -35,10 +35,10 @@
               {{ $t('global.refresh') }}
             </button>
             <b-button v-if="$can('export')" class="btn btn-primary" v-b-modal="'modal-1'" style="background: #f2a8ff; margin-left: 20px"> Export</b-button>
-            <button class="btn btn-success"><export-excel :data="jsonData">
+            <button class="btn btn-success" @click="logCheckedValues"><export-excel :data="rawData">
               Export Raw
             </export-excel></button>
-            <!-- <button @click="logCheckedValues">Log Checked Values</button> -->
+            <button @click="logCheckedValues">Log Checked Values</button>
           </div>
           <div v-if="$can('export')" class="card-body row">
             <!-- <div class="col-lg-2">
@@ -137,6 +137,7 @@ export default {
       startDate: '',
       endDate: '',
       filteredData: [],
+      rawData: [],
       columns: [
         {
           title: '',
@@ -233,10 +234,30 @@ export default {
     ]),
     handleCheckboxChange(row) {
       row.selected = !row.selected;
+      console.log(row.selected)
     },
     logCheckedValues() {
-      const checkedValues = this.data.filter(row => row.selected);
-      console.log('Checked Values:', checkedValues);
+      const obj = this.data.filter(row => row.selected);
+      console.log(obj)
+      this.rawData = [];
+      const self = this;
+
+      obj.forEach(function(value) {
+        value.items.forEach(function(val) {
+          self.rawData.push({
+            'Kode ML' : value.code,
+            'BU': value.bu.name,
+            'Site' : value.site.name ?? 'ML',
+            'Kategori': val.item.category.name,
+            'name': val.item.name + ' - ' + val.satuan,
+            'tanggal_dibutuhkan': val.required_date,
+            'qty' : val.qty,
+            'notes' : val.notes ?? ''
+          })
+        })
+      })
+      console.log(this.rawData)
+      
     },
     filterData() {
       // console.log(this.jsonData)
@@ -297,7 +318,7 @@ export default {
           return { ...rest, total };
         });
 
-        console.log(this.filteredData);
+        console.log(typeof this.filteredData);
     },
   }
 }

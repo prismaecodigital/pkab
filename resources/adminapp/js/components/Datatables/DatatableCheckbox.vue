@@ -16,16 +16,14 @@
 
 <script>
 export default {
-  props: ['row'],
+  props: ['row','data'],
   methods: {
   handleCheckboxChange(event) {
     const isChecked = event.target.checked;
-    console.log('Value prop:', this.row);
-    console.log('Checkbox checked state:', isChecked);
-    this.$emit('change', isChecked);
-
-    // You can also emit an event if needed
-    // this.$emit('input', isChecked);
+    this.row.selected = !this.row.selected;
+    const checkedValues = this.data.filter(row => row.selected);
+    this.$emit('change', isChecked); // Emit input event for v-model
+    this.$emit('checked-values', checkedValues); // Emit checked-values event
   },
 },
 }
