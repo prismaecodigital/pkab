@@ -240,26 +240,34 @@ class MarketlistApiController extends Controller
         return $buCode . $siteCode . $dateCode . $number;
     }
 
-    public function approveData(Request $request)
+    public function approveData(Request $request, Marketlist $marketlist)
     {
-        return response()->json($request->all());
         $marketlist = Marketlist::where('id', $request->id)->first();
-
-        // foreach($request->items as $item) {
-        //     MarketlistItem::where('id', $item['id'])->update(['name' =>$item['name'], 'merk' => $item['merk'], 'spesifikasi' => $item['spesifikasi'], 'qty' => $item['qty'], 'satuan' => $item['satuan'], 'pkab_id' => $pkabItem->id]);
-        // }
-
-        if($marketlist->status === 'purchasing_ml_3') {
-            $marketlist->update(['status' => 'selesai']);
+        if($marketlist->status === 'user_acc') {
+            foreach($request->items as $item) {
+                $marketlistOrder = MarketlistOrderItem::where('id', $item['id'])->first();
+                $marketlistOrder->update(['approved_qty' => $item['approved_qty'], 'approved_date' => $item['approved_date']]);
+            }
+            if($request->isClosed === '1') {
+                $marketlist->update(['status' => 'selesai']);
+            }
         }
         if($marketlist->status === 'purchasing_ml_2') {
-            $marketlist->update(['status' => 'purchasing_ml_3']);
+            foreach($request->items as $item) {
+                $marketlistOrder = MarketlistOrderItem::where('id', $item['id'])->first();
+                $marketlistOrder->update(['qty' => $item['qty'], 'satuan' => $item['satuan']]);
+            }
+            $marketlist->update(['status' => 'user_acc']);
         }
         if($marketlist->status === 'purchasing_ml_1') {
+            foreach($request->items as $item) {
+                $marketlistOrder = MarketlistOrderItem::where('id', $item['id'])->first();
+                $marketlistOrder->update(['qty' => $item['qty'], 'satuan' => $item['satuan']]);
+            }
             $marketlist->update(['status' => 'purchasing_ml_2']);
         }
 
-        return new MarketlistResource($marketlist->load(['user', 'site.bu','items', 'statusHistory.user']));
+        return new MarketlistResource($marketlist->load(['user', 'site', 'bu', 'items']));
     }
 
     public function rejectData(Request $request)

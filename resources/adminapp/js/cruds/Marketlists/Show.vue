@@ -222,7 +222,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('MarketlistsSingle', ['fetchShowData', 'loading', 'resetState', 'approveData', 'updateData', 'setItemId', 'updateMergedData',
+    ...mapActions('MarketlistsSingle', ['fetchShowData', 'loading', 'resetState', 'approveData', 'approveData', 'setItemId', 'updateMergedData',
       'rejectData',
       'setItemRequiredDate',
       'setItemNotes',
@@ -274,7 +274,7 @@ export default {
         if(result.value) {
           let value = result.value
           this.$store
-            .dispatch(this.xprops.module + '/updateData', id)
+            .dispatch(this.xprops.module + '/approveData', id)
             .then(result => {
 
               //redirect logic
