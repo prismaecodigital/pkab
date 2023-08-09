@@ -165,7 +165,7 @@
             </div>
             <div class="row">
               <div class="col-lg-3">
-                <button type='button' class="btn btn-info" @click.prevent="approveData(entry)">
+                <button type='button' class="btn btn-info" @click.prevent="approve(entry)">
                   Approve
                 </button>
               </div>
@@ -222,7 +222,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('MarketlistsSingle', ['fetchShowData', 'loading', 'resetState', 'approveData', 'approveData', 'setItemId', 'updateMergedData',
+    ...mapActions('MarketlistsSingle', ['fetchShowData', 'loading', 'resetState', 'approveData', 'setItemId', 'updateMergedData',
       'rejectData',
       'setItemRequiredDate',
       'setItemNotes',
@@ -261,7 +261,7 @@ export default {
       this.entry.isClosed = value
       // console.log(this.entry.isClosed)
     },
-    approveData(id) {
+    approve(id) {
       this.$swal({
         title: 'Approve?',
         text: 'Are you sure you want to approve this item?',

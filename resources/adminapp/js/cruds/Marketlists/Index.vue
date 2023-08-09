@@ -193,7 +193,7 @@ export default {
           tdClass: 'text-right td-actions'
         }
       ],
-      query: { sort: 'code', order: 'asc', limit: 100, s: '' },
+      query: { sort: 'created_at', order: 'desc', limit: 100, s: '' },
       xprops: {
         module: 'MarketlistsIndex',
         route: 'marketlists',

@@ -157,7 +157,6 @@ class MarketlistApiController extends Controller
      */
     public function update(Request $request, Marketlist $marketlist)
     {
-        // return response()->json($request->all());
 
         if($marketlist->status === 'user_acc') {
             foreach($request->items as $item) {
