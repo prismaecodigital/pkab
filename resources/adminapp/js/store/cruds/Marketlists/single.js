@@ -121,12 +121,12 @@ function initialState() {
     approveData({ commit, state, dispatch }) {
       commit('setLoading', true)
       dispatch('Alert/resetState', null, { root: true })
-  
       return new Promise((resolve, reject) => {
         let params = objectToFormData(state.entry, {
           indices: true,
           booleansAsIntegers: true
         })
+        params.set('_method', 'PUT')
         axios
           .post(`${route}/approveData/${state.entry.id}`, params)
           .then(response => {
@@ -158,6 +158,7 @@ function initialState() {
           indices: true,
           booleansAsIntegers: true
         })
+        params.set('_method', 'PUT')
         axios
           .post(`${route}/updateDataOnly/${state.entry.id}`, params)
           .then(response => {

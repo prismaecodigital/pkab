@@ -55,8 +55,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Marketlist
     // Route::post('marketlists/approveData', 'MarketlistApiController@approveData')->name('marketlists.approveData');
     Route::post('marketlists/rejectData', 'MarketlistApiController@rejectData')->name('marketlists.rejectData');
-    Route::post('marketlists/approveData/{id}', 'MarketlistApiController@approveData')->name('marketlists.approveData');
-    Route::POST('marketlists/updateDataOnly/{id}', 'MarketlistApiController@updateDataOnly')->name('marketlists.updateDataOnly');
+    Route::put('marketlists/approveData/{id}', 'MarketlistApiController@approveData')->name('marketlists.approveData');
+    Route::put('marketlists/updateDataOnly/{id}', 'MarketlistApiController@updateDataOnly')->name('marketlists.updateDataOnly');
     Route::resource('marketlists', 'MarketlistApiController');
 
     Route::resource('marketlist-dones', 'MarketlistDoneApiController')->parameters(['marketlist-dones' => 'marketlists']);
