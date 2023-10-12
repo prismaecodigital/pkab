@@ -113,7 +113,8 @@ return [
     ],
     'pkabItem' => [
         'title'          => 'Dalam Proses',
-        'title_singular' => 'Dalam Prose',
+        'title_singular' => 'PKAB',
+        'selesai'        => 'Selesai',
         'fields'         => [
             'id'                => 'ID',
             'id_helper'         => ' ',

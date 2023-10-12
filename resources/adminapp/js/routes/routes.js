@@ -51,13 +51,13 @@ const routes = [
             path: 'pkab-dones',
             name: 'pkab_dones.index',
             component: () => import('@cruds/PkabDones/Index.vue'),
-            meta: { title: 'cruds.pkabItem.title' }
+            meta: { title: 'cruds.pkabItem.selesai' }
           },
           {
             path: 'pkab-dones/:id',
             name: 'pkab-dones.show',
             component: () => import('@cruds/PkabDones/Show.vue'),
-            meta: { title: 'cruds.pkabItem.title' }
+            meta: { title: 'cruds.pkabItem.selesai' }
           },
         ]
       },
