@@ -37,7 +37,7 @@ class MarketlistApiController extends Controller
             $marketlist->update(['site_id' => $site_id]);
         }
 
-        return new MarketlistResource(Marketlist::with(['items', 'bu', 'site', 'user'])->whereIn('status', ['purchasing_ml_1','purchasing_ml_2','user_acc'])->advancedFilter()->paginate(request('limit', 10)));
+        return new MarketlistResource(Marketlist::with(['items', 'bu', 'site', 'user'])->advancedFilter()->whereIn('status', ['purchasing_ml_1','purchasing_ml_2','user_acc'])->paginate(request('limit', 10)));
 
     }
 
@@ -71,7 +71,7 @@ class MarketlistApiController extends Controller
      * @param  \App\Http\Requests\StoreMarketlistRequest  $request // no
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMarketlistRequest $request)
     {
         //
         $site = Site::findOrFail($request->site_id);
@@ -86,7 +86,7 @@ class MarketlistApiController extends Controller
         $data['user_id'] = auth()->user()->id;
         $data['created_at'] = Carbon::now();
         $data['status'] = 'purchasing_ml_1';
-        $data['code'] = $this->generateCode($site->code ?? 'ML', $bu->code, $data['created_at']);
+        $data['code'] = $this->generateCode($site->code ?? 'ML', $bu->id, $data['created_at']);
     
             $marketlist = Marketlist::create($data);
     
@@ -228,16 +228,31 @@ class MarketlistApiController extends Controller
         return response(null, Response::HTTP_NO_CONTENT);
     }
 
-    protected function generateCode($siteCode, $buCode, $createdAt)
+    protected function generateCode($siteCode, $buId, $createdAt)
     {
-        $count = Marketlist::whereYear('created_at', $createdAt)
-            ->whereMonth('created_at', $createdAt)
-            ->count();
-    
-        $number = str_pad($count + 1, 3, "0", STR_PAD_LEFT);
+        $bu = Bu::where('id', $buId)->first();
+        $buCode = $bu->code;
         $dateCode = substr($createdAt, 2, 2) . substr($createdAt, 5, 2);
-    
-        return $buCode . $siteCode . $dateCode . $number;
+        
+        $marketlist = Marketlist::whereYear('created_at', $createdAt)
+            ->whereMonth('created_at', $createdAt)
+            ->orderBy('id', 'desc');
+        $count = $marketlist->count();
+        $last = $marketlist->orderBy('id','desc')->first();
+        $number = str_pad($count + 1, 3, "0", STR_PAD_LEFT);
+        
+        if(empty($last)) {
+            $number = str_pad($count + 1, 3, "0", STR_PAD_LEFT);
+            $new_code = $buCode . $siteCode . $dateCode . $number;
+            return $new_code;
+        }
+        
+        $code = $last->code;
+        $num = intval(substr($code, -3));
+        $number = str_pad($num + 1, 3, "0", STR_PAD_LEFT);
+        $new_code = $buCode . $siteCode . $dateCode . $number;
+        
+        return $new_code;
     }
 
     public function approveData(Request $request, Marketlist $marketlist)

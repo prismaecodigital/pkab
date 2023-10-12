@@ -97,9 +97,7 @@
                       :options="lists.roles"
                       :closeOnSelect="false"
                       multiple
-                      @input="updateRoles"
-                      @search.focus="focusField('roles')"
-                      @search.blur="clearFocus"
+                      @input="updateRoles"                      
                     />
                   </div>
                                     <div
@@ -121,9 +119,10 @@
                       :closeOnSelect="false"
                       multiple
                       @input="updateBu"
-                      @search.focus="focusField('dept')"
-                      @search.blur="clearFocus"
+                      @change="updateBu"
                     />
+                    <span class="select-all badge" @click="selectAllBu">Pilih Semua</span>
+                    <span class="select-all badge" @click="deselectAllBu">Batalkan pilihan</span>
                   </div>
                   <div
                     class="form-group bmd-form-group"
@@ -140,13 +139,13 @@
                       label="name"
                       :key="'dept-field'"
                       :value="entry.dept"
-                      :options="depts"
+                      :options="lists.dept"
                       :closeOnSelect="false"
                       multiple
-                      @input="updateDept"
-                      @search.focus="focusField('dept')"
-                      @search.blur="clearFocus"
+                      @input="updateDept"                      
                     />
+                    <span class="select-all badge" @click="selectAllDept">Pilih Semua</span>
+                    <span class="select-all badge" @click="deselectAllDept">Batalkan pilihan</span>
                   </div>
                 </div>
               </div>
@@ -202,8 +201,22 @@ export default {
       'setName',
       'setEmail',
       'setPassword',
-      'setRoles', 'setBu', 'setDept'
+      'setRoles', 'setBu', 'setDept', 'setListDepts'
     ]),
+    selectAllBu() {
+      this.setBu('all');
+    },
+    deselectAllBu() {
+      this.setBu([]);
+      this.setDept([])
+      this.setListDepts([])
+    },
+    selectAllDept() {
+      this.setDept('all')
+    },
+    deselectAllDept() {
+      this.setDept([])
+    },
     updateName(e) {
       this.setName(e.target.value)
     },

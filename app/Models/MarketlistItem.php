@@ -35,6 +35,10 @@ class MarketlistItem extends Model
         'updated_at'
     ];
 
+    protected $casts = [
+        'category_id' => 'integer',
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');

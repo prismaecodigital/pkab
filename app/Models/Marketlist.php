@@ -56,8 +56,15 @@ class Marketlist extends Model
         'created_at',
         'updated_at',
     ];
+    
+    protected $casts = [
+        'bu_id' => 'integer',
+        'dept_id' => 'integer',
+        'site_id' => 'integer',
+        'user_id' => 'integer'
+    ];
 
-    public const SATUAN_SELECT = ['PCS','EKOR','KG','IKET','PACK','BTL','BAL', 'GRAM'];
+    public const SATUAN_SELECT = ['PCS','EKOR','KG','IKET','PACK','BTL','BAL', 'GRAM', 'SISIR', 'PAPAN'];
 
     public const STATUS_SELECT = [
         [

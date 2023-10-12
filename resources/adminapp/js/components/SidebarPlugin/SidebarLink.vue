@@ -9,11 +9,7 @@
       :class="[isActive && 'active', isExactActive && 'active']"
     >
       <a :href="href" class="nav-link" @click="navigate">
-        <template v-if="text">
-          <span class="sidebar-mini">{{ textIcon }}</span>
-          <span class="sidebar-normal">{{ $t(item.title) }}</span>
-        </template>
-        <template v-else>
+        <template>
           <i class="material-icons">{{ item.icon }}</i>
           <p>{{ $t(item.title) }}</p>
         </template>

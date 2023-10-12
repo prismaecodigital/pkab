@@ -285,3 +285,22 @@ $body-bg: #f8fafc;
         overflow-x: scroll !important;
     }
 }
+
+.select-all:hover {
+    cursor: pointer;
+}
+
+.badge {
+    font-size: 0.8rem !important;
+    background: azure !important;
+}
+
+.collapse .nav {
+    padding-left: 15px;
+    transition: all 0.5s;
+}
+
+.main-panel >.content {
+    margin: 25px 0px 0px 0px !important;
+    padding: 30px 5px !important;
+}

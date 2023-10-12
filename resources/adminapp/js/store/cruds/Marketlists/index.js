@@ -94,10 +94,9 @@ const set = key => (state, val) => {
             'BU': value.bu.name,
             'Site' : value.site.name ?? 'ML',
             'Kategori': val.item.category.name,
-            'name': val.item.name + ' - ' + val.satuan,
+            'name': val.item.name + ' - ' + val.satuan + ' (' + val.notes + ')',
             'tanggal_dibutuhkan': val.required_date,
-            'qty' : val.qty,
-            'notes' : val.notes ?? ''
+            'qty' : val.qty
           })
         })
       })

@@ -19,7 +19,7 @@
     <a
       href="#"
       class="btn btn-lg btn-round btn-danger"
-      v-if="$can(xprops.permission_prefix + 'delete')"
+      v-if="$can(xprops.permission_prefix + 'delete') || row.status === 'purchasing_ml_1'"
       @click.prevent="destroyData(row.id)"
       type="button"
     >

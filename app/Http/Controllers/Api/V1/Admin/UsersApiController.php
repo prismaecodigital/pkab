@@ -76,7 +76,7 @@ class UsersApiController extends Controller
             'meta' => [
                 'bu'    => Bu::get(),
                 'roles' => Role::get(['id', 'title']),
-                'dept'    => Dept::get(['id', 'name']),
+                'dept'    => Dept::whereIn('bu_id', $user->bu->pluck('id'))->get(['id', 'name']),
             ],
         ]);
     }

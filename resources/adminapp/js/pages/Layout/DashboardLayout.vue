@@ -35,7 +35,7 @@ export default {
         },
         {
           title: 'cruds.pkab.title',
-          icon: 'table_view',
+          icon: 'list_alt',
           path: { name: 'pkab' },
           gate: 'pkab_access',
           children: [
@@ -47,7 +47,7 @@ export default {
             },
             {
               title: 'cruds.pkabItem.selesai',
-              icon: 'table_view',
+              icon: 'check_circle',
               path: { name: 'pkab_dones.index' },
               gate: 'pkab_item_access'
             }
@@ -55,7 +55,7 @@ export default {
         },
         {
           title: 'cruds.marketlist.title',
-          icon: 'table_view',
+          icon: 'storefront',
           path: { name: 'marketlist' },
           gate: 'marketlist_access',
           children: [
@@ -67,13 +67,13 @@ export default {
             },
             {
               title: 'cruds.marketlist.selesai',
-              icon: 'table_view',
+              icon: 'check_circle',
               path: { name: 'marketlist-dones.index' },
               gate: 'marketlist_access'
             },
             {
               title: 'Item Marketlist Master',
-              icon: 'table_view',
+              icon: 'category',
               path: { name: 'marketlist-items.index' },
               gate: 'marketlist_access'
             },
@@ -113,19 +113,19 @@ export default {
           children: [
             {
               title: 'cruds.bu.title',
-              icon: 'table_view',
+              icon: 'business',
               path: { name: 'bus.index' },
               gate: 'bu_access'
             },
                         {
               title: 'cruds.site.title',
-              icon: 'table_view',
+              icon: 'work',
               path: { name: 'sites.index' },
               gate: 'site_access'
             },
             {
               title: 'cruds.dept.title',
-              icon: 'table_view',
+              icon: 'work_outline',
               path: { name: 'depts.index' },
               gate: 'dept_access'
             },
@@ -133,7 +133,7 @@ export default {
         },
         {
           title: 'Profile',
-          icon: 'table_view',
+          icon: 'person',
           path: { name: 'profile.password.edit' },
           gate: 'profile'
         }

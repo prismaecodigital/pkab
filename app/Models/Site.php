@@ -37,6 +37,10 @@ class Site extends Model
         'created_at',
         'updated_at',
     ];
+    
+    protected $casts = [
+        'bu_id' => 'integer',
+    ];
 
     protected function serializeDate(DateTimeInterface $date)
     {

@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_11_10_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
 /* harmony import */ var core_js_modules_es_array_push_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.push.js */ "./node_modules/core-js/modules/es.array.push.js");
 /* harmony import */ var core_js_modules_es_array_push_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_push_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
@@ -24,7 +24,7 @@ __webpack_require__.r(__webpack_exports__);
       depts: []
     };
   },
-  computed: Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('UsersSingle', ['entry', 'loading', 'lists'])),
+  computed: Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_11_10_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('UsersSingle', ['entry', 'loading', 'lists'])),
   beforeDestroy: function beforeDestroy() {
     this.resetState();
   },
@@ -37,7 +37,21 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  methods: Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('UsersSingle', ['fetchEditData', 'updateData', 'resetState', 'setName', 'setEmail', 'setPassword', 'setRoles', 'setBu', 'setDept'])), {}, {
+  methods: Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_11_10_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_pkab_deploy_pkab_11_10_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('UsersSingle', ['fetchEditData', 'updateData', 'resetState', 'setName', 'setEmail', 'setPassword', 'setRoles', 'setBu', 'setDept', 'setListDepts'])), {}, {
+    selectAllBu: function selectAllBu() {
+      this.setBu('all');
+    },
+    deselectAllBu: function deselectAllBu() {
+      this.setBu([]);
+      this.setDept([]);
+      this.setListDepts([]);
+    },
+    selectAllDept: function selectAllDept() {
+      this.setDept('all');
+    },
+    deselectAllDept: function deselectAllDept() {
+      this.setDept([]);
+    },
     updateName: function updateName(e) {
       this.setName(e.target.value);
     },
@@ -231,14 +245,7 @@ var render = function render() {
       multiple: ""
     },
     on: {
-      input: _vm.updateRoles,
-      search: [function ($event) {
-        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "focus", undefined, $event.key, undefined)) return null;
-        return _vm.focusField("roles");
-      }, function ($event) {
-        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "blur", undefined, $event.key, undefined)) return null;
-        return _vm.clearFocus.apply(null, arguments);
-      }]
+      input: _vm.updateRoles
     }
   })], 1), _vm._v(" "), _c("div", {
     staticClass: "form-group bmd-form-group",
@@ -258,15 +265,19 @@ var render = function render() {
     },
     on: {
       input: _vm.updateBu,
-      search: [function ($event) {
-        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "focus", undefined, $event.key, undefined)) return null;
-        return _vm.focusField("dept");
-      }, function ($event) {
-        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "blur", undefined, $event.key, undefined)) return null;
-        return _vm.clearFocus.apply(null, arguments);
-      }]
+      change: _vm.updateBu
     }
-  })], 1), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("span", {
+    staticClass: "select-all badge",
+    on: {
+      click: _vm.selectAllBu
+    }
+  }, [_vm._v("Pilih Semua")]), _vm._v(" "), _c("span", {
+    staticClass: "select-all badge",
+    on: {
+      click: _vm.deselectAllBu
+    }
+  }, [_vm._v("Batalkan pilihan")])], 1), _vm._v(" "), _c("div", {
     staticClass: "form-group bmd-form-group",
     "class": {
       "is-filled": _vm.entry.dept.length !== 0,
@@ -278,21 +289,24 @@ var render = function render() {
       name: "dept",
       label: "name",
       value: _vm.entry.dept,
-      options: _vm.depts,
+      options: _vm.lists.dept,
       closeOnSelect: false,
       multiple: ""
     },
     on: {
-      input: _vm.updateDept,
-      search: [function ($event) {
-        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "focus", undefined, $event.key, undefined)) return null;
-        return _vm.focusField("dept");
-      }, function ($event) {
-        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "blur", undefined, $event.key, undefined)) return null;
-        return _vm.clearFocus.apply(null, arguments);
-      }]
+      input: _vm.updateDept
     }
-  })], 1)])])], 1), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("span", {
+    staticClass: "select-all badge",
+    on: {
+      click: _vm.selectAllDept
+    }
+  }, [_vm._v("Pilih Semua")]), _vm._v(" "), _c("span", {
+    staticClass: "select-all badge",
+    on: {
+      click: _vm.deselectAllDept
+    }
+  }, [_vm._v("Batalkan pilihan")])], 1)])])], 1), _vm._v(" "), _c("div", {
     staticClass: "card-footer"
   }, [_c("vue-button-spinner", {
     staticClass: "btn-primary",

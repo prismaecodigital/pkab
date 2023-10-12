@@ -13,6 +13,10 @@ class MarketlistOrderItem extends Model
     use HasFactory, HasAdvancedFilter;
 
     public $table = 'marketlist_order_item';
+    
+    protected $appends = [
+        'required_date_front_end'
+    ];
 
     protected $orderable = [
         'ml_id',
@@ -52,6 +56,16 @@ class MarketlistOrderItem extends Model
         'created_at',
         'updated_at'
     ];
+    
+    protected $casts = [
+        'item_id' => 'integer',
+        'ml_id' => 'integer',
+    ];
+    
+    public function getRequiredDateFrontEndAttribute($value)
+    {
+        return $this->attributes['required_date'];
+    }
 
     public function marketlist()
     {

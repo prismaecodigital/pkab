@@ -19,6 +19,10 @@ class Dept extends Model
         'name',
         'code',
     ];
+    
+    protected $casts = [
+        'bu_id' => 'integer',
+    ];
 
     protected $filterable = [
         'id',
