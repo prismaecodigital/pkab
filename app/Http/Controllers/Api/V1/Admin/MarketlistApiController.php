@@ -31,13 +31,12 @@ class MarketlistApiController extends Controller
         //
         abort_if(Gate::denies('marketlist_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $marketlists = Marketlist::where('site_id', null)->get();
-        $site_id = Site::where('name','-')->first()->id;
-        foreach($marketlists as $marketlist) {
-            $marketlist->update(['site_id' => $site_id]);
-        }
-
+        if (auth()->user()->hasRole('purchasing')) {
         return new MarketlistResource(Marketlist::with(['items', 'bu', 'site', 'user'])->advancedFilter()->whereIn('status', ['purchasing_ml_1','purchasing_ml_2','user_acc'])->paginate(request('limit', 10)));
+        }
+        else {
+        return new MarketlistResource(Marketlist::with(['items', 'bu', 'site', 'user'])->advancedFilter()->whereIn('status', ['purchasing_ml_1','purchasing_ml_2','user_acc'])->whereIn('bu_id', auth()->user()->bu->pluck('id'))->paginate(request('limit', 10))); 
+        }
 
     }
 
@@ -193,21 +192,16 @@ class MarketlistApiController extends Controller
         $marketlist = Marketlist::where('id', $request->id)->first();
         // return response()->json($request->all());
         $marketlist->update($request->all());
-        foreach($request->items as $item) {
-            $marketlistOrder = MarketlistOrderItem::where('id', $item['id'] ?? $item['item_id'])->first();
-            if(isset($marketlistOrder)) {
-                $marketlistOrder->update(['item_id' => $item['item_id'], 'required_date' => $item['required_date'], 'qty' => $item['qty'], 'satuan' => $item['satuan'], 'notes' => $item['notes'] ?? '']);
-            }
-            if(!isset($marketlistOrder)) {
-                $marketlistOrder = MarketlistOrderItem::create([
-                    'item_id' => $item['item_id'],
-                    'ml_id' => $marketlist->id,
-                    'required_date' => $item['required_date'],
-                    'qty' => $item['qty'],
-                    'satuan' => $item['satuan'],
-                    'notes' => $item['notes'] ?? '',
-                ]);
-            }
+        $marketlist->items()->delete();
+        foreach ($request->items as $itemData) {
+            $item = MarketlistOrderItem::create([
+                'item_id' => $itemData['item_id'],
+                'ml_id' => $marketlist->id,
+                'required_date' => $itemData['required_date'],
+                'qty' => $itemData['qty'],
+                'satuan' => $itemData['satuan'],
+                'notes' => $itemData['notes'] ?? '',
+            ]);
         }
 
         return new MarketlistResource($marketlist->load(['user', 'site', 'bu', 'items']));
