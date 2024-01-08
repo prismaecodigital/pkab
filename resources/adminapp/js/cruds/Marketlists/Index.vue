@@ -35,28 +35,9 @@
               {{ $t('global.refresh') }}
             </button>
             <b-button v-if="$can('export')" class="btn btn-primary" v-b-modal="'modal-1'" style="background: #f2a8ff; margin-left: 20px"> Export</b-button>
-            <button class="btn btn-success" @click="logCheckedValues"><export-excel :data="rawData">
-              Export Raw
-            </export-excel></button>
+            <button v-if="$can('export')" class="btn btn-success" @click="logCheckedValues">Export Raw</button>
           </div>
           <div v-if="$can('export')" class="card-body row">
-            <!-- <div class="col-lg-2">
-              <label for="start-date">Start Date:</label>
-              <input type="date" id="start-date" v-model="startDate" @change="filterData" />
-            </div>
-
-            <div class="col-lg-2">
-              <label for="end-date">End Date:</label>
-              <input type="date" id="end-date" v-model="endDate" @change="filterData" />
-            </div>
-            <div class="col-lg-2">
-              <export-excel v-if="$can('export')"
-                :data   = "filteredData">
-                <button class="btn btn-success">Export</button>
-              </export-excel>
-            </div> -->
-            <!-- Add a button to trigger the pop-up modal -->
-
             <b-modal id="modal-1" title="Export Data">
               <div class="modal-body">
                 <!-- Date inputs for start and end date selection -->
@@ -72,7 +53,15 @@
                 </export-excel>
               </div>
             </b-modal>
-
+          </div>
+          <div class="card-body row">
+            <b-modal id="modal-2" ref="modal-2" title="Export Data 2">
+              <div class="modal-body">
+                <button class="btn btn-success"><export-excel :data="rawData">
+                    Download
+                </export-excel></button>
+              </div>
+            </b-modal>
           </div>
           <div class="card-body">
             <div class="row">
@@ -237,7 +226,6 @@ export default {
     },
     logCheckedValues() {
       const obj = this.data.filter(row => row.selected);
-      console.log(obj)
       this.rawData = [];
       const self = this;
 
@@ -256,6 +244,7 @@ export default {
         })
       })
       console.log(this.rawData)
+      this.$refs['modal-2'].show()
       
     },
     filterData() {
