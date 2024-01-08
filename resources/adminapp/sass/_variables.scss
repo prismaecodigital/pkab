@@ -304,3 +304,30 @@ $body-bg: #f8fafc;
     margin: 25px 0px 0px 0px !important;
     padding: 30px 5px !important;
 }
+
+@media (max-width: 768px) {
+    table > thead > tr > th, table > tbody > tr > td, table > tbody > tr > td > div > span,
+    table > tbody > tr > td > div > a {
+        font-size: 12px !important;
+    }
+    .card-body {
+        overflow-x: scroll !important;
+    }
+
+    .collapse .nav {
+        padding-left: 5px;
+    }
+}
+
+table > thead > th, table > tbody > tr > td, table > tbody > tr > td > div > span,
+table > tbody > tr > td > div > a {
+    font-size: 12px !important;
+}
+
+.table thead tr th {
+    font-size: 14px;
+}
+
+.table tbody tr td {
+    font-size: 12px;
+}

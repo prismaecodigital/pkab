@@ -20,26 +20,6 @@
               <bootstrap-alert />
               <div class="row">
                 <div class="col-md-12">
-                  <!-- <div
-                    class="form-group bmd-form-group"
-                    :class="{
-                      'is-filled': entry.req_date,
-                      'is-focused': activeField == 'req_date'
-                    }"
-                  >
-                    <label class="">{{
-                      $t('cruds.marketlist.fields.req_date')
-                    }}</label>
-                    <vuejs-datepicker
-                      input-class="form-control"
-                      format="dd-MM-yyyy"
-                      :disabled-dates="date.disabledDates"
-                      :value="entry.req_date_front_end"
-                      @input="updateReqDate"
-                      
-                    >
-                    </vuejs-datepicker>
-                  </div> -->
                   <div
                     class="form-group bmd-form-group"
                     :class="{
@@ -78,8 +58,6 @@
                       :options="lists.bu"
                       :reduce="entry => entry.id"
                       @input="updateBu"
-                      @search.focus="focusField('bu')"
-                      @search.blur="clearFocus"
                     />
                   </div>
                   <div
@@ -100,8 +78,6 @@
                       :options="lists.site"
                       :reduce="entry => entry.id"
                       @input="updateSite"
-                      @search.focus="focusField('site')"
-                      @search.blur="clearFocus"
                     />
                   </div>
                 </div>
@@ -115,20 +91,6 @@
               </h4>
             </div>
             <br>
-            <!-- <div class="card-body">
-              <table>
-                <thead>
-                  <tr>
-                    <th v-for="header in headers" :key="header">{{ header }}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="row in excelData" :key="rowIndex">
-                    <td v-for="(cell, colIndex) in row" :key="colIndex">{{ cell }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div> -->
             <div class="card-body">
               <bootstrap-alert />
               <table class="table table-bordered" name="inputItem">
@@ -154,8 +116,6 @@
                       :options="lists.item"
                       :reduce="item => item.id"
                       @input="updateItemId(k, $event)"
-                      @search.focus="focusField('item')"
-                      @search.blur="clearFocus"
                     />
                     </td>
                     <td>
@@ -163,7 +123,7 @@
                       input-class="form-control"
                       format="dd-MM-yyyy"
                       :disabled-dates="date.disabledDates"
-                      :value="item.required_date"
+                      :value="item.required_date_front_end"
                       @input="updateItemRequiredDate(k, $event)"
                     >
                     </vuejs-datepicker>
@@ -179,8 +139,6 @@
                       :value="item.satuan"
                       :options="lists.satuan"
                       @input="updateItemSatuan(k, $event)"
-                      @search.focus="focusField('item')"
-                      @search.blur="clearFocus"
                     />
                     </td>
                     <td>
@@ -404,20 +362,6 @@ export default {
         // Process the excelData and add new rows based on the 'qty' column
         for (let i = 0; i < rowExcel.length; i++) {
           const rowData = rowExcel[i];
-          // if (rowData.qty !== null) {
-          //   // Clone the 'rowData' object to prevent reactivity issues
-          //   const newRow = { ...rowData };
-          //   if(newRow.Qty !== undefined) {
-          //     console.log(newRow)
-          //     // Process import to UI
-          //     this.addItem()
-          //     this.updateItemId2(i, newRow.Item)
-          //     this.updateItemRequiredDate2(i, newRow.Tanggal_dibutuhkan)
-          //     this.updateItemQty2(i, newRow.Qty)
-          //     this.updateItemSatuan2(i, newRow.Satuan)
-          //     this.updateItemNotes2(i, newRow.Notes)
-          //   }
-          // }
           if(rowData.Qty !== undefined) {
               if(i !== 0) {
                 this.addItem()
