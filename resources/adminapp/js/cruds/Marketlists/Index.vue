@@ -45,9 +45,6 @@
                 <input type="date" id="start-date" v-model="startDate" @change="filterData" />
               </div>
               <div class="modal-body">
-                <!-- Button to close the modal -->
-
-                <!-- Export button inside the modal -->
                 <export-excel :data="filteredData" :name="customFilename">
                   <button class="btn btn-success">Export</button>
                 </export-excel>
