@@ -47,7 +47,7 @@ var render = function render() {
     staticClass: "card-title"
   }, [_vm._v("\n              " + _vm._s(_vm.$t("global.dashboard")) + "\n            ")])]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
-  }, [_vm._v("\n            " + _vm._s(_vm.$t("global.youAreLoggedIn")) + "\n          ")]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n            " + _vm._s(_vm.$t("global.youAreLoggedIn")) + "\n          ")]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
   })])])])])]);
 };
@@ -59,12 +59,6 @@ var staticRenderFns = [function () {
   }, [_c("i", {
     staticClass: "material-icons"
   }, [_vm._v("language")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "card-body"
-  }, [_vm._v("\n            Update : "), _c("br"), _vm._v(" "), _c("p", [_vm._v("Fix beberapa error pada saat mengedit tanggal marketlist"), _c("br"), _vm._v("\n            Optimisasi Tampilan")])]);
 }];
 render._withStripped = true;
 

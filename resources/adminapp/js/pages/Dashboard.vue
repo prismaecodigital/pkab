@@ -16,11 +16,6 @@
               {{ $t('global.youAreLoggedIn') }}
             </div>
             <div class="card-body">
-              Update : <br>
-              <p>Fix beberapa error pada saat mengedit tanggal marketlist<br>
-              Optimisasi Tampilan</p>
-            </div>
-            <div class="card-body">
               
             </div>
           </div>
