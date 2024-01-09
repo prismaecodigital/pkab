@@ -280,6 +280,8 @@ $body-bg: #f8fafc;
     table > thead > tr > th, table > tbody > tr > td, table > tbody > tr > td > div > span,
     table > tbody > tr > td > div > a {
         font-size: 12px !important;
+        word-wrap: break-word !important;
+        white-space: normal !important;
     }
     .card-body {
         overflow-x: scroll !important;

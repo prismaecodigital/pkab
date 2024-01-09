@@ -245,7 +245,7 @@ export default {
       
     },
     filterData() {
-      // console.log(this.jsonData)
+      console.log(this.jsonData)
       this.customFilename = this.startDate
       const start = new Date(this.startDate)
       const [year, month, day] = this.startDate.split("-");
@@ -303,7 +303,7 @@ export default {
           return { ...rest, total };
         });
 
-        console.log(typeof this.filteredData);
+        console.log(this.filteredData);
     },
   }
 }
