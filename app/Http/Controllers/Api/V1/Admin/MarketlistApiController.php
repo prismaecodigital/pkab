@@ -193,21 +193,16 @@ class MarketlistApiController extends Controller
         $marketlist = Marketlist::where('id', $request->id)->first();
         // return response()->json($request->all());
         $marketlist->update($request->all());
-        foreach($request->items as $item) {
-            $marketlistOrder = MarketlistOrderItem::where('id', $item['id'] ?? $item['item_id'])->first();
-            if(isset($marketlistOrder)) {
-                $marketlistOrder->update(['item_id' => $item['item_id'], 'required_date' => $item['required_date'], 'qty' => $item['qty'], 'satuan' => $item['satuan'], 'notes' => $item['notes'] ?? '']);
-            }
-            if(!isset($marketlistOrder)) {
-                $marketlistOrder = MarketlistOrderItem::create([
-                    'item_id' => $item['item_id'],
-                    'ml_id' => $marketlist->id,
-                    'required_date' => $item['required_date'],
-                    'qty' => $item['qty'],
-                    'satuan' => $item['satuan'],
-                    'notes' => $item['notes'] ?? '',
-                ]);
-            }
+        $marketlist->items()->delete();
+        foreach ($request->items as $itemData) {
+            $item = MarketlistOrderItem::create([
+                'item_id' => $itemData['item_id'],
+                'ml_id' => $marketlist->id,
+                'required_date' => $itemData['required_date'],
+                'qty' => $itemData['qty'],
+                'satuan' => $itemData['satuan'],
+                'notes' => $itemData['notes'] ?? '',
+            ]);
         }
 
         return new MarketlistResource($marketlist->load(['user', 'site', 'bu', 'items']));

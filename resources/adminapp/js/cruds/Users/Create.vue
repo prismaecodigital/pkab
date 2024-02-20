@@ -200,14 +200,6 @@ export default {
     }
   },
   computed: {
-    // filteredDepts() {
-    //     if (!this.selectedBu) {
-    //         return [];
-    //     }
-    //     return this.depts.filter(dept => {
-    //         return dept.bu_id === parseInt(this.selectedBu.id);
-    //     });
-    // },
     ...mapGetters('UsersSingle', ['entry', 'loading', 'lists'])
   },
   mounted() {
@@ -230,6 +222,13 @@ export default {
       'fetchCreateData',
       'setListDepts'
     ]),
+    updateBu(value) {
+      this.setDept([])
+      this.setBu(value)
+    },
+    updateDept(value) {
+      this.setDept(value)
+    },
     selectAllBu() {
       this.setBu('all');
     },
@@ -259,33 +258,7 @@ export default {
     updateRoles(value) {
       this.setRoles(value)
     },
-    updateBu(value) {
-      this.setDept([])
-      const bu_ids = value.map(function (data) {
-        return data.id;
-    });
-      this.setBu(value)
-      if(value[0] != null) {
-        axios.get('/budept-all', {
-          params: {
-              bu: bu_ids
-          }
-        })
-        .then(response => {
-            this.depts = response.data;
-        })
-        .catch(error => {
-            console.log(error);
-        });
-      }
-      else {
-        this.depts = []
-      }
-      
-    },
-    updateDept(value) {
-      this.setDept(value)
-    },
+
     submitForm() {
       this.storeData()
         .then(() => {

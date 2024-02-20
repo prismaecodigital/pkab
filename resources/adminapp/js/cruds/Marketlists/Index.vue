@@ -35,27 +35,11 @@
               {{ $t('global.refresh') }}
             </button>
             <b-button v-if="$can('export')" class="btn btn-primary" v-b-modal="'modal-1'" style="background: #f2a8ff; margin-left: 20px"> Export</b-button>
-            <button class="btn btn-success" @click="logCheckedValues"><export-excel :data="rawData">
+            <button v-if="$can('export')" class="btn btn-success" @click="logCheckedValues"><export-excel :data="rawData">
               Export Raw
             </export-excel></button>
           </div>
           <div v-if="$can('export')" class="card-body row">
-            <!-- <div class="col-lg-2">
-              <label for="start-date">Start Date:</label>
-              <input type="date" id="start-date" v-model="startDate" @change="filterData" />
-            </div>
-
-            <div class="col-lg-2">
-              <label for="end-date">End Date:</label>
-              <input type="date" id="end-date" v-model="endDate" @change="filterData" />
-            </div>
-            <div class="col-lg-2">
-              <export-excel v-if="$can('export')"
-                :data   = "filteredData">
-                <button class="btn btn-success">Export</button>
-              </export-excel>
-            </div> -->
-            <!-- Add a button to trigger the pop-up modal -->
 
             <b-modal id="modal-1" title="Export Data">
               <div class="modal-body">

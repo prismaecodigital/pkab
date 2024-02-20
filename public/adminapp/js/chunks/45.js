@@ -85,26 +85,8 @@ __webpack_require__.r(__webpack_exports__);
       this.activeField = '';
     },
     updateBu: function updateBu(value) {
-      var _this2 = this;
       this.setDept([]);
-      var bu_ids = value.map(function (data) {
-        return data.id;
-      });
       this.setBu(value);
-      if (value[0] != null) {
-        axios.get('/budept-all', {
-          params: {
-            bu: bu_ids
-          }
-        }).then(function (response) {
-          _this2.depts = response.data;
-        })["catch"](function (error) {
-          console.log(error);
-        });
-      } else {
-        this.depts = [];
-      }
-      console.log('ok');
     },
     updateDept: function updateDept(value) {
       this.setDept(value);
