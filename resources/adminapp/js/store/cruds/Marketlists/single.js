@@ -343,7 +343,7 @@ function initialState() {
       state.entry.items[index].required_date_front_end = value
     },
     setItemApprovedDate(state, {index,val}) {
-      state.entry.items[index].approved_date_front_end = val
+      state.entry.items[index].approved_date_front_end = moment(val).format('YYYY-MM-DD')
       state.entry.items[index].approved_date = moment(val).format('DD-MM-YYYY')
       console.log(state.entry.items[index].approved_date)
     },

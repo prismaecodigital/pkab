@@ -30,7 +30,12 @@ class MarketlistDoneApiController extends Controller
         //
         abort_if(Gate::denies('marketlist_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new MarketlistDoneResource(Marketlist::with(['items', 'bu', 'dept', 'user', 'site'])->whereIn('status', ['selesai','cancel'])->advancedFilter()->paginate(request('limit', 10)));
+        if (auth()->user()->hasRole('purchasing')) {
+        return new MarketlistDoneResource(Marketlist::with(['bu', 'dept', 'user', 'site'])->advancedFilter()->whereIn('status', ['selesai','cancel'])->paginate(request('limit', 10)));
+        }
+        else {
+        return new MarketlistDoneResource(Marketlist::with(['bu', 'dept', 'user', 'site'])->advancedFilter()->whereIn('status', ['selesai','cancel'])->whereIn('bu_id', auth()->user()->bu->pluck('id'))->paginate(request('limit', 10)));            
+        }
 
     }
 

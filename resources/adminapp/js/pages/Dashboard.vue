@@ -16,10 +16,6 @@
               {{ $t('global.youAreLoggedIn') }}
             </div>
             <div class="card-body">
-              Mohon waktu 5 menit untuk mengisi survey berikut untuk pengembangan aplikasi<br>
-              <a href="https://forms.gle/wT2pvpRU6VARvxkd9" target="_blank">Survey SUS</a>
-            </div>
-            <div class="card-body">
               
             </div>
           </div>

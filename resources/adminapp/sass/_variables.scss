@@ -280,6 +280,8 @@ $body-bg: #f8fafc;
     table > thead > tr > th, table > tbody > tr > td, table > tbody > tr > td > div > span,
     table > tbody > tr > td > div > a {
         font-size: 12px !important;
+        word-wrap: break-word !important;
+        white-space: normal !important;
     }
     .card-body {
         overflow-x: scroll !important;
@@ -303,4 +305,35 @@ $body-bg: #f8fafc;
 .main-panel >.content {
     margin: 25px 0px 0px 0px !important;
     padding: 30px 5px !important;
+}
+
+@media (max-width: 768px) {
+    table > thead > tr > th, table > tbody > tr > td, table > tbody > tr > td > div > span,
+    table > tbody > tr > td > div > a {
+        font-size: 12px !important;
+    }
+    .card-body {
+        overflow-x: scroll !important;
+    }
+
+    .collapse .nav {
+        padding-left: 5px;
+    }
+}
+
+table > thead > th, table > tbody > tr > td, table > tbody > tr > td > div > span,
+table > tbody > tr > td > div > a {
+    font-size: 12px !important;
+}
+
+table > tbody > tr > td > input {
+    font-size: 13px !important;
+}
+
+.table thead tr th {
+    font-size: 14px;
+}
+
+.table tbody tr td {
+    font-size: 12px;
 }
