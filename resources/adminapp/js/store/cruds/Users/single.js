@@ -118,20 +118,17 @@ const actions = {
   setBu({ commit, state}, value) {
     commit('setBu', value)
     if(value === 'all') {
-      console.log('all')
-      var bu = state.lists.bu.map(item => item.id)
+      var bus = state.lists.bu.map(item => item.id)
     } else {
-      var bu = value.map(item => item.id)
+      var bus = value.map(item => item.id)
     }
-    console.log(bu)
-    if (bu[0] !== undefined && bu[0] !== null && bu[0] !== '') {
+    if (bus[0] !== undefined && bus[0] !== null && bus[0] !== '') {
       axios.get('/budept', {
         params: {
-            bu: bu
+            bu: bus
         }
       })
       .then(response => {
-        console.log(response.data)
         commit('setListDepts', response.data)
       })
     }
@@ -210,11 +207,10 @@ const mutations = {
   setDept(state, value) {
     if(value == 'all') {
       state.entry.dept = state.lists.dept
-      console.log(state.entry.dept)
+      
     }
     else {
       state.entry.dept = value
-      console.log(state.entry.dept)
     }
   },
   setCreatedAt(state, value) {
@@ -231,6 +227,7 @@ const mutations = {
   },
   setListDepts(state, lists) {
     state.lists.dept = lists
+    console.log(state.lists.dept)
   },
   setLoading(state, loading) {
     state.loading = loading

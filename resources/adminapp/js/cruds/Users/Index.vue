@@ -91,6 +91,12 @@ export default {
           sortable: true,
         },
         {
+          title: 'cruds.user.fields.username',
+          field: 'username',
+          thComp: TranslatedHeader,
+          sortable: true
+        },
+        {
           title: 'cruds.user.fields.name',
           field: 'name',
           thComp: TranslatedHeader,

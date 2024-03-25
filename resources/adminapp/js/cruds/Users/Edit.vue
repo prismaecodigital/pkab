@@ -219,6 +219,7 @@ export default {
       'updateData',
       'resetState',
       'setName',
+      'setUsername',
       'setEmail',
       'setPassword',
       'setRoles', 'setBu', 'setDept', 'setListDepts','setUsername'
@@ -273,27 +274,7 @@ export default {
     },
     updateBu(value) {
       this.setDept([])
-      const bu_ids = value.map(function (data) {
-        return data.id;
-    });
       this.setBu(value)
-      if(value[0] != null) {
-        axios.get('/budept-all', {
-          params: {
-              bu: bu_ids
-          }
-        })
-        .then(response => {
-            this.depts = response.data;
-        })
-        .catch(error => {
-            console.log(error);
-        });
-      }
-      else {
-        this.depts = []
-      }
-      console.log('ok')
     },
     updateDept(value) {
       this.setDept(value)

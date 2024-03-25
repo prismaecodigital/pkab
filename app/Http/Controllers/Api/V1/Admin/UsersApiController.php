@@ -43,6 +43,7 @@ class UsersApiController extends Controller
             'meta' => [
                 'roles' => Role::get(['id', 'title']),
                 'bu'    => Bu::get(),
+                'dept'  => Dept::get()
             ],
         ]);
     }

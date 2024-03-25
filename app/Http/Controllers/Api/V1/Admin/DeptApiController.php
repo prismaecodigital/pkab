@@ -19,16 +19,16 @@ class DeptApiController extends Controller
     {
         $bus = $request->input('bu');
         if(gettype($bus) == 'array') {
-            $depts = Dept::whereIn('bu_id', $bus)->whereIn('id', auth()->user()->dept()->pluck('dept_id'))->get();
+            $dept = Dept::whereIn('bu_id', $bus)->whereIn('id', auth()->user()->dept()->pluck('dept_id'))->get();
         }
         if(gettype($bus) == 'string') {
-            $depts = Dept::where('bu_id', $bus)->whereIn('id', auth()->user()->dept()->pluck('dept_id'))->get();
+            $dept = Dept::where('bu_id', $bus)->whereIn('id', auth()->user()->dept()->pluck('dept_id'))->get();
         }
         if(!isset($bus)) {
-            $depts = [''=> 'Select BU First'];
+            $dept = [''=> 'Select BU First'];
         }
 
-        return response()->json($depts);
+        return response()->json($dept);
     }
 
     public function budeptAll(Request $request)
