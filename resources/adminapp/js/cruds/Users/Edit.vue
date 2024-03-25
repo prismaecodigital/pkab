@@ -43,6 +43,26 @@
                   <div
                     class="form-group bmd-form-group"
                     :class="{
+                      'is-filled': entry.username,
+                      'is-focused': activeField == 'username'
+                    }"
+                  >
+                    <label class="bmd-label-floating required">{{
+                      $t('cruds.user.fields.username')
+                    }}</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      :value="entry.username"
+                      @input="updateUsername"
+                      @focus="focusField('username')"
+                      @blur="clearFocus"
+                      required
+                    />
+                  </div>
+                  <div
+                    class="form-group bmd-form-group"
+                    :class="{
                       'is-filled': entry.email,
                       'is-focused': activeField == 'email'
                     }"
@@ -201,7 +221,7 @@ export default {
       'setName',
       'setEmail',
       'setPassword',
-      'setRoles', 'setBu', 'setDept', 'setListDepts'
+      'setRoles', 'setBu', 'setDept', 'setListDepts','setUsername'
     ]),
     selectAllBu() {
       this.setBu('all');
@@ -219,6 +239,9 @@ export default {
     },
     updateName(e) {
       this.setName(e.target.value)
+    },
+    updateUsername(e) {
+      this.setUsername(e.target.value)
     },
     updateEmail(e) {
       this.setEmail(e.target.value)

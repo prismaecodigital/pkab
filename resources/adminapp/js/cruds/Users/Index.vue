@@ -85,11 +85,10 @@ export default {
     return {
       columns: [
         {
-          title: 'cruds.user.fields.id',
-          field: 'id',
+          title: 'cruds.user.fields.username',
+          field: 'username',
           thComp: TranslatedHeader,
           sortable: true,
-          colStyle: 'width: 100px;'
         },
         {
           title: 'cruds.user.fields.name',

@@ -235,6 +235,11 @@ export default {
         this.resetState()
         this.fetchShowData(this.$route.params.id)
       }
+    },
+    entry: {
+      handler() {
+          this.updateAllItemSpecHeights()
+      }
     }
   },
   methods: {
@@ -259,6 +264,22 @@ export default {
       item.spesifikasiHeight = `${textarea.scrollHeight}px`;
       val = event.target.value;
       this.setItemSpesifikasi({index, val})
+    },
+    updateAllItemSpecHeights() {
+      console.log('ok')
+      this.$nextTick(() => {
+        // Assuming 'entry' represents your data model containing items
+        const rows = this.$el.querySelectorAll('table[name="inputItem"] tbody tr');
+        rows.forEach((row, index) => {
+          const textarea = row.querySelector('textarea');
+          if (textarea) {
+                textarea.style.height = 'auto'; // Reset height
+                textarea.style.cssText = `height: ${textarea.scrollHeight}px !important;`;
+                this.entry.items[index].spesifikasiHeight = textarea.style.cssText
+          }
+        });
+
+      });
     },
     updateItemQty(index, event, val) {
       val = event.target.value

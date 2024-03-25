@@ -44,8 +44,10 @@
    i18n,
    created() {
      this.fetchLanguages()
+     this.fetchSurvey()
    },
    methods: {
-     ...mapActions('I18NStore', ['fetchLanguages'])
+    ...mapActions('Survey', ['fetchSurvey']),
+    ...mapActions('I18NStore', ['fetchLanguages'])
    }
  })

@@ -15,6 +15,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::resource('roles', 'RolesApiController');
 
     // Users
+    Route::get('user-survey', 'UsersApiController@getSurvey');
+    Route::get('update-user-survey', 'UsersApiController@updateUserSurvey');
     Route::resource('users', 'UsersApiController');
 
     // Bu
@@ -54,6 +56,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Marketlist
     // Route::post('marketlists/approveData', 'MarketlistApiController@approveData')->name('marketlists.approveData');
+    Route::get('marketlists/report', 'MarketlistApiController@report')->name('marketlists.report');
     Route::post('marketlists/rejectData', 'MarketlistApiController@rejectData')->name('marketlists.rejectData');
     Route::match(['post', 'put','patch'], 'marketlists/approveData/{id}', 'MarketlistApiController@approveData')->name('marketlists.approveData');
 

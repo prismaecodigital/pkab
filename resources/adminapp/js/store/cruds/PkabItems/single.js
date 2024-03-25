@@ -26,7 +26,8 @@ function initialState() {
         user: [],
         status: [],
         bu: [],
-        dept: []
+        dept: [],
+        satuan: []
       },
       loading: false,
       jsonData: [{

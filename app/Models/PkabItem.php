@@ -64,6 +64,8 @@ class PkabItem extends Model
         'updated_at',
     ];
 
+    public const SATUAN_SELECT = ['UNIT','PCS','EKOR','KG','IKET','PACK','BTL','BAL', 'GRAM', 'SISIR', 'PAPAN'];
+
     public const STATUS_SELECT = [
         [
             'label' => 'Menunggu Persetujuan Leader',

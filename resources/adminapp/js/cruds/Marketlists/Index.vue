@@ -36,6 +36,7 @@
             </button>
             <b-button v-if="$can('export')" class="btn btn-primary" v-b-modal="'modal-1'" style="background: #f2a8ff; margin-left: 20px"> Export</b-button>
             <button v-if="$can('export')" class="btn btn-success" @click="logCheckedValues">Export Raw</button>
+            <b-button class="btn btn-info" v-b-modal="'modal-3'" style="background: #f2a8ff; margin-left: 20px"> Export</b-button>
           </div>
           <div v-if="$can('export')" class="card-body row">
             <b-modal id="modal-1" title="Export Data">
@@ -51,7 +52,6 @@
               </div>
             </b-modal>
           </div>
-          <div class="card-body row">
             <b-modal id="modal-2" ref="modal-2" title="Export Data 2">
               <div class="modal-body">
                 <button class="btn btn-success"><export-excel :data="rawData">
@@ -59,7 +59,78 @@
                 </export-excel></button>
               </div>
             </b-modal>
-          </div>
+            <b-modal id="modal-3" ref="modal-3" title="Cetak PDF">
+              <div class="modal-body">
+                <form method="GET" action="../../marketlist-report" target="_blank">
+                  <div class="row" style="padding: 10px">
+                    <div class="col-lg-3"> BU : </div>
+                    <div class="col-lg-9">
+                    <v-select
+                      name="bu"
+                      label="name"
+                      :key="'bu-field'"
+                      :value="report_query.bu_id"
+                      :options="lists.bu"
+                      :reduce="bu => bu.id"
+                      @input="updateBu"
+                    />
+                    </div>
+                  </div>
+                  <div class="row" style="padding: 10px">
+                    <div class="col-lg-3"> Site : </div>
+                    <div class="col-lg-9">
+                    <v-select
+                      name="site"
+                      label="name"
+                      :key="'site-field'"
+                      :value="report_query.site_id"
+                      :options="lists.site"
+                      :reduce="site => site.id"
+                      @input="updateSite"
+                    />
+                    </div>
+                  </div>
+                  <div class="row" style="padding: 10px">
+                    <div class="col-lg-3">
+                      Dari : 
+                    </div>
+                    <div class="col-lg-6">
+                        <vuejs-datepicker
+                          input-class="form-control"
+                          format="dd-MM-yyyy"
+                          :value="report_query.startDate"
+                          @input="updateStartDate"
+                        >
+                        </vuejs-datepicker>
+                    </div>
+                  </div>
+                  <div class="row" style="padding: 10px">
+                    <div class="col-lg-3">
+                      Sampai : 
+                    </div>
+                    <div class="col-lg-6">
+                        <vuejs-datepicker
+                          input-class="form-control"
+                          format="dd-MM-yyyy"
+                          :value="report_query.endDate"
+                          @input="updateEndDate"
+                        >
+                        </vuejs-datepicker>
+                    </div>
+                  </div>
+                  <input type="hidden" name="bu_id" :value="report_query.bu_id">
+                  <input type="hidden" name="site_id" :value="report_query.site_id">
+                  <input type="hidden" name="startDate" :value="formatDate(report_query.startDate)">
+                  <input type="hidden" name="endDate" :value="formatDate(report_query.endDate)">
+                  <div class="row" style="padding: 10px">
+                    <button type="submit" class="btn btn-sm btn-primary">Cetak PDF</button>
+                  </div>
+                    
+                </form>
+                  
+              </div>
+              
+            </b-modal>
           <div class="card-body">
             <div class="row">
               <div class="col-md-12">
@@ -180,6 +251,7 @@ export default {
         }
       ],
       query: { sort: 'created_at', order: 'desc', limit: 100, s: '' },
+      report_query : {bu_id : null, site_id: null, startDate : null, endDate : null},
       xprops: {
         module: 'MarketlistsIndex',
         route: 'marketlists',
@@ -199,7 +271,7 @@ export default {
     this.resetState()
   },
   computed: {
-    ...mapGetters('MarketlistsIndex', ['data', 'total', 'loading','jsonData']),
+    ...mapGetters('MarketlistsIndex', ['data', 'total', 'loading','jsonData', 'lists']),
   },
   watch: {
     query: {
@@ -305,6 +377,34 @@ export default {
 
         console.log(this.filteredData);
     },
+    getPdf() {
+      if(!this.report_query.bu_id || !this.report_query.site_id || !this.report_query.startDate || !this.report_query.endDate) {
+        alert('Harap isikan bu, site, dan rentang waktu')
+        return
+      }
+    },
+    updateBu(value) {
+      this.report_query.bu_id = value
+    },
+    updateSite(value) {
+      this.report_query.site_id = value
+    },
+    updateStartDate(value) {
+      this.report_query.startDate = value
+      console.log(this.report_query.startDate)
+    },
+    updateEndDate(value) {
+      this.report_query.endDate = value 
+      console.log(this.report_query.endDate)
+    },
+    formatDate(value) {
+      const dateString = value
+      const year = new Date().getFullYear();
+      const date = new Date(`${dateString} ${year}`);
+      const formattedDate = `${date.getDate().toString().padStart(2, '0')}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getFullYear()}`;
+
+      return formattedDate
+    }
   }
 }
 </script>

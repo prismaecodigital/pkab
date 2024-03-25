@@ -8,6 +8,10 @@ const set = key => (state, val) => {
       jsonData: [],
       total: 0,
       query: {},
+      lists: {
+        bu : [],
+        site : []
+      },
       loading: false
     }
   }
@@ -18,7 +22,8 @@ const set = key => (state, val) => {
     data: state => state.data,
     total: state => state.total,
     loading: state => state.loading,
-    jsonData: state => state.jsonData
+    jsonData: state => state.jsonData,
+    lists: state => state.lists
   }
   
   const actions = {
@@ -27,9 +32,10 @@ const set = key => (state, val) => {
       axios
         .get(route, { params: state.query })
         .then(response => {
-          commit('setData', response.data.data)
-          commit('setTotal', response.data.total)
-          commit('setJsonData', response.data.data)
+          commit('setData', response.data.data.data)
+          commit('setTotal', response.data.data.total)
+          commit('setJsonData', response.data.data.data)
+          commit('setLists', response.data.meta)
         })
         .catch(error => {
           message = error.response.data.message || error.message
@@ -105,6 +111,11 @@ const set = key => (state, val) => {
     setQuery(state, query) {
       query.page = (query.offset + query.limit) / query.limit
       state.query = query
+    },
+    setLists(state, value) {
+      state.lists = value
+      console.log(value)
+      console.log(state.lists)
     },
     setLoading: set('loading'),
     resetState(state) {

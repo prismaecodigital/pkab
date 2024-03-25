@@ -89,4 +89,25 @@ class UsersApiController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+    public function getSurvey()
+    {
+        return response()->json([
+            'survey' => [
+                'has_completed_survey' => auth()->user()->has_completed_survey,
+                'link'  => 'https://forms.gle/Jy6Yb6fw5xMMTugv9'
+            ]
+        ]);
+    }
+
+    public function updateUserSurvey()
+    {
+        $user = auth()->user();
+        $user->has_completed_survey = true;
+        $user->save();
+
+        dd($user);
+
+        return response()->json('success');
+    }
 }

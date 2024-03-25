@@ -31,6 +31,7 @@ import MarketlistsIndex from './cruds/Marketlists'
 import MarketlistsSingle from './cruds/Marketlists/single'
 import MarketlistDonesIndex from './cruds/MarketlistDones'
 import MarketlistDonesSingle from './cruds/MarketlistDones/single'
+import Survey from './modules/survey'
 
 Vue.use(Vuex)
 
@@ -66,7 +67,8 @@ export default new Vuex.Store({
     MarketlistsIndex,
     MarketlistsSingle,
     MarketlistDonesIndex,
-    MarketlistDonesSingle
+    MarketlistDonesSingle,
+    Survey
   },
   strict: debug
 })

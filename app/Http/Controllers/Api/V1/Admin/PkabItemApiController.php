@@ -138,6 +138,7 @@ class PkabItemApiController extends Controller
             'meta' => [
                 'bu'   => Bu::whereIn('id', $depts)->get(['id', 'name']),
                 'status' => PkabItem::STATUS_SELECT,
+                'satuan' => PkabItem::SATUAN_SELECT
             ],
         ]);
     }

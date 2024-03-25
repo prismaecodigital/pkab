@@ -154,7 +154,16 @@
                         <input class="form-control wrapText" type="number" :value="item.qty" @input="updateItemQty(k, $event)" required/>
                     </td>
                     <td>
-                        <input class="form-control wrapText" type="text" :value="item.satuan" @input="updateItemSatuan(k, $event)" required/>
+                        <v-select
+                          name="satuan"
+                          label="name"
+                          :key="'satuan-field'"
+                          :value="item.satuan"
+                          :options="lists.satuan"
+                          @input="updateItemSatuan(k, $event)"
+                          required
+                        />
+                        <!-- <input class="form-control wrapText" type="text" :value="item.satuan" @input="updateItemSatuan(k, $event)" required/> -->
                     </td>
                   </tr>
                 </tbody>

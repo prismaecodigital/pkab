@@ -47,6 +47,7 @@ class User extends Authenticatable
         'name',
         'username',
         'email',
+        'has_completed_survey',
         'password',
         'remember_token',
         'created_at',

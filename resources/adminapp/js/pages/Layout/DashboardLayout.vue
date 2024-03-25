@@ -117,7 +117,7 @@ export default {
               path: { name: 'bus.index' },
               gate: 'bu_access'
             },
-                        {
+            {
               title: 'cruds.site.title',
               icon: 'work',
               path: { name: 'sites.index' },
@@ -136,6 +136,11 @@ export default {
           icon: 'person',
           path: { name: 'profile.password.edit' },
           gate: 'profile'
+        },
+        {
+          title: 'Report Issue/Bug',
+          icon: 'bug_report',
+          path: '/report-issue',
         }
       ]
     }

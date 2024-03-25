@@ -18,6 +18,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Carbon\Carbon;
+use PDF;
 
 class MarketlistApiController extends Controller
 {
@@ -32,11 +33,23 @@ class MarketlistApiController extends Controller
         abort_if(Gate::denies('marketlist_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if (auth()->user()->hasRole('purchasing')) {
-            return new MarketlistResource(Marketlist::with(['items', 'bu', 'site', 'user'])->advancedFilter()->whereIn('status', ['purchasing_ml_1','purchasing_ml_2','user_acc'])->paginate(request('limit', 10)));
+            $data = new MarketlistResource(Marketlist::with(['items', 'bu', 'site', 'user'])->advancedFilter()->whereIn('status', ['purchasing_ml_1','purchasing_ml_2','user_acc'])->paginate(request('limit', 10)));
+            $bus = Bu::get(['id', 'name']);
+            $sites = Site::get(['id', 'name']);
         }
         else {
-            return new MarketlistResource(Marketlist::with(['items', 'bu', 'site', 'user'])->advancedFilter()->whereIn('status', ['purchasing_ml_1','purchasing_ml_2','user_acc'])->whereIn('bu_id', auth()->user()->bu->pluck('id'))->paginate(request('limit', 10))); 
+            $data = new MarketlistResource(Marketlist::with(['items', 'bu', 'site', 'user'])->advancedFilter()->whereIn('status', ['purchasing_ml_1','purchasing_ml_2','user_acc'])->whereIn('bu_id', auth()->user()->bu->pluck('id'))->paginate(request('limit', 10)));
+            $bus = Bu::whereIn('id', auth()->user()->bu->pluck('id'))->get(['id', 'name']);
+            $sites = Site::whereIn('bu_id', auth()->user()->bu->pluck('id'))->get(['id', 'name']);
         }
+
+        return response([
+            'data' => $data,
+            'meta' => [
+                'bu'   => $bus,
+                'site'   => $sites
+            ],
+        ]);
 
     }
 
@@ -286,5 +299,21 @@ class MarketlistApiController extends Controller
         $marketlist->update(['status' => 'cancel']);
 
         return new MarketlistResource($marketlist->load(['user', 'site', 'bu', 'items']));
+    }
+
+    public function report(Request $request)
+    {
+        $startDate = substr($request->startDate, 0, 10);
+        $endDate = substr($request->endDate, 0, 10);
+        $startDateLabel = Carbon::createFromFormat('Y-m-d', $startDate)->format('d F Y');
+        $endDateLabel = Carbon::createFromFormat('Y-m-d', $endDate)->format('d F Y');
+        $bu = Bu::findOrFail($request->bu_id)->name;
+        $site = Site::findOrFail($request->site_id)->name;
+        $now = Carbon::now()->format('d F Y');
+        $marketlists = Marketlist::with('items')->where('bu_id', $request->bu_id)->where('site_id', $request->site_id)->whereBetween('created_at', [$startDate, $endDate])->orderBy('created_at')->get();
+
+        $pdf = PDF::loadview('reportMarketlist', ['marketlists' => $marketlists, 'now' => $now, 'startDate' => $startDateLabel, 'endDate' => $endDateLabel, 'bu' => $bu, 'site' => $site]);
+    	return $pdf->stream();
+
     }
 }

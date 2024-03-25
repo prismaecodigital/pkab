@@ -15,7 +15,8 @@ class MarketlistOrderItem extends Model
     public $table = 'marketlist_order_item';
     
     protected $appends = [
-        'required_date_front_end'
+        'required_date_front_end',
+        'required_date_dfy'
     ];
 
     protected $orderable = [
@@ -65,6 +66,11 @@ class MarketlistOrderItem extends Model
     public function getRequiredDateFrontEndAttribute($value)
     {
         return $this->attributes['required_date'];
+    }
+
+    public function getRequiredDateDfyAttribute($value)
+    {
+        return $this->attributes['required_date'] ? Carbon::createFromFormat('Y-m-d', $this->attributes['required_date'])->format('d F Y') : null;
     }
 
     public function marketlist()

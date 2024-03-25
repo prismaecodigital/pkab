@@ -9,10 +9,30 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var C_Users_62895_laravel9_pkab_deploy_2024_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
-  }
+  },
+  computed: Object(C_Users_62895_laravel9_pkab_deploy_2024_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('Survey', ['survey'])),
+  watch: {
+    survey: function survey() {
+      if (!this.survey.has_completed_survey) {
+        this.$bvModal.show('formSurvey');
+      }
+    }
+  },
+  methods: Object(C_Users_62895_laravel9_pkab_deploy_2024_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_2024_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('Survey', ['updateUserSurvey'])), {}, {
+    goToSurvey: function goToSurvey() {
+      window.open(this.survey.link, '_blank');
+      this.$bvModal.hide('formSurvey');
+      this.updateUserSurvey();
+      console.log('ok');
+    }
+  })
 });
 
 /***/ }),
@@ -49,7 +69,38 @@ var render = function render() {
     staticClass: "card-body"
   }, [_vm._v("\n            " + _vm._s(_vm.$t("global.youAreLoggedIn")) + "\n          ")]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
-  })])])])])]);
+  }), _vm._v(" "), _c("div", [_c("b-modal", {
+    attrs: {
+      id: "formSurvey",
+      centered: "",
+      "hide-backdrop": "",
+      "ok-only": "",
+      "no-close-on-backdrop": "",
+      "no-close-on-esc": "",
+      "hide-header-close": ""
+    },
+    scopedSlots: _vm._u([{
+      key: "modal-title",
+      fn: function fn() {
+        return [_vm._v("\n                  Survey\n                ")];
+      },
+      proxy: true
+    }, {
+      key: "modal-footer",
+      fn: function fn() {
+        return [_c("b-button", {
+          attrs: {
+            size: "sm",
+            variant: "outline-secondary"
+          },
+          on: {
+            click: _vm.goToSurvey
+          }
+        }, [_vm._v("\n                          Klik di sini\n                  ")])];
+      },
+      proxy: true
+    }])
+  }, [_vm._v(" "), _c("div", [_vm._v("\n                  Anda belum mengisi survey. Silahkan isi survey terlebih dahulu. Hanya 1-2 menit, santai saja\n                ")])])], 1)])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,

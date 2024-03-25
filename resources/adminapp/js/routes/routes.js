@@ -294,6 +294,10 @@ const routes = [
         name: 'profile.password.edit',
         component: () => import('@cruds/Profile/Edit.vue'),
         meta: { title: 'Profile' }
+      },
+      {
+        path: '/report-issue',
+        beforeEnter() {window.open('https://docs.google.com/forms/d/e/1FAIpQLSfYMwsBNhOH4WQs-mRFVhrnFsXqnr-tCALB6-4-JyyBgjF_kA/viewform','_blank')}
       }
     ]
   }

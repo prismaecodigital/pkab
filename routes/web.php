@@ -21,3 +21,5 @@ Route::group([
 ], function () {
     Route::view('/{any?}', 'layouts.admin.app')->name('dashboard')->where('any', '.*');
 });
+
+Route::get('marketlist-report', 'HomeController@report')->name('marketlist.report');
