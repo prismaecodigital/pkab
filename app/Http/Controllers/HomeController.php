@@ -45,7 +45,7 @@ class HomeController extends Controller
         $bu = Bu::findOrFail($request->bu_id)->name;
         $site = Site::findOrFail($request->site_id)->name;
         $now = Carbon::now()->format('d F Y');
-        $marketlists = Marketlist::with(['items', 'user'])->where('bu_id', $request->bu_id)->where('site_id', $request->site_id)->whereBetween('created_at', [$startDate, $endDate])->orderBy('created_at')->get();
+        $marketlists = Marketlist::with(['items', 'user'])->whereNot('status','cancel')->where('bu_id', $request->bu_id)->where('site_id', $request->site_id)->whereBetween('created_at', [$startDate, $endDate])->orderBy('created_at')->get();
 
         // return response()->json($marketlists);
         $pdf = PDF::loadview('reportMarketlist', ['marketlists' => $marketlists, 'now' => $now, 'startDate' => $startDateLabel, 'endDate' => $endDateLabel, 'bu' => $bu, 'site' => $site]);
