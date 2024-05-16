@@ -16,7 +16,8 @@ class MarketlistOrderItem extends Model
     
     protected $appends = [
         'required_date_front_end',
-        'required_date_dfy'
+        'required_date_dfy',
+        'approved_date_dfy'
     ];
 
     protected $orderable = [
@@ -101,6 +102,11 @@ class MarketlistOrderItem extends Model
     public function getApprovedDateAttribute($value)
     {
         return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d-m-Y') : null;
+    }
+    
+    public function getApprovedDateDfyAttribute()
+    {
+        return $this->attributes['approved_date'] ? Carbon::createFromFormat('Y-m-d', $this->attributes['approved_date'])->format('d F Y') : null;
     }
 
     public function setApprovedDateAttribute($value)

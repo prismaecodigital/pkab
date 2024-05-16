@@ -49,6 +49,7 @@
             <td> <h6>Tanggal dibuat : {{$marketlist->created_at}}</h6> </td>
             <td> <h6>Event: {{$marketlist->event}}</h6> </td>
             <td> <h6>User : {{$marketlist->user->name}}</h6> </td>
+            <td> <h6>Status : {{$marketlist->status_label}}</h6> </td>
         </tr>
     </table>
 </div>
@@ -60,8 +61,8 @@
             <th>Tanggal dibutuhkan</th>
             <th>Qty</th>
             <th>Satuan</th>
-            <th>Tanggal diterima</th>
-            <th>Qty diterima</th>
+            <!-- <th>Tanggal diterima</th>
+            <th>Qty diterima</th> -->
         </thead>
         <tbody>
             @foreach ($marketlist->items as $item)
@@ -70,8 +71,8 @@
                 <td>{{$item->required_date_dfy}}</td>
                 <td>{{$item->qty}}</td>
                 <td>{{$item->satuan}}</td>
-                <td>{{$item->approved_date}}</td>
-                <td>{{$item->approved_qty ?? $item->qty}}</td>
+                <!-- <td>{{$item->approved_date_dfy ?? '-'}}</td>
+                <td>{{$item->approved_qty ?? '-'}}</td> -->
             </tr>
             @endforeach
         </tbody>
