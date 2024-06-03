@@ -37,7 +37,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  methods: Object(C_Users_62895_laravel9_pkab_deploy_2024_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_2024_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('UsersSingle', ['fetchEditData', 'updateData', 'resetState', 'setName', 'setEmail', 'setPassword', 'setRoles', 'setBu', 'setDept', 'setListDepts', 'setUsername'])), {}, {
+  methods: Object(C_Users_62895_laravel9_pkab_deploy_2024_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_pkab_deploy_2024_pkab_pkab_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('UsersSingle', ['fetchEditData', 'updateData', 'resetState', 'setName', 'setUsername', 'setEmail', 'setPassword', 'setRoles', 'setBu', 'setDept', 'setListDepts', 'setUsername'])), {}, {
     selectAllBu: function selectAllBu() {
       this.setBu('all');
     },
