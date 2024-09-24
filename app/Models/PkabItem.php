@@ -64,7 +64,7 @@ class PkabItem extends Model
         'updated_at',
     ];
 
-    public const SATUAN_SELECT = ['UNIT','PCS','EKOR','KG','IKET','PACK','BTL','BAL', 'GRAM', 'SISIR', 'PAPAN', 'TABLET', 'BOX' ,'STRIP'];
+    public const SATUAN_SELECT = ['UNIT','PCS','EKOR','KG','IKET','PACK','BTL','BAL', 'GRAM', 'SISIR', 'PAPAN', 'TABLET', 'BOX' ,'STRIP', 'METER', 'PAIL'];
 
     public const STATUS_SELECT = [
         [

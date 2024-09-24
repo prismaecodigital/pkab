@@ -64,7 +64,7 @@ class Marketlist extends Model
         'user_id' => 'integer'
     ];
 
-    public const SATUAN_SELECT = ['PCS','EKOR','KG','IKET','PACK','BTL','BAL', 'GRAM', 'SISIR', 'PAPAN'];
+    public const SATUAN_SELECT = ['PCS','EKOR','KG','IKET','PACK','BTL','BAL', 'GRAM', 'SISIR', 'PAPAN','METER','PAIL'];
 
     public const STATUS_SELECT = [
         [
