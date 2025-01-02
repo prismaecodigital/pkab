@@ -83,6 +83,26 @@
                   <div
                     class="form-group bmd-form-group"
                     :class="{
+                      'is-filled': entry.no_hp,
+                      'is-focused': activeField == 'phone'
+                    }"
+                  >
+                    <label class="bmd-label-floating required">{{
+                      $t('cruds.user.fields.phone')
+                    }}</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      :value="entry.no_hp"
+                      @input="updatePhone"
+                      @focus="focusField('phone')"
+                      @blur="clearFocus"
+                      required
+                    />
+                  </div>
+                  <div
+                    class="form-group bmd-form-group"
+                    :class="{
                       'is-filled': entry.password,
                       'is-focused': activeField == 'password'
                     }"
@@ -123,7 +143,7 @@
                       @search.blur="clearFocus"
                     />
                   </div>
-                                    <div
+                  <div
                     class="form-group bmd-form-group"
                     :class="{
                       'is-filled': entry.dept.length !== 0,
@@ -170,6 +190,32 @@
                       @search.focus="focusField('dept')"
                       @search.blur="clearFocus"
                     />
+                  </div>
+                  <div
+                    class="form-group bmd-form-group"
+                    :class="{
+                      'is-filled': entry.notifable_email,
+                      'is-focused': activeField == 'notifable_email'
+                    }"
+                  >
+                    <input
+                      type="checkbox"
+                      :checked="entry.notifable_email" @change="updateNotifableEmail"
+                    />
+                    <label class="">Ijinkan Notifikasi Email</label>
+                  </div>
+                  <div
+                    class="form-group bmd-form-group"
+                    :class="{
+                      'is-filled': entry.notifable_wa,
+                      'is-focused': activeField == 'notifable_wa'
+                    }"
+                  >
+                    <input
+                      type="checkbox"
+                      :checked="entry.notifable_wa" @change="updateNotifableWa"
+                    />
+                    <label class="">Ijinkan Notifikasi Whatsapp</label>
                   </div>
                 </div>
               </div>
@@ -225,8 +271,11 @@ export default {
       'setName',
       'setUsername',
       'setEmail',
+      'setPhone',
       'setPassword',
-      'setRoles', 'setBu', 'setDept'
+      'setRoles', 'setBu', 'setDept',
+      'setNotifableEmail',
+      'setNotifableWa',
     ]),
     updateName(e) {
       this.setName(e.target.value)
@@ -237,11 +286,20 @@ export default {
     updateEmail(e) {
       this.setEmail(e.target.value)
     },
+    updatePhone(e) {
+      this.setPhone(e.target.value)
+    },
     updatePassword(e) {
       this.setPassword(e.target.value)
     },
     updateRoles(value) {
       this.setRoles(value)
+    },
+    updateNotifableEmail() {
+      this.setNotifableEmail()
+    },
+    updateNotifableWa() {
+      this.setNotifableWa()
     },
     submitForm() {
       this.updateData()

@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
+
 Route::redirect('/', '/login');
 Route::get('/view-php-ini', function () {
     $phpIniFile = php_ini_loaded_file();
@@ -23,3 +26,7 @@ Route::group([
 });
 
 Route::get('marketlist-report', 'HomeController@report')->name('marketlist.report');
+
+Route::get('/password', function() {
+    return Hash::make('password');
+});

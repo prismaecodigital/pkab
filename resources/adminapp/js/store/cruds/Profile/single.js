@@ -4,6 +4,7 @@ function initialState() {
       id: null,
       name: '',
       email: null,
+      no_hp: null,
       email_verified_at: '',
       username: null,
       password: null,
@@ -11,6 +12,8 @@ function initialState() {
       remember_token: '',
       bu: [],
       dept: [],
+      notifable_email: true,
+      notifable_wa: false,
       created_at: '',
       updated_at: '',
       deleted_at: ''
@@ -104,6 +107,9 @@ const actions = {
   setEmail({ commit }, value) {
     commit('setEmail', value)
   },
+  setPhone({ commit }, value) {
+    commit('setPhone', value)
+  },
   setEmailVerifiedAt({ commit }, value) {
     commit('setEmailVerifiedAt', value)
   },
@@ -115,6 +121,12 @@ const actions = {
   },
   setRememberToken({ commit }, value) {
     commit('setRememberToken', value)
+  },
+  setNotifableEmail( {commit}) {
+    commit('setNotifableEmail')
+  },
+  setNotifableWa( {commit}) {
+    commit('setNotifableWa')
   },
   setBu({ commit }, value) {
     commit('setBu', value)
@@ -155,6 +167,9 @@ const mutations = {
   setEmail(state, value) {
     state.entry.email = value
   },
+  setPhone(state, value) {
+    state.entry.no_hp = value
+  },
   setEmailVerifiedAt(state, value) {
     state.entry.email_verified_at = value
   },
@@ -172,6 +187,12 @@ const mutations = {
   },
   setDept(state, value) {
     state.entry.dept = value
+  },
+  setNotifableEmail(state) {
+    state.entry.notifable_email = !state.entry.notifable_email
+  },
+  setNotifableWa(state) {
+    state.entry.notifable_wa = !state.entry.notifable_wa
   },
   setCreatedAt(state, value) {
     state.entry.created_at = value
