@@ -15,8 +15,6 @@ use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Carbon\Carbon;
-use App\Exports\PkabItemExport;
-use Illuminate\Support\Facades\Http;
 
 class PkabItemApiController extends Controller
 {
@@ -87,15 +85,15 @@ class PkabItemApiController extends Controller
     
         try {
             $pkabItem = PkabItem::create($data);
-            $statusHistory = StatusHistory::create([
+            StatusHistory::create([
                 'pkab_id' => $pkabItem->id,
                 'status' => $data['status'],
                 'user_id' => $data['user_id'],
                 'created_at' => $data['created_at'],
             ]);
-    
+            
             foreach ($request->items as $itemData) {
-                $item = Item::create([
+                Item::create([
                     'name' => $itemData['name'],
                     'merk' => $itemData['merk'],
                     'spesifikasi' => $itemData['spesifikasi'],
