@@ -51,6 +51,7 @@ class StatusHistoryActionObserver
             if ($user->notifable_wa) {
                 $data['phone'] = $user->no_hp;
                 Notification::send($user, new WhacenterNotification($data));
+                Log::info("testing sending whatsapp message");
             }
         }
         // Notification::send($users, new DataChangeEmailNotification($data));

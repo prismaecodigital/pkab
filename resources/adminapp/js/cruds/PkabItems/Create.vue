@@ -163,7 +163,6 @@
                           @input="updateItemSatuan(k, $event)"
                           required
                         />
-                        <!-- <input class="form-control wrapText" type="text" :value="item.satuan" @input="updateItemSatuan(k, $event)" required/> -->
                     </td>
                   </tr>
                 </tbody>
@@ -325,10 +324,8 @@ export default {
       this.setItemQty({index, val})
       // this.entry.items[index].qty = event.target.value;
     },
-    updateItemSatuan(index, event, val) {
-      val = event.target.value
-      this.setItemSatuan({index, val})
-      // this.entry.items[index].qty = event.target.value;
+    updateItemSatuan(index, value) {
+      this.setItemSatuan({ index, val: value });
     },
 
     addNewRow() {
