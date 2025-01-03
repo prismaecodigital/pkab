@@ -156,7 +156,19 @@ const actions = {
 
 const mutations = {
   setEntry(state, entry) {
-    state.entry = entry
+    // Preserve the specific fields
+    const notifableEmail = +entry.notifable_email === 1;
+    const notifableWa = +entry.notifable_wa === 1;
+
+    // Update the entry state by spreading the existing entry and the new entry data
+    state.entry = {
+      ...state.entry,
+      ...entry,
+
+      // Explicitly set notifable_email and notifable_wa from database
+      notifable_email: notifableEmail,
+      notifable_wa: notifableWa
+    };
   },
   setName(state, value) {
     state.entry.name = value
