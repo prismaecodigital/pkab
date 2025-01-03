@@ -49,7 +49,7 @@ class WhacenterNotification extends Notification implements ShouldQueue
                         "dan saat ini berada dalam status *" . $this->data['status'] . "*. \n\n" .
                         "Yuk, segera cek detailnya dan lakukan langkah berikutnya di sini: " .
                         config('app.url') . "/admin/pkab/pkab-items/" . $this->data['id'] . "\n\n" .
-                        "Terima kasih ya! 😊\n\n" .
+                        "Terima kasih ya! 😊\n" .
                         "Salam, RAISA\n\n" .
                         "_Ini pesan otomatis, jangan dibalas ya!_");
             }
@@ -57,12 +57,12 @@ class WhacenterNotification extends Notification implements ShouldQueue
             if ($this->data['ket'] != '') {
                 return $service->to($this->data['phone'])
                 ->message("Hai, \n\n" .
-                        "PKAB dengan nomor `" . $this->data['code'] . "` " .
+                        "Maaf, PKAB dengan nomor `" . $this->data['code'] . "` " .
                         "telah *" . $this->data['action'] . "* oleh _" . $this->data['user'] . "_. \n" .
                         "Alasan penolakan: *" . $this->data['ket'] . "*.\n\n" .
                         "Detail PKAB bisa dicek di sini: \n" .
                         config('app.url') . "/admin/pkab/pkab-items/" . $this->data['id'] . "\n\n" .
-                        "Terima kasih ya! 😊\n\n" .
+                        "Terima kasih ya! 😊\n" .
                         "Salam, RAISA\n\n" .
                         "_Ini pesan otomatis, jangan dibalas ya!_");
             }
