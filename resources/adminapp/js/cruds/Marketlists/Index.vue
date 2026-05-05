@@ -158,7 +158,6 @@
               </div>
             </div>
           </div>
-          
         </div>
       </div>
     </div>
@@ -291,7 +290,6 @@ export default {
     ]),
     handleCheckboxChange(row) {
       row.selected = !row.selected;
-      console.log(row.selected)
     },
     logCheckedValues() {
       const obj = this.data.filter(row => row.selected);
@@ -312,12 +310,10 @@ export default {
           })
         })
       })
-      console.log(this.rawData)
       this.$refs['modal-2'].show()
       
     },
     filterData() {
-      console.log(this.jsonData)
       this.customFilename = this.startDate
       const start = new Date(this.startDate)
       const [year, month, day] = this.startDate.split("-");
@@ -348,7 +344,7 @@ export default {
           // Check if the name exists in the transformedData object
           if (!transformedData[name]) {
             // If not, initialize the name as a property and set the department quantities to 0
-            transformedData[name] = { name, total: 0 };
+            transformedData[name] = { name, total: 0};
           }
 
           uniqueSites.forEach((value) => {
@@ -371,11 +367,10 @@ export default {
         this.filteredData = Object.values(transformedData).map((data) => {
           // Extract the "total" property from the object
           const { total, ...rest } = data;
-          // Create a new object with the desired column order (move "total" to the last column)
-          return { ...rest, total };
+          // Create a new object with the desired column order (move "total" to the last column, then add new columns)
+          return { ...rest, total, 'Supplier': '', 'Suhu': '', 'Kualitas': '', 'Status (Terima/Tolak)': '', 'Catatan': '', 'PIC': '' };
         });
 
-        console.log(this.filteredData);
     },
     getPdf() {
       if(!this.report_query.bu_id || !this.report_query.site_id || !this.report_query.startDate || !this.report_query.endDate) {

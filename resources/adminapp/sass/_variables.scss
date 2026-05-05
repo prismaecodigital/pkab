@@ -257,23 +257,23 @@ $body-bg: #f8fafc;
 }
 
 .status1-row {
-    background-color: rgb(253, 210, 194);
+    background-color: rgb(253, 210, 194) !important;
 }
   
 .status2-row {
-    background-color: rgb(207, 207, 255);
+    background-color: rgb(207, 207, 255) !important;
 }
 
 .status3-row {
-    background-color: rgb(145, 255, 255);
+    background-color: rgb(145, 255, 255) !important;
 }
 
 .status4-row {
-    background-color: rgb(182, 255, 145);
+    background-color: rgb(182, 255, 145) !important;
 }
 
 .status5-row {
-    background-color: rgb(255, 177, 177);
+    background-color: rgb(255, 177, 177) !important;
 }
 
 @media (max-width: 768px) {

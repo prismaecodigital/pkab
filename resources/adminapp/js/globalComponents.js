@@ -16,6 +16,7 @@ import Datepicker from 'vuejs-datepicker';
 import excel from 'vue-excel-export'
 import { Timeline, TimelineItem, TimelineTitle } from 'vue-cute-timeline'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import CustomTableBody from '@components/Datatables/CustomTableBody.vue'
 
 const GlobalComponents = {
   install(Vue) {
@@ -40,6 +41,7 @@ const GlobalComponents = {
     Vue.component('bootstrap-alert', BootstrapAlert)
     Vue.component('v-radio', VueRadio)
     Vue.component('v-select', vSelect)
+    Vue.component('custom-table-body', CustomTableBody)
   }
 }
 
