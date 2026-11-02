@@ -1,4 +1,4 @@
-import Sidebar from './SideBar.vue'
+import Sidebar from './Sidebar.vue'
 import SidebarLink from './SidebarLink.vue'
 import ItemGroup from './ItemGroup.vue'
 import ItemSubGroup from './ItemSubGroup.vue'

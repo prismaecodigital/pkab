@@ -3,8 +3,8 @@
 
 A new PKAB has been created with the following details:
 
-- ID: {{ $pkab->id }}
-- Name: {{ $pkab->name }}
-- Status: {{ $pkab->status }}
+- ID: {{ $pkab?->id }}
+- Code: {{ $pkab?->code }}
+- Status: {{ $pkab?->status_label }}
 
 @endcomponent

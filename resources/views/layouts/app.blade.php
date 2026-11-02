@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ url('/md/img/apple-icon.png') }}">
-    <link rel="icon" type="image/png" href="{{ url('/md/img/vue.png') }}">
+    <link rel="icon" href="{{ url('/favicon.ico') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>

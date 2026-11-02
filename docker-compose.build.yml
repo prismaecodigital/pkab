@@ -1,0 +1,15 @@
+services:
+    app:
+        build:
+            context: .
+            target: prod
+            args:
+                VITE_VUE_APP_I18N_LOCALE: ${VITE_VUE_APP_I18N_LOCALE}
+                VITE_VUE_APP_I18N_FALLBACK_LOCALE: ${VITE_VUE_APP_I18N_FALLBACK_LOCALE}
+        image: ${APP_IMAGE}
+
+    nginx:
+        build:
+            context: .
+            target: web_prod
+        image: ${NGINX_IMAGE}

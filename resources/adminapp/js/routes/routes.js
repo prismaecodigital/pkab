@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const View = { template: '<router-view></router-view>' }
+const View = { render: h => h('router-view') }
 
 const routes = [
   {

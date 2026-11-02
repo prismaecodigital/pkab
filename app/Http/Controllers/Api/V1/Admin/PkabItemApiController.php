@@ -195,7 +195,7 @@ class PkabItemApiController extends Controller
         abort_if(Gate::denies('pkab_item_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         
         return response([
-            'data' => new PkabItemResource($pkabItem->load(['dept.bu'])),
+            'data' => new PkabItemResource($pkabItem->load(['user', 'site', 'dept.bu', 'bu', 'items', 'statusHistory.user'])),
             'meta' => [
                 'dept'   => Dept::get(['id', 'name']),
                 'status' => PkabItem::STATUS_SELECT,

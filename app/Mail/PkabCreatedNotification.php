@@ -18,7 +18,7 @@ class PkabCreatedNotification extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(public $pkab = null)
     {
         //
     }
@@ -44,6 +44,7 @@ class PkabCreatedNotification extends Mailable
     {
         return new Content(
             markdown: 'emails.pkab_created',
+            with: ['pkab' => $this->pkab],
         );
     }
 

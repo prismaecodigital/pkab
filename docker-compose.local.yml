@@ -1,0 +1,10 @@
+# Publishes the production stack on the host so it can be opened without
+# Traefik. Never load this file on the VM.
+services:
+    nginx:
+        ports:
+            - "${APP_PORT:-8090}:80"
+
+    db:
+        ports:
+            - "127.0.0.1:${DB_HOST_PORT:-3308}:3306"

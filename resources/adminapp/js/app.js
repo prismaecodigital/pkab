@@ -4,50 +4,52 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
- require('./bootstrap')
+import './bootstrap'
 
- window.Vue = require('vue')
- window.moment.updateLocale('id', { week: { dow: 1 } })
- 
- Vue.config.productionTip = false
- Vue.prototype.$jquery = $
- 
- import App from './App.vue'
- 
- // Core
- import router from './routes/routes'
- import store from './store/store'
- import i18n from './i18n'
- 
- // Plugins
- 
- import GlobalComponents from './globalComponents'
- import GlobalDirectives from './globalDirectives'
- import GlobalMixins from './mixins/global'
- import { mapGetters, mapActions } from 'vuex'
- 
- Vue.use(GlobalComponents)
- Vue.use(GlobalDirectives)
- Vue.use(GlobalMixins)
- 
- /**
-  * Next, we will create a fresh Vue application instance and attach it to
-  * the page. Then, you may begin adding components to this application
-  * or customize the JavaScript scaffolding to fit your unique needs.
-  */
- 
- const app = new Vue({
-   el: '#app',
-   render: h => h(App),
-   router,
-   store,
-   i18n,
-   created() {
-     this.fetchLanguages()
-     this.fetchSurvey()
-   },
-   methods: {
+import Vue from 'vue'
+
+window.Vue = Vue
+window.moment.updateLocale('id', { week: { dow: 1 } })
+
+Vue.config.productionTip = false
+Vue.prototype.$jquery = window.$
+
+import App from './App.vue'
+
+// Core
+import router from './routes/routes'
+import store from './store/store'
+import i18n from './i18n'
+
+// Plugins
+
+import GlobalComponents from './globalComponents'
+import GlobalDirectives from './globalDirectives'
+import GlobalMixins from './mixins/global'
+import { mapGetters, mapActions } from 'vuex'
+
+Vue.use(GlobalComponents)
+Vue.use(GlobalDirectives)
+Vue.use(GlobalMixins)
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+const app = new Vue({
+  el: '#app',
+  render: h => h(App),
+  router,
+  store,
+  i18n,
+  created () {
+    this.fetchLanguages()
+    this.fetchSurvey()
+  },
+  methods: {
     ...mapActions('Survey', ['fetchSurvey']),
     ...mapActions('I18NStore', ['fetchLanguages'])
-   }
- })
+  }
+})

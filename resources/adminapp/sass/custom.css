@@ -64,11 +64,11 @@
   }
   
   .login-page {
-    background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('/md/img/login.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5));
   }
   
   .register-page {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), url('/md/img/register.jpg');
+    background-image: none;
   }
   
   .header-filter::before {

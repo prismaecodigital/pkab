@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ url('/md/img/apple-icon.png') }}">
-    <link rel="icon" type="image/png" href="{{ url('/md/img/vue.png') }}">
+    <link rel="icon" href="{{ url('/favicon.ico') }}">
     <meta name="mobile-web-app-capable" content="no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -24,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&family=Quicksand:wght@300;400;500;700&family=Material+Icons&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ mix('/adminapp/css/app.css') }}">
+    @vite(['resources/adminapp/sass/app.scss', 'resources/adminapp/js/app.js'])
 </head>
 
 <body>
@@ -46,8 +45,6 @@
 
     {{-- Datetime Picker --}}
     <script src="{{ url('/md/js/plugins/bootstrap-datetimepicker.min.js') }}"></script>
-
-    <script src="{{ mix('/adminapp/js/app.js') }}" type="text/javascript" charset="utf-8"></script>
 </body>
 
 </html>
