@@ -96,7 +96,7 @@ class StatusHistory extends Model
 
     public function getDateAttribute($value)
     {
-        return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('project.date_format')) : null;
+        return $value ? Carbon::parse($value)->format(config('project.date_format')) : null;
     }
 
     public function setDateAttribute($value)

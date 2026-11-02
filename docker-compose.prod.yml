@@ -1,0 +1,154 @@
+# Runtime file for the VM and stack managers.
+#
+# Deliberately contains no `build:`, no `env_file:`, no relative bind mounts and
+# no top-level `name:` — a stack manager that only stores the compose text can
+# still start it. Every ${VAR} below must be set in the project environment;
+# Compose substitutes an empty string for a missing variable, and the app
+# container refuses to start without APP_KEY / a schemeless APP_URL.
+
+services:
+    app:
+        image: ${APP_IMAGE}
+        container_name: pkab-app
+        restart: unless-stopped
+        working_dir: /var/www/html
+        environment:
+            APP_NAME: ${APP_NAME}
+            APP_ENV: production
+            APP_DEBUG: "false"
+            APP_KEY: ${APP_KEY}
+            APP_URL: ${APP_URL}
+            APP_TIMEZONE: ${APP_TIMEZONE}
+            TZ: ${APP_TIMEZONE}
+            DB_CONNECTION: mysql
+            DB_HOST: db
+            DB_PORT: "3306"
+            DB_DATABASE: ${DB_DATABASE}
+            DB_USERNAME: ${DB_USERNAME}
+            DB_PASSWORD: ${DB_PASSWORD}
+            CACHE_STORE: ${CACHE_STORE}
+            SESSION_DRIVER: ${SESSION_DRIVER}
+            SESSION_LIFETIME: ${SESSION_LIFETIME}
+            SESSION_SECURE_COOKIE: ${SESSION_SECURE_COOKIE}
+            QUEUE_CONNECTION: ${QUEUE_CONNECTION}
+            BROADCAST_CONNECTION: ${BROADCAST_CONNECTION}
+            MAIL_MAILER: ${MAIL_MAILER}
+            MAIL_HOST: ${MAIL_HOST}
+            MAIL_PORT: ${MAIL_PORT}
+            MAIL_USERNAME: ${MAIL_USERNAME}
+            MAIL_PASSWORD: ${MAIL_PASSWORD}
+            MAIL_ENCRYPTION: ${MAIL_ENCRYPTION}
+            MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS}
+            MAIL_FROM_NAME: ${MAIL_FROM_NAME}
+            LOG_CHANNEL: ${LOG_CHANNEL}
+            LOG_LEVEL: ${LOG_LEVEL}
+            SANCTUM_STATEFUL_DOMAINS: ${SANCTUM_STATEFUL_DOMAINS}
+            WHACENTER_API_URL: ${WHACENTER_API_URL}
+            WHACENTER_DEVICE_ID: ${WHACENTER_DEVICE_ID}
+            RUN_MIGRATIONS: ${RUN_MIGRATIONS}
+            CACHE_CONFIG: ${CACHE_CONFIG}
+        volumes:
+            - app-storage:/var/www/html/storage
+        depends_on:
+            db:
+                condition: service_healthy
+        networks:
+            - internal
+
+    nginx:
+        image: ${NGINX_IMAGE}
+        container_name: pkab-nginx
+        restart: unless-stopped
+        environment:
+            TZ: ${APP_TIMEZONE}
+        labels:
+            traefik.enable: "true"
+            traefik.docker.network: ${APP_NETWORK}
+            traefik.http.routers.pkab.rule: Host(`${APP_DOMAIN}`)
+            traefik.http.routers.pkab.entrypoints: ${TRAEFIK_ENTRYPOINT}
+            traefik.http.routers.pkab.tls.certresolver: ${TRAEFIK_CERT_RESOLVER}
+            traefik.http.services.pkab.loadbalancer.server.port: "80"
+        depends_on:
+            - app
+        networks:
+            - internal
+
+    db:
+        image: mysql:${MYSQL_VERSION}
+        container_name: pkab-db
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+            TZ: ${APP_TIMEZONE}
+        volumes:
+            - mysql-data:/var/lib/mysql
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+            interval: 5s
+            timeout: 5s
+            retries: 20
+        networks:
+            - internal
+
+    adminer:
+        image: adminer:4.8.1
+        container_name: pkab-adminer
+        restart: unless-stopped
+        environment:
+            ADMINER_DEFAULT_SERVER: db
+            TZ: ${APP_TIMEZONE}
+        ports:
+            - "127.0.0.1:${ADMINER_PORT}:8080"
+        depends_on:
+            - db
+        networks:
+            - internal
+
+    scheduler:
+        image: ${APP_IMAGE}
+        container_name: pkab-scheduler
+        restart: unless-stopped
+        working_dir: /var/www/html
+        command: php artisan schedule:work
+        environment:
+            APP_NAME: ${APP_NAME}
+            APP_ENV: production
+            APP_DEBUG: "false"
+            APP_KEY: ${APP_KEY}
+            APP_URL: ${APP_URL}
+            APP_TIMEZONE: ${APP_TIMEZONE}
+            TZ: ${APP_TIMEZONE}
+            DB_CONNECTION: mysql
+            DB_HOST: db
+            DB_PORT: "3306"
+            DB_DATABASE: ${DB_DATABASE}
+            DB_USERNAME: ${DB_USERNAME}
+            DB_PASSWORD: ${DB_PASSWORD}
+            CACHE_STORE: ${CACHE_STORE}
+            SESSION_DRIVER: ${SESSION_DRIVER}
+            QUEUE_CONNECTION: ${QUEUE_CONNECTION}
+            LOG_CHANNEL: ${LOG_CHANNEL}
+            LOG_LEVEL: ${LOG_LEVEL}
+            # Never migrate from here: it would race the app container.
+            RUN_MIGRATIONS: "false"
+            CACHE_CONFIG: "false"
+        volumes:
+            - app-storage:/var/www/html/storage
+        depends_on:
+            db:
+                condition: service_healthy
+        networks:
+            - internal
+
+networks:
+    internal:
+        name: ${APP_NETWORK}
+
+volumes:
+    mysql-data:
+        name: pkab_mysql-data
+    app-storage:
+        name: pkab_app-storage

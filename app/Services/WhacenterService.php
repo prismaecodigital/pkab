@@ -15,8 +15,8 @@ Class WhacenterService
     public function __construct($message = '')
     {
         $this->message = $message;
-        $this->baseUrl = env('WHACENTER_API_URL');
-        $this->deviceId = env('WHACENTER_DEVICE_ID');
+        $this->baseUrl = (string) config('services.whacenter.url');
+        $this->deviceId = (string) config('services.whacenter.device_id');
     }
 
     public function getDeviceStatus(): mixed

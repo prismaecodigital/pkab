@@ -131,7 +131,7 @@ class Marketlist extends Model
 
     public function getCreatedAtAttribute($value)
     {
-        return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d-m-Y') : null;
+        return $value ? Carbon::parse($value)->format('d-m-Y') : null;
     }
 
     public function site()

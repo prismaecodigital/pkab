@@ -1,0 +1,130 @@
+name: pkab-dev
+
+services:
+    app:
+        build:
+            context: .
+            target: dev
+        image: prismaeco/pkab-app:dev
+        container_name: pkab-dev-app
+        restart: unless-stopped
+        working_dir: /var/www/html
+        volumes:
+            - ./:/var/www/html
+        environment:
+            APP_NAME: ${APP_NAME:-PKAB}
+            APP_ENV: local
+            APP_DEBUG: "true"
+            APP_KEY: ${APP_KEY}
+            APP_URL: ${APP_URL:-http://localhost:8080}
+            APP_TIMEZONE: ${APP_TIMEZONE:-Asia/Jakarta}
+            TZ: ${APP_TIMEZONE:-Asia/Jakarta}
+            DB_CONNECTION: mysql
+            DB_HOST: db
+            DB_PORT: 3306
+            DB_DATABASE: ${DB_DATABASE:-pkab}
+            DB_USERNAME: ${DB_USERNAME:-pkab}
+            DB_PASSWORD: ${DB_PASSWORD:-secret}
+            CACHE_STORE: ${CACHE_STORE:-file}
+            SESSION_DRIVER: ${SESSION_DRIVER:-file}
+            SESSION_SECURE_COOKIE: "false"
+            QUEUE_CONNECTION: ${QUEUE_CONNECTION:-sync}
+            BROADCAST_CONNECTION: ${BROADCAST_CONNECTION:-log}
+            RUN_MIGRATIONS: "true"
+            LOG_CHANNEL: ${LOG_CHANNEL:-stack}
+            LOG_LEVEL: ${LOG_LEVEL:-debug}
+            MAIL_MAILER: ${MAIL_MAILER:-log}
+            MAIL_HOST: ${MAIL_HOST:-}
+            MAIL_PORT: ${MAIL_PORT:-587}
+            MAIL_USERNAME: ${MAIL_USERNAME:-}
+            MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+            MAIL_ENCRYPTION: ${MAIL_ENCRYPTION:-tls}
+            MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-no-reply@pkab.example.com}
+            MAIL_FROM_NAME: ${MAIL_FROM_NAME:-PKAB}
+            SANCTUM_STATEFUL_DOMAINS: ${SANCTUM_STATEFUL_DOMAINS:-localhost:8080,127.0.0.1:8080}
+            WHACENTER_API_URL: ${WHACENTER_API_URL:-}
+            WHACENTER_DEVICE_ID: ${WHACENTER_DEVICE_ID:-}
+        depends_on:
+            db:
+                condition: service_healthy
+        networks:
+            - internal
+
+    nginx:
+        image: nginx:1.27-alpine
+        container_name: pkab-dev-nginx
+        restart: unless-stopped
+        ports:
+            - "${APP_PORT:-8080}:80"
+        volumes:
+            - ./public:/var/www/html/public:ro
+            - ./docker/nginx/dev.conf:/etc/nginx/conf.d/default.conf:ro
+        depends_on:
+            - app
+        networks:
+            - internal
+
+    vite:
+        image: node:26.12.1-alpine
+        container_name: pkab-dev-vite
+        restart: unless-stopped
+        working_dir: /var/www/html
+        command: sh -c "npm ci --no-audit --no-fund && npm run dev"
+        volumes:
+            - ./:/var/www/html
+            - pkab-dev_node_modules:/var/www/html/node_modules
+        environment:
+            VITE_PORT: ${VITE_PORT:-5173}
+            VITE_HMR_HOST: ${VITE_HMR_HOST:-localhost}
+            VITE_APP_NAME: ${APP_NAME:-PKAB}
+        ports:
+            - "${VITE_PORT:-5173}:${VITE_PORT:-5173}"
+        networks:
+            - internal
+
+    db:
+        image: mysql:${MYSQL_VERSION:-8.0}
+        container_name: pkab-dev-db
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE:-pkab}
+            MYSQL_USER: ${DB_USERNAME:-pkab}
+            MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root-secret}
+            TZ: ${APP_TIMEZONE:-Asia/Jakarta}
+        volumes:
+            - pkab-dev_mysql-data:/var/lib/mysql
+            - ./docker/mysql/init:/docker-entrypoint-initdb.d:ro
+            - ./docker/mysql/dump:/opt/dump:ro
+        ports:
+            - "127.0.0.1:${DB_HOST_PORT:-3307}:3306"
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+            interval: 5s
+            timeout: 5s
+            retries: 20
+        networks:
+            - internal
+
+    adminer:
+        image: adminer:4.8.1
+        container_name: pkab-dev-adminer
+        restart: unless-stopped
+        environment:
+            ADMINER_DEFAULT_SERVER: db
+        ports:
+            - "${ADMINER_PORT:-8081}:8080"
+        depends_on:
+            - db
+        networks:
+            - internal
+
+networks:
+    internal:
+        name: pkab-dev-internal
+
+volumes:
+    pkab-dev_mysql-data:
+        name: pkab-dev_mysql-data
+    pkab-dev_node_modules:
+        name: pkab-dev_node_modules

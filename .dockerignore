@@ -1,0 +1,44 @@
+# Version control and editor state
+.git
+.gitignore
+.github
+.idea
+.vscode
+.fleet
+
+# Secrets — everything arrives as container environment variables at runtime
+.env
+.env.*
+!.env.testing
+docker/.env
+auth.json
+
+# Installed dependencies (rebuilt inside the image)
+vendor
+node_modules
+
+# Build output (rebuilt inside the image)
+public/build
+public/hot
+public/storage
+public/adminapp
+
+# Runtime state
+storage/*.key
+storage/app/public/*
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+bootstrap/cache/*.php
+
+# Not needed in the image
+tests
+phpunit.xml
+docs
+adminapp
+*.tar.gz
+
+# Database dumps must never be baked into an image
+*.sql
+*.sql.gz

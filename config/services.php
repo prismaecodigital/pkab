@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'whacenter' => [
+        'url' => env('WHACENTER_API_URL', ''),
+        'device_id' => env('WHACENTER_DEVICE_ID', ''),
+    ],
+
 ];
