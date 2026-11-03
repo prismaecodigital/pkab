@@ -4,9 +4,22 @@ import vue from '@vitejs/plugin-vue2'
 import path from 'node:path'
 
 const root = path.resolve(import.meta.dirname)
+const customTableBody = path.resolve(root, 'resources/adminapp/js/components/Datatables/CustomTableBody.vue')
 
 export default defineConfig({
   plugins: [
+    {
+      // vue2-datatable renders its own TableBody, so the project's custom body
+      // (which adds the status row classes) was never used. Redirect that one
+      // internal import instead of patching node_modules.
+      name: 'datatable-custom-body',
+      enforce: 'pre',
+      resolveId (source, importer) {
+        if (source === './TableBody.vue' && importer && importer.includes('@laraveldaily/vue2-datatable/src/Table/index.vue')) {
+          return customTableBody
+        }
+      }
+    },
     laravel({
       input: [
         'resources/adminapp/js/app.js',

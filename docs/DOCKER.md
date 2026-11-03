@@ -419,6 +419,13 @@ docker compose --env-file docker/.env -f docker-compose.prod.yml exec -u root ap
   chown -R www-data:www-data storage bootstrap/cache
 ```
 
+**Assets 404 after a rebuild (`/build/assets/app-XXXX.js`)** — `docker restart` keeps the old image. Recreate the containers so nginx serves the new `public/build` that matches the manifest in the app image:
+
+```bash
+make prod-build
+make prod-up   # up -d --no-build --force-recreate is implicit when the image changed
+```
+
 **502 after recreating only the `app` container** — nginx resolved `app:9000` to the old container IP at start-up and keeps using it. Restart nginx after recreating `app` on its own:
 
 ```bash

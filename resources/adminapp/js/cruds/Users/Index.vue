@@ -128,8 +128,7 @@ export default {
       xprops: {
         module: 'UsersIndex',
         route: 'users',
-        permission_prefix: 'user_',
-        getRowClass: this.getRowClass
+        permission_prefix: 'user_'
       }
     }
   },
@@ -149,15 +148,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('UsersIndex', ['fetchIndexData', 'setQuery', 'resetState']),
-    getRowClass(row) {
-      if (row.status === 'purchasing_acc_1') return 'status1-row'
-      if (row.status === 'purchasing_acc_2') return 'status2-row'
-      if (row.status === 'user_acc') return 'status4-row'
-      if (row.status === 'purchasing_acc_3') return 'status3-row'
-      if (row.status === 'cancel') return 'status5-row'
-      return ''
-    }
+    ...mapActions('UsersIndex', ['fetchIndexData', 'setQuery', 'resetState'])
   }
 }
 </script>

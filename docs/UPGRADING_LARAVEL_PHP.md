@@ -622,7 +622,36 @@ Keep `@casl/ability` 4 + `@casl/vue` 1: `@casl/vue` 2+ requires Vue 3. Keep `vue
     (The alternative, `resolve.alias: { vue: 'vue/dist/vue.esm.js' }`, bundles the compiler and hides
     the next one. Prefer render functions.)
 
-11. **Global script tags still work.** jQuery, `moment` and `bootstrap-material-design` are loaded by
+11. **Patches inside `node_modules` are lost on `npm ci`.** PKAB's status row colouring was not in
+    the repository at all: `@laraveldaily/vue2-datatable/src/Table/TableBody.vue` had been edited by
+    hand to render `<tr :class="getRowClassValue(item)">` with a hardcoded status map. The committed
+    webpack bundle still contained it, so it looked like app code; `npm ci` for the Vite build
+    restored the published file and the colouring silently disappeared (the CSS classes were still
+    there). The repo already had an unused `CustomTableBody.vue` with that binding, so the fix was to
+    redirect the library's internal import and pass the class map through `xprops`:
+
+    ```js
+    {
+      name: 'datatable-custom-body',
+      enforce: 'pre',
+      resolveId (source, importer) {
+        if (source === './TableBody.vue' &&
+            importer?.includes('@laraveldaily/vue2-datatable/src/Table/index.vue')) {
+          return path.resolve(root, 'resources/adminapp/js/components/Datatables/CustomTableBody.vue')
+        }
+      }
+    }
+    ```
+
+    ```js
+    xprops: { module: 'PkabItemsIndex', route: 'pkab_items', permission_prefix: 'pkab_item_',
+              getRowClass: this.getRowClass }
+    ```
+
+    Audit `node_modules` for other local edits before migrating a bundler — `git diff` will not show
+    them.
+
+12. **Global script tags still work.** jQuery, `moment` and `bootstrap-material-design` are loaded by
     `<script>` tags in the Blade layout. Vite's `type="module"` scripts are deferred, so they run
     after those classic scripts and `window.moment` / `window.$` exist by the time the bundle runs.
 

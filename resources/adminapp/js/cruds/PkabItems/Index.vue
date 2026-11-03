@@ -154,7 +154,8 @@ export default {
       xprops: {
         module: 'PkabItemsIndex',
         route: 'pkab_items',
-        permission_prefix: 'pkab_item_'
+        permission_prefix: 'pkab_item_',
+        getRowClass: this.getRowClass
       },
       dataFields : {
         'Kode' : 'code',
@@ -189,6 +190,14 @@ export default {
       'setQuery',
       'resetState'
     ]),
+    getRowClass(row) {
+      if (row.status === 'purchasing_acc_1') return 'status1-row'
+      if (row.status === 'purchasing_acc_2') return 'status2-row'
+      if (row.status === 'user_acc') return 'status4-row'
+      if (row.status === 'purchasing_acc_3') return 'status3-row'
+      if (row.status === 'cancel') return 'status5-row'
+      return ''
+    }
   }
 }
 </script>
