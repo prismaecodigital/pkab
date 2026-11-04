@@ -59,8 +59,8 @@ const set = key => (state, val) => {
         dispatch('fetchIndexData')
       })
       .catch(error => {
-        // handle error
-        message = error.response.data.message || error.message
+        commit('setLoading', false)
+        throw error
       })
     },
     rejectData({ commit, dispatch }, {id, ket}) {
@@ -71,8 +71,8 @@ const set = key => (state, val) => {
         dispatch('fetchIndexData')
       })
       .catch(error => {
-        // handle error
-        message = error.response.data.message || error.message
+        commit('setLoading', false)
+        throw error
       })
     },
     setQuery({ commit }, value) {

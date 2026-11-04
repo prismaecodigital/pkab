@@ -65,7 +65,7 @@ export default {
       handler() {
         axios.get('abilities').then(response => {
           this.$ability.update([
-            { subject: 'all', actions: response.data.data }
+            { subject: 'all', action: response.data.data }
           ])
         })
       },
