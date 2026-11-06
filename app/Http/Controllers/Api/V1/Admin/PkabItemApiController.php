@@ -86,13 +86,7 @@ class PkabItemApiController extends Controller
     
         try {
             $pkabItem = PkabItem::create($data);
-            StatusHistory::create([
-                'pkab_id' => $pkabItem->id,
-                'status' => $data['status'],
-                'user_id' => $data['user_id'],
-                'created_at' => $data['created_at'],
-            ]);
-            
+
             foreach ($request->items ?? [] as $itemData) {
                 // The satuan select can submit an option object; the column is a string.
                 $satuan = $itemData['satuan'] ?? null;
@@ -109,7 +103,16 @@ class PkabItemApiController extends Controller
                     'pkab_id' => $pkabItem->id,
                 ]);
             }
-    
+
+            // Recorded after the items so a notification failure can never
+            // leave a PKAB without its lines.
+            StatusHistory::create([
+                'pkab_id' => $pkabItem->id,
+                'status' => $data['status'],
+                'user_id' => $data['user_id'],
+                'created_at' => $data['created_at'],
+            ]);
+
             return (new PkabItemResource($pkabItem))
                 ->response()
                 ->setStatusCode(Response::HTTP_CREATED);

@@ -42,16 +42,32 @@ class StatusHistoryActionObserver
         // Send Email Notification if notifable_email is true
         foreach ($users as $user) {
             if ($user->notifable_email) {
-                Notification::send($user, new DataChangeEmailNotification($data));
+                try {
+                    Notification::send($user, new DataChangeEmailNotification($data));
+                } catch (\Throwable $e) {
+                    // A broken mail transport must not fail the status change itself.
+                    Log::error('PKAB email notification failed', [
+                        'user_id' => $user->id,
+                        'pkab_id' => $pkab->id,
+                        'message' => $e->getMessage(),
+                    ]);
+                }
             }
         }
 
         // Send WhatsApp Notification if notifable_wa is true
         foreach ($users as $user) {
             if ($user->notifable_wa) {
-                $data['phone'] = $user->no_hp;
-                Notification::send($user, new WhacenterNotification($data));
-                Log::info("testing sending whatsapp message");
+                try {
+                    $data['phone'] = $user->no_hp;
+                    Notification::send($user, new WhacenterNotification($data));
+                } catch (\Throwable $e) {
+                    Log::error('PKAB WhatsApp notification failed', [
+                        'user_id' => $user->id,
+                        'pkab_id' => $pkab->id,
+                        'message' => $e->getMessage(),
+                    ]);
+                }
             }
         }
         // Notification::send($users, new DataChangeEmailNotification($data));
