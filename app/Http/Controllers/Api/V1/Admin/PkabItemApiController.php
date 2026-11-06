@@ -13,6 +13,7 @@ use App\Models\Item;
 use App\Models\StatusHistory;
 use Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 use Carbon\Carbon;
 
@@ -92,13 +93,19 @@ class PkabItemApiController extends Controller
                 'created_at' => $data['created_at'],
             ]);
             
-            foreach ($request->items as $itemData) {
+            foreach ($request->items ?? [] as $itemData) {
+                // The satuan select can submit an option object; the column is a string.
+                $satuan = $itemData['satuan'] ?? null;
+                if (is_array($satuan)) {
+                    $satuan = $satuan['value'] ?? $satuan['name'] ?? $satuan['label'] ?? null;
+                }
+
                 Item::create([
-                    'name' => $itemData['name'],
-                    'merk' => $itemData['merk'],
-                    'spesifikasi' => $itemData['spesifikasi'],
-                    'qty' => $itemData['qty'],
-                    'satuan' => $itemData['satuan'],
+                    'name' => $itemData['name'] ?? '',
+                    'merk' => $itemData['merk'] ?? null,
+                    'spesifikasi' => $itemData['spesifikasi'] ?? '',
+                    'qty' => $itemData['qty'] ?? null,
+                    'satuan' => is_array($satuan) ? null : $satuan,
                     'pkab_id' => $pkabItem->id,
                 ]);
             }
@@ -107,9 +114,18 @@ class PkabItemApiController extends Controller
                 ->response()
                 ->setStatusCode(Response::HTTP_CREATED);
     
-        } catch (\Exception $e) {
-            // Handle the exception and return an error response
-            return response()->json(['message' => 'Failed to create PKAB item'], 500);
+        } catch (\Throwable $e) {
+            Log::error('Failed to create PKAB item', [
+                'message' => $e->getMessage(),
+                'user_id' => auth()->id(),
+                'payload' => $request->except(['items']),
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return response()->json([
+                'message' => 'Failed to create PKAB item',
+                'error' => $e->getMessage(),
+            ], 500);
         }
 
     }
@@ -119,11 +135,18 @@ class PkabItemApiController extends Controller
         $count = PkabItem::whereYear('created_at', $createdAt)
             ->whereMonth('created_at', $createdAt)
             ->count();
-    
-        $number = str_pad($count + 1, 3, "0", STR_PAD_LEFT);
+
         $dateCode = substr($createdAt, 2, 2) . substr($createdAt, 5, 2);
-    
-        return $buCode . $deptCode . $dateCode . $number;
+
+        // The counter is shared across prefixes, so a code can already exist
+        // (deleted rows, items created with another prefix). Walk forward until
+        // the code is free instead of failing the insert on the unique index.
+        do {
+            $number = str_pad(++$count, 3, "0", STR_PAD_LEFT);
+            $code = $buCode . $deptCode . $dateCode . $number;
+        } while (PkabItem::where('code', $code)->exists());
+
+        return $code;
     }
 
     public function create()

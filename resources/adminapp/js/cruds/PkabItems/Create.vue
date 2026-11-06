@@ -156,10 +156,10 @@
                     <td>
                         <v-select
                           name="satuan"
-                          label="name"
                           :key="'satuan-field'"
                           :value="item.satuan"
                           :options="lists.satuan"
+                          :reduce="option => option"
                           @input="updateItemSatuan(k, $event)"
                           required
                         />
