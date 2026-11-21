@@ -254,7 +254,8 @@ export default {
       xprops: {
         module: 'MarketlistsIndex',
         route: 'marketlists',
-        permission_prefix: 'marketlist_'
+        permission_prefix: 'marketlist_',
+        getRowClass: this.getRowClass
       },
       dataFields : {
         'Kode' : 'code',
@@ -288,6 +289,14 @@ export default {
       'setQuery',
       'resetState'
     ]),
+    getRowClass(row) {
+      if (row.status === 'purchasing_ml_1') return 'status1-row'
+      if (row.status === 'purchasing_ml_2') return 'status2-row'
+      if (row.status === 'selesai') return 'status3-row'
+      if (row.status === 'user_acc') return 'status4-row'
+      if (row.status === 'cancel') return 'status5-row'
+      return ''
+    },
     handleCheckboxChange(row) {
       row.selected = !row.selected;
     },

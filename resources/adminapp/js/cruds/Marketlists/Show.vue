@@ -354,8 +354,11 @@ export default {
         .dispatch(this.xprops.module + '/approveData', this.dialog.id)
         .then(() => {
           this.closeDialog()
-          this.fetchShowData(this.$route.params.id)
           this.$eventHub.$emit('approve-success')
+          // Purchasing approval moves the row to the next status; go back to the
+          // list and refresh it instead of staying on the detail page.
+          this.$store.dispatch('MarketlistsIndex/fetchIndexData')
+          this.$router.push({ name: 'marketlists.index' })
         })
         .catch(error => {
           this.dialog = { ...this.dialog, error: this.errorMessage(error) }

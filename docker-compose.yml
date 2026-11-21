@@ -20,8 +20,8 @@ services:
             APP_TIMEZONE: ${APP_TIMEZONE:-Asia/Jakarta}
             TZ: ${APP_TIMEZONE:-Asia/Jakarta}
             DB_CONNECTION: mysql
-            DB_HOST: db
-            DB_PORT: 3306
+            DB_HOST: ${DB_HOST:-db}
+            DB_PORT: ${DB_PORT:-3306}
             DB_DATABASE: ${DB_DATABASE:-pkab}
             DB_USERNAME: ${DB_USERNAME:-pkab}
             DB_PASSWORD: ${DB_PASSWORD:-secret}
